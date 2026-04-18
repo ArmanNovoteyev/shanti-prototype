@@ -151,7 +151,16 @@
     "for_recipient": "Для",
     "from_sender": "От",
     "certificate_title": "Подарочный сертификат",
-    "promo_title": "−20% на сертификаты до 7 мая"
+    "promo_title": "−20% на сертификаты до 7 мая",
+    "promo_eyebrow": "Акция",
+    "promo_days_left": "осталось дней",
+    "pay_processing": "Обрабатываем оплату",
+    "design_subtitle": "Выберите по поводу",
+    "sent_toast": "Отправили в WhatsApp",
+    "pdf_toast": "Сертификат сохранён в PDF",
+    "summary_title": "Сертификат {{amount}}",
+    "summary_to": "для {{name}}",
+    "summary_from": "от {{name}}"
   },
   "bookings": {
     "title": "Мои записи",

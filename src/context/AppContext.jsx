@@ -37,6 +37,16 @@ const EMPTY_DRAFT = {
   partyPeople: null,
 };
 
+const EMPTY_GIFT_DRAFT = {
+  amount: null,
+  recipientPhone: '',
+  recipientName: '',
+  senderName: '',
+  design: null,
+  code: null,
+  validUntil: null,
+};
+
 export function AppProvider({ children }) {
   const [lang, setLang] = useState('ru');
   const [user] = useState(DEFAULT_USER);
@@ -45,6 +55,7 @@ export function AppProvider({ children }) {
   const [bonus, setBonus] = useState({ balance: 4200, visitsToFifth: 3 });
   const [backBalance, setBackBalance] = useState(DEFAULT_BACK_BALANCE);
   const [bookingDraft, setBookingDraft] = useState(EMPTY_DRAFT);
+  const [giftDraft, setGiftDraft] = useState(EMPTY_GIFT_DRAFT);
   const [toast, setToast] = useState(null);
   const toastTimer = useRef(null);
 
@@ -68,6 +79,10 @@ export function AppProvider({ children }) {
 
   const resetBookingDraft = useCallback(() => {
     setBookingDraft(EMPTY_DRAFT);
+  }, []);
+
+  const resetGiftDraft = useCallback(() => {
+    setGiftDraft(EMPTY_GIFT_DRAFT);
   }, []);
 
   const addBooking = useCallback((booking) => {
@@ -100,6 +115,9 @@ export function AppProvider({ children }) {
       setBookingDraft,
       startBookingFor,
       resetBookingDraft,
+      giftDraft,
+      setGiftDraft,
+      resetGiftDraft,
       bonus,
       setBonus,
       backBalance,
@@ -118,6 +136,8 @@ export function AppProvider({ children }) {
       bookingDraft,
       startBookingFor,
       resetBookingDraft,
+      giftDraft,
+      resetGiftDraft,
       bonus,
       backBalance,
       purchaseBackBalance,
