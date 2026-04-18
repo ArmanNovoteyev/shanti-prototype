@@ -190,6 +190,112 @@ function Hero() {
   );
 }
 
+function BonusTeaser() {
+  const { t } = useTranslation();
+  const { bonus, backBalance, navigate } = useContext(AppContext);
+  const balanceStr = Number(bonus.balance).toLocaleString('ru-RU').replace(/\u00a0/g, ' ');
+  const hasCourse = !!backBalance?.purchased;
+  return (
+    <div style={{ padding: '0 20px', marginBottom: 14 }}>
+      <button
+        onClick={() => navigate('bonus')}
+        style={{
+          ...body,
+          width: '100%',
+          background: tokens.ivory,
+          border: `1px solid ${tokens.copperSoft}`,
+          borderRadius: 20,
+          padding: '13px 14px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 12,
+          cursor: 'pointer',
+          textAlign: 'left',
+          boxShadow: '0 8px 18px -12px rgba(184,121,74,0.28)',
+        }}
+        aria-label={t('bonus.title')}
+      >
+        <div
+          style={{
+            width: 38,
+            height: 38,
+            borderRadius: '50%',
+            background: tokens.copperSoft,
+            color: tokens.copper,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+          }}
+        >
+          <Sparkles size={18} strokeWidth={2} />
+        </div>
+
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
+          <div style={{ flex: hasCourse ? '0 0 auto' : 1, minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
+              <span style={{ ...display, fontSize: 18, color: tokens.deepSage, lineHeight: 1 }}>
+                {balanceStr}
+              </span>
+              <span style={{ fontSize: 11, color: tokens.muted, fontWeight: 600 }}>
+                {t('bonus.teaser_unit')}
+              </span>
+            </div>
+            <div style={{ fontSize: 11, color: tokens.muted, marginTop: 3 }}>
+              {t('bonus.teaser_rate')}
+            </div>
+          </div>
+
+          {hasCourse && (
+            <>
+              <div
+                style={{
+                  width: 1,
+                  alignSelf: 'stretch',
+                  background: 'rgba(42,46,40,0.1)',
+                  margin: '2px 0',
+                }}
+              />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: tokens.deepSage,
+                  }}
+                >
+                  <span style={{ whiteSpace: 'nowrap' }}>{t('bonus.back_balance_title')}</span>
+                  <span
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      color: tokens.copper,
+                      background: tokens.copperSoft,
+                      padding: '1px 7px',
+                      borderRadius: 7,
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {backBalance.done}/{backBalance.total}
+                  </span>
+                </div>
+                <div style={{ fontSize: 11, color: tokens.muted, marginTop: 3 }}>
+                  {t('bonus.teaser_sub')}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+
+        <ChevronRight size={18} color={tokens.muted} style={{ flexShrink: 0 }} />
+      </button>
+    </div>
+  );
+}
+
 function NextVisitCard() {
   const { t, localized } = useTranslation();
   const { bookings, navigate } = useContext(AppContext);
@@ -602,6 +708,7 @@ export default function HomeScreen() {
       <Header />
       <Hero />
       <NextVisitCard />
+      <BonusTeaser />
       <PrimaryCTA />
       <HappyHoursBanner />
       <GiftBanner />

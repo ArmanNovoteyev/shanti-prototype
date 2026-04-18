@@ -52,7 +52,7 @@ export function AppProvider({ children }) {
   const [user] = useState(DEFAULT_USER);
   const [screen, setScreen] = useState('home');
   const [bookings, setBookings] = useState([DEFAULT_BOOKING]);
-  const [bonus, setBonus] = useState({ balance: 4200, visitsToFifth: 3 });
+  const [bonus, setBonus] = useState({ balance: 3450, visitsToFifth: 3 });
   const [backBalance, setBackBalance] = useState(DEFAULT_BACK_BALANCE);
   const [bookingDraft, setBookingDraft] = useState(EMPTY_DRAFT);
   const [giftDraft, setGiftDraft] = useState(EMPTY_GIFT_DRAFT);

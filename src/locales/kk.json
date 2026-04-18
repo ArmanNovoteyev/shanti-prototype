@@ -187,7 +187,22 @@
     "invite_title": "Приведите подругу",
     "invite_reward": "+2000 бонусов вам и ей",
     "history_title": "История начислений",
-    "history_empty": "История пока пуста"
+    "history_empty": "История пока пуста",
+    "balance_label": "БАЛЛОВ",
+    "balance_hint": "1 балл = 10 ₸ при оплате услуг",
+    "fifth_visit_line": "{{done}} из 5 визитов · осталось {{left}}",
+    "visits_done_of": "{{done}} из {{total}}",
+    "visits_left_count_2": "{{n}} визита",
+    "visits_left_count_5": "{{n}} визитов",
+    "invite_cta": "Пригласить",
+    "invite_toast": "Ссылка скопирована",
+    "back_balance_eyebrow": "Ваш курс",
+    "history_earned": "Начислено: {{amount}} баллов",
+    "history_spent": "Списано: {{amount}} баллов",
+    "history_invite": "Приглашение: {{name}}",
+    "teaser_unit": "баллов",
+    "teaser_rate": "1 балл = 10 ₸",
+    "teaser_sub": "курс спины"
   },
   "feedback": {
     "title": "Как прошёл ваш ритуал?",
