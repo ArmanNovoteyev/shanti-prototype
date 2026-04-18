@@ -226,13 +226,30 @@
     "notifications": "Уведомления",
     "notifications_reminders": "Напоминания о визитах",
     "notifications_promos": "Акции и спецпредложения",
-    "notifications_news": "Новости салона"
+    "notifications_news": "Новости салона",
+    "preferences_title": "Предпочтения",
+    "language_title": "Язык",
+    "notifications_title": "Уведомления",
+    "about_title": "О салоне",
+    "notifications_push": "Push-уведомления",
+    "notifications_email": "Email рассылка",
+    "notifications_sms": "SMS о записях",
+    "logout": "Выйти",
+    "instagram_handle": "@shanti_thai_spa_ukg",
+    "birthday_value": "14 августа",
+    "pref_toast_soon": "Скоро будет выбор",
+    "logout_toast": "Функция пока недоступна"
   },
   "reviews": {
     "title": "Отзывы",
     "filter_branch": "Филиал",
     "filter_master": "Мастер",
     "filter_all": "Все",
-    "expand": "читать дальше"
+    "expand": "читать дальше",
+    "subtitle": "389 живых отзывов · 4.8 ★",
+    "branch_all": "Все",
+    "master_all": "Все",
+    "empty": "По этим фильтрам отзывов нет",
+    "reset_filters": "Сбросить фильтры"
   }
 }

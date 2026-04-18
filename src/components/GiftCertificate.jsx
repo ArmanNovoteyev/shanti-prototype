@@ -57,6 +57,8 @@ const DESIGN_CONFIG = {
 export const GIFT_DESIGNS = ['ny', 'march8', 'birthday', 'dark', 'light'];
 export const getDesignConfig = (id) => DESIGN_CONFIG[id] || DESIGN_CONFIG.light;
 
+const LOGO_SHADOW_DESIGNS = new Set(['ny', 'march8', 'light']);
+
 function formatAmount(v) {
   if (v == null) return '';
   return Number(v).toLocaleString('ru-RU').replace(/\u00a0/g, ' ') + ' ₸';
@@ -220,7 +222,14 @@ export default function GiftCertificate({
           <img
             src={cfg.logo}
             alt="SHANTI"
-            style={{ height: 24 * scale, width: 'auto', objectFit: 'contain' }}
+            style={{
+              height: 24 * scale,
+              width: 'auto',
+              objectFit: 'contain',
+              filter: LOGO_SHADOW_DESIGNS.has(design)
+                ? 'drop-shadow(0 1px 2px rgba(74,50,32,0.25))'
+                : undefined,
+            }}
           />
         </div>
 

@@ -11,6 +11,7 @@ import BookingsListScreen from './screens/BookingsListScreen.jsx';
 import FeedbackScreen from './screens/FeedbackScreen.jsx';
 import BonusScreen from './screens/BonusScreen.jsx';
 import ProfileScreen from './screens/ProfileScreen.jsx';
+import ReviewsScreen from './screens/ReviewsScreen.jsx';
 
 const tokens = {
   deepSage: '#344237',
@@ -31,6 +32,7 @@ const screens = {
   feedback: FeedbackScreen,
   bonus: BonusScreen,
   profile: ProfileScreen,
+  reviews: ReviewsScreen,
 };
 
 function Shell() {

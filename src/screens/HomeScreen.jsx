@@ -598,6 +598,7 @@ function ReviewCard({ review }) {
 
 function ReviewsCarousel() {
   const { t } = useTranslation();
+  const { navigate } = useContext(AppContext);
   const items = reviews.slice(0, 5);
   return (
     <div style={{ marginBottom: '24px' }}>
@@ -613,7 +614,22 @@ function ReviewsCarousel() {
         <div style={{ ...display, fontSize: '20px', color: tokens.deepSage }}>
           {t('home.reviews_title')}
         </div>
-        <span style={{ fontSize: '12px', color: tokens.muted }}>{t('home.reviews_all')}</span>
+        <button
+          type="button"
+          onClick={() => navigate('reviews')}
+          style={{
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            fontSize: '12px',
+            color: tokens.copper,
+            fontWeight: 600,
+            cursor: 'pointer',
+            fontFamily: "'Manrope', sans-serif",
+          }}
+        >
+          {t('home.reviews_all')}
+        </button>
       </div>
       <div
         style={{
