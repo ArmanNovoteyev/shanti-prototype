@@ -1,9 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import ShantiSpaApp from './ShantiSpaApp.jsx'
+import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ShantiSpaApp />
+    <App />
   </StrictMode>,
 )
