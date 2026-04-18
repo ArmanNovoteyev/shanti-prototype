@@ -123,7 +123,6 @@ function Header() {
 
 function Hero() {
   const { t } = useTranslation();
-  // TODO: replace gradient with <img src="/assets/photos/01-hero.jpg" /> when ready
   return (
     <div style={{ padding: '0 24px', marginBottom: '20px' }}>
       <div
@@ -132,7 +131,9 @@ function Hero() {
           borderRadius: '28px',
           overflow: 'hidden',
           position: 'relative',
-          background: `radial-gradient(120% 100% at 20% 10%, ${tokens.sage} 0%, ${tokens.deepSage} 50%, ${tokens.copper} 130%)`,
+          backgroundImage: 'url(/assets/photos/25-massage-bed-lotus.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
@@ -145,7 +146,7 @@ function Hero() {
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.45) 100%)',
+              'linear-gradient(to bottom, rgba(52,66,55,0.25) 0%, rgba(52,66,55,0.85) 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -157,8 +158,9 @@ function Hero() {
             width: 72,
             height: 72,
             borderRadius: '50%',
-            background: 'rgba(251,248,241,0.08)',
-            border: '1px solid rgba(251,248,241,0.15)',
+            background: 'rgba(251,248,241,0.12)',
+            border: '1px solid rgba(251,248,241,0.22)',
+            backdropFilter: 'blur(2px)',
           }}
         />
         <div style={{ position: 'relative' }}>
@@ -650,6 +652,68 @@ function ReviewsCarousel() {
   );
 }
 
+const ATMOSPHERE_PHOTOS = [
+  '/assets/photos/31-lotus-shanti-towel.jpg',
+  '/assets/photos/11-hot-stones-back.jpg',
+  '/assets/photos/20-herbal-compress-lotus.jpg',
+  '/assets/photos/16-soap-foam-duo.jpg',
+  '/assets/photos/26-tea-ceremony.jpg',
+  '/assets/photos/24-interior-room.jpg',
+  '/assets/photos/34-oil-bottles-ceramic.jpg',
+  '/assets/photos/29-meditation-candle.jpg',
+];
+
+function AtmosphereGallery() {
+  const { t } = useTranslation();
+  return (
+    <div style={{ marginBottom: '24px' }}>
+      <div style={{ padding: '0 24px', marginBottom: '12px' }}>
+        <div style={{ ...display, fontSize: '24px', color: tokens.deepSage }}>
+          {t('home.atmosphere')}
+        </div>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          gap: '12px',
+          overflowX: 'auto',
+          padding: '4px 24px 8px',
+          scrollSnapType: 'x mandatory',
+        }}
+      >
+        {ATMOSPHERE_PHOTOS.map((src, i) => (
+          <div
+            key={src}
+            style={{
+              flexShrink: 0,
+              width: 180,
+              height: 220,
+              borderRadius: 20,
+              overflow: 'hidden',
+              scrollSnapAlign: 'start',
+              background: tokens.cream,
+              boxShadow: '0 10px 24px -16px rgba(42,46,40,0.28)',
+            }}
+          >
+            <img
+              src={src}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function SocialProof() {
   const { t } = useTranslation();
   return (
@@ -729,6 +793,7 @@ export default function HomeScreen() {
       <HappyHoursBanner />
       <GiftBanner />
       <ReviewsCarousel />
+      <AtmosphereGallery />
       <SocialProof />
     </div>
   );
