@@ -163,6 +163,16 @@
     "summary_to": "для {{name}}",
     "summary_from": "от {{name}}"
   },
+  "service_detail": {
+    "includes": "ЧТО ВКЛЮЧЕНО",
+    "duration_price": "ДЛИТЕЛЬНОСТЬ И ЦЕНА",
+    "masters": "НАШИ МАСТЕРА",
+    "reviews_about": "ОТЗЫВЫ ОБ ЭТОЙ УСЛУГЕ",
+    "all_reviews": "Все",
+    "cta": "Записаться",
+    "duration_minutes": "{{n}} мин",
+    "years_experience": "стаж {{n}} лет"
+  },
   "bookings": {
     "title": "Мои записи",
     "upcoming": "Предстоящие",

@@ -6,6 +6,7 @@ import { colors } from './theme/colors.js';
 
 import HomeScreen from './screens/HomeScreen.jsx';
 import CatalogScreen from './screens/CatalogScreen.jsx';
+import ServiceDetailScreen from './screens/ServiceDetailScreen.jsx';
 import BookingScreen from './screens/BookingScreen.jsx';
 import GiftScreen from './screens/GiftScreen.jsx';
 import BookingsListScreen from './screens/BookingsListScreen.jsx';
@@ -17,6 +18,7 @@ import ReviewsScreen from './screens/ReviewsScreen.jsx';
 const screens = {
   home: HomeScreen,
   catalog: CatalogScreen,
+  service: ServiceDetailScreen,
   booking: BookingScreen,
   gift: GiftScreen,
   bookings: BookingsListScreen,

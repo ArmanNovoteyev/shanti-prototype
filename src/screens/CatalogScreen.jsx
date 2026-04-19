@@ -146,10 +146,10 @@ function ServiceBadges({ service }) {
 
 function ServiceCard({ service }) {
   const { t, localized } = useTranslation();
-  const { startBookingFor } = useContext(AppContext);
+  const { navigate } = useContext(AppContext);
   return (
     <button
-      onClick={() => startBookingFor(service.id)}
+      onClick={() => navigate('service', { serviceId: service.id })}
       style={{
         ...body,
         textAlign: 'left',
@@ -199,8 +199,11 @@ function ServiceCard({ service }) {
 function SubscriptionCard({ service }) {
   const { t, localized } = useTranslation();
   const { navigate } = useContext(AppContext);
+  const openDetail = () => navigate('service', { serviceId: service.id });
   return (
     <div
+      onClick={openDetail}
+      role="button"
       style={{
         background: colors.ivory,
         borderRadius: '22px',
@@ -209,6 +212,7 @@ function SubscriptionCard({ service }) {
         border: `2px solid ${colors.copper}`,
         position: 'relative',
         overflow: 'hidden',
+        cursor: 'pointer',
       }}
     >
       <div
@@ -263,8 +267,9 @@ function SubscriptionCard({ service }) {
           </div>
         </div>
         <button
-          onClick={() => {
-            navigate('booking', { serviceId: service.id });
+          onClick={(e) => {
+            e.stopPropagation();
+            openDetail();
           }}
           style={{
             ...body,
