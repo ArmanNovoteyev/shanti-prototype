@@ -15,6 +15,7 @@ import BonusScreen from './screens/BonusScreen.jsx';
 import ProfileScreen from './screens/ProfileScreen.jsx';
 import ReviewsScreen from './screens/ReviewsScreen.jsx';
 import SubscriptionPurchaseScreen from './screens/SubscriptionPurchaseScreen.jsx';
+import OnboardingScreen from './screens/OnboardingScreen.jsx';
 
 const screens = {
   home: HomeScreen,
@@ -32,7 +33,11 @@ const screens = {
 
 function Shell() {
   const { t } = useTranslation();
-  const { screen, navigate, toast } = useContext(AppContext);
+  const { screen, navigate, toast, hasSeenOnboarding } = useContext(AppContext);
+
+  if (!hasSeenOnboarding) {
+    return <OnboardingScreen />;
+  }
 
   const Active = screens[screen] || HomeScreen;
 

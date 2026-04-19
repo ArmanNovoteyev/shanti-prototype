@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { ChevronDown, MapPin, Instagram } from 'lucide-react';
+import { ChevronDown, ChevronRight, MapPin, Instagram, PlayCircle } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { branches, getBranch } from '../data/branches.js';
@@ -231,7 +231,7 @@ function InstagramRow({ handle, isLast }) {
 
 export default function ProfileScreen() {
   const { t, lang, setLang, localized } = useTranslation();
-  const { user, showToast, userSubscriptions } = useContext(AppContext);
+  const { user, showToast, userSubscriptions, resetOnboarding } = useContext(AppContext);
 
   const [pushOn, setPushOn] = useState(true);
   const [emailOn, setEmailOn] = useState(false);
@@ -376,6 +376,48 @@ export default function ProfileScreen() {
             />
           ))}
           <InstagramRow handle={t('profile.instagram_handle')} isLast />
+        </div>
+      </div>
+
+      {/* App actions */}
+      <div style={{ marginBottom: 22 }}>
+        <SectionTitle>Приложение</SectionTitle>
+        <div style={cardBase}>
+          <button
+            type="button"
+            onClick={resetOnboarding}
+            style={{
+              ...body,
+              width: '100%',
+              background: 'transparent',
+              border: 'none',
+              padding: '14px 16px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              cursor: 'pointer',
+              textAlign: 'left',
+            }}
+          >
+            <span
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                background: colors.copperSoft,
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              }}
+            >
+              <PlayCircle size={14} color={colors.copper} />
+            </span>
+            <span style={{ flex: 1, fontSize: 14, color: colors.textMain, fontWeight: 500 }}>
+              Посмотреть обзор заново
+            </span>
+            <ChevronRight size={16} color={colors.textMuted} />
+          </button>
         </div>
       </div>
 

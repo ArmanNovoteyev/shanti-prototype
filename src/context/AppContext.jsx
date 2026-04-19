@@ -112,8 +112,18 @@ export function AppProvider({ children }) {
   const [bookingDraft, setBookingDraft] = useState(EMPTY_DRAFT);
   const [giftDraft, setGiftDraft] = useState(EMPTY_GIFT_DRAFT);
   const [userSubscriptions, setUserSubscriptions] = useState(DEFAULT_USER_SUBSCRIPTIONS);
+  const [hasSeenOnboarding, setHasSeenOnboarding] = useState(false);
   const [toast, setToast] = useState(null);
   const toastTimer = useRef(null);
+
+  const completeOnboarding = useCallback(() => {
+    setHasSeenOnboarding(true);
+  }, []);
+
+  const resetOnboarding = useCallback(() => {
+    setHasSeenOnboarding(false);
+    setScreen('home');
+  }, []);
 
   const showToast = useCallback((message) => {
     setToast(message);
@@ -200,6 +210,9 @@ export function AppProvider({ children }) {
       consumeBackBalanceVisit,
       userSubscriptions,
       purchaseSubscription,
+      hasSeenOnboarding,
+      completeOnboarding,
+      resetOnboarding,
       toast,
       showToast,
     }),
@@ -222,6 +235,9 @@ export function AppProvider({ children }) {
       consumeBackBalanceVisit,
       userSubscriptions,
       purchaseSubscription,
+      hasSeenOnboarding,
+      completeOnboarding,
+      resetOnboarding,
       toast,
       showToast,
     ],
