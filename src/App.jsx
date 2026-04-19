@@ -16,6 +16,7 @@ import ProfileScreen from './screens/ProfileScreen.jsx';
 import ReviewsScreen from './screens/ReviewsScreen.jsx';
 import SubscriptionPurchaseScreen from './screens/SubscriptionPurchaseScreen.jsx';
 import OnboardingScreen from './screens/OnboardingScreen.jsx';
+import PromoBanner from './components/PromoBanner.jsx';
 
 const screens = {
   home: HomeScreen,
@@ -92,11 +93,21 @@ function Shell() {
           <span>•••</span>
         </div>
 
-        <div style={{ flex: 1, padding: '8px 0 110px', overflowY: 'auto' }}>
+        <div style={{ flex: 1, padding: '8px 0 150px', overflowY: 'auto' }}>
           <Active />
         </div>
 
-        <BottomNav items={navItems} active={screen} onChange={(id) => navigate(id)} />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+          }}
+        >
+          <PromoBanner />
+          <BottomNav items={navItems} active={screen} onChange={(id) => navigate(id)} />
+        </div>
 
         {toast && (
           <div
@@ -130,10 +141,6 @@ function BottomNav({ items, active, onChange }) {
   return (
     <div
       style={{
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
         background: 'rgba(240,230,217,0.92)',
         backdropFilter: 'blur(20px)',
         borderTop: '1px solid rgba(42,32,25,0.08)',

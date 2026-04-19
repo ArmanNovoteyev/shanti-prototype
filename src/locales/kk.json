@@ -73,6 +73,12 @@
     "story_news": "Новости",
     "story_soon_toast": "Скоро будет"
   },
+  "promo": {
+    "happy_hours": "−20% СЕЙЧАС · Happy Hours до 14:00",
+    "platinum": "PLATINUM — 11 000 ₸/час вместо 18 000",
+    "back_balance": "Курс Back Balance — 5 процедур за 65 000 ₸",
+    "gift": "Подарочный сертификат — от 20 000 ₸ за 30 секунд"
+  },
   "catalog": {
     "title": "Услуги",
     "subtitle": "Выбирайте ритуал по настроению",
