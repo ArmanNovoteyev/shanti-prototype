@@ -188,7 +188,7 @@ function ServiceCard({ service }) {
           marginBottom: '12px',
         }}
       >
-        {localized(service, 'description')}
+        {localized(service, 'subtitle') || localized(service, 'description')}
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <DurationChips durations={service.durations} />

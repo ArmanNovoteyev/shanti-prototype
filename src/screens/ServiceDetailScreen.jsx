@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import { ChevronLeft, Check, Heart, Flame, Star } from 'lucide-react';
+import { ChevronLeft, Heart, Flame, Star } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { getService } from '../data/services.js';
@@ -7,6 +7,7 @@ import { getServicePhoto } from '../data/servicePhotos.js';
 import { masters } from '../data/masters.js';
 import { reviews } from '../data/reviews.js';
 import { colors } from '../theme/colors.js';
+import ServiceStages from '../components/ServiceStages.jsx';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
@@ -17,40 +18,6 @@ const DEFAULT_DESCRIPTIONS = {
   spa_duo: 'Парная программа для двоих в отдельном зале.',
   special: 'Специальная программа с учётом ваших потребностей.',
   courses: 'Курс из нескольких визитов с трекингом результата.',
-};
-
-const DEFAULT_INCLUDES = {
-  massage: [
-    'Oil-масло индивидуально подобранное',
-    'Тёплые полотенца',
-    'Травяной чай после процедуры',
-    'Релакс-зона 15 минут',
-  ],
-  spa_solo: [
-    'Фитобочка или сауна 15 мин',
-    'Пилинг тела',
-    'Массаж выбранной зоны',
-    'Тайский травяной чай',
-    'Консультация мастера',
-  ],
-  spa_duo: [
-    'Отдельный зал для двоих',
-    'Фитобочка или сауна для пары',
-    'Парный массаж',
-    'Чайная церемония вдвоём',
-    'Цветочные лепестки в декоре',
-  ],
-  special: [
-    'Программа адаптирована под ваше состояние',
-    'Безопасные техники',
-    'Индивидуальный подход мастера',
-  ],
-  courses: [
-    '5 процедур по 90 минут',
-    'Трекинг прогресса в приложении',
-    'Закреплён один мастер на весь курс',
-    'Срок действия 6 месяцев',
-  ],
 };
 
 function formatPrice(v) {
@@ -195,33 +162,6 @@ function TitleAndDesc({ service }) {
       >
         {desc}
       </p>
-    </div>
-  );
-}
-
-function IncludesSection({ service }) {
-  const { t } = useTranslation();
-  const items = DEFAULT_INCLUDES[service.category] || [];
-  if (items.length === 0) return null;
-  return (
-    <div style={{ padding: '28px 24px 0' }}>
-      <Eyebrow>{t('service_detail.includes')}</Eyebrow>
-      <div>
-        {items.map((it, i) => (
-          <div
-            key={i}
-            style={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: 10,
-              padding: '6px 0',
-            }}
-          >
-            <Check size={16} color={colors.copper} strokeWidth={2.4} style={{ marginTop: 2, flexShrink: 0 }} />
-            <span style={{ ...body, fontSize: 14, color: colors.textMain, lineHeight: 1.45 }}>{it}</span>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
@@ -488,7 +428,7 @@ export default function ServiceDetailScreen() {
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100%' }}>
       <HeroSection service={service} />
       <TitleAndDesc service={service} />
-      <IncludesSection service={service} />
+      <ServiceStages stages={service.stages} />
       <PriceSection service={service} />
       <MastersSection />
       <ServiceReviewsSection service={service} />

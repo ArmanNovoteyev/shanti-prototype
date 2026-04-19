@@ -197,7 +197,7 @@
     "summary_from": "от {{name}}"
   },
   "service_detail": {
-    "includes": "ЧТО ВКЛЮЧЕНО",
+    "stages_title": "ЭТАПЫ РИТУАЛА",
     "duration_price": "ДЛИТЕЛЬНОСТЬ И ЦЕНА",
     "masters": "НАШИ МАСТЕРА",
     "reviews_about": "ОТЗЫВЫ ОБ ЭТОЙ УСЛУГЕ",
