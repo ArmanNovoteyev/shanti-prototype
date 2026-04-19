@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { Home, Sparkles, Gift, Calendar, User } from 'lucide-react';
+import { Home, Sparkles, Calendar, User } from 'lucide-react';
 import { AppProvider, AppContext } from './context/AppContext.jsx';
 import { useTranslation } from './hooks/useTranslation.js';
 import { colors } from './theme/colors.js';
@@ -45,7 +45,13 @@ function Shell() {
   const navItems = [
     { id: 'home', icon: Home, label: t('nav.home') },
     { id: 'catalog', icon: Sparkles, label: t('nav.catalog') },
-    { id: 'gift', icon: Gift, label: t('nav.gift'), center: true },
+    {
+      id: 'logo',
+      logo: '/assets/logo/shanti-logo-on-dark.png',
+      label: 'SHANTI',
+      center: true,
+      action: () => navigate('home'),
+    },
     { id: 'bookings', icon: Calendar, label: t('nav.bookings') },
     { id: 'profile', icon: User, label: t('nav.profile') },
   ];
@@ -157,7 +163,7 @@ function BottomNav({ items, active, onChange }) {
           return (
             <button
               key={item.id}
-              onClick={() => onChange(item.id)}
+              onClick={() => (item.action ? item.action() : onChange(item.id))}
               style={{
                 background: colors.copper,
                 color: colors.ivory,
@@ -166,17 +172,25 @@ function BottomNav({ items, active, onChange }) {
                 height: '58px',
                 borderRadius: '50%',
                 display: 'flex',
-                flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
                 marginTop: '-26px',
                 boxShadow: '0 10px 24px -10px rgba(184,121,74,0.6)',
                 fontFamily: "'Manrope', sans-serif",
+                padding: 0,
               }}
               aria-label={item.label}
             >
-              <Icon size={22} strokeWidth={2} />
+              {item.logo ? (
+                <img
+                  src={item.logo}
+                  alt={item.label}
+                  style={{ width: 32, height: 32, objectFit: 'contain', display: 'block' }}
+                />
+              ) : (
+                <Icon size={22} strokeWidth={2} />
+              )}
             </button>
           );
         }
