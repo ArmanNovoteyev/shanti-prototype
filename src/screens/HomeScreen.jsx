@@ -14,6 +14,7 @@ import { reviews } from '../data/reviews.js';
 import { branches } from '../data/branches.js';
 import { colors } from '../theme/colors.js';
 import { getHeroSlides } from '../data/heroSlides.js';
+import StoryCircles from '../components/StoryCircles.jsx';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
@@ -916,6 +917,7 @@ export default function HomeScreen() {
   return (
     <div>
       <Hero />
+      <StoryCircles />
       <NextVisitCard />
       <BonusTeaser />
       <PrimaryCTA />

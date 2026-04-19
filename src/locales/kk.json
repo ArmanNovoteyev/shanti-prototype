@@ -63,7 +63,15 @@
     "slide_bb_eyebrow": "КУРС BACK BALANCE",
     "slide_bb_title": "Спина без боли",
     "slide_bb_sub": "Курс из 5 процедур",
-    "slide_bb_cta": "Подробнее"
+    "slide_bb_cta": "Подробнее",
+    "story_happy_hours": "Happy Hours",
+    "story_subs": "Абонементы",
+    "story_gift": "Сертификаты",
+    "story_masters": "Наши мастера",
+    "story_reviews": "Отзывы",
+    "story_back_balance": "Back Balance",
+    "story_news": "Новости",
+    "story_soon_toast": "Скоро будет"
   },
   "catalog": {
     "title": "Услуги",
