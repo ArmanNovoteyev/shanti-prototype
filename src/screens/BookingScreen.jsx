@@ -5,17 +5,7 @@ import { useTranslation } from '../hooks/useTranslation.js';
 import { getService } from '../data/services.js';
 import { branches, getBranch } from '../data/branches.js';
 import { mastersForBranch, getMaster } from '../data/masters.js';
-
-const tokens = {
-  deepSage: '#344237',
-  sage: '#4A5D4F',
-  copper: '#B8794A',
-  copperSoft: 'rgba(184,121,74,0.10)',
-  ivory: '#FBF8F1',
-  cream: '#F2EDE3',
-  muted: '#8A8B86',
-  text: '#2A2E28',
-};
+import { colors } from '../theme/colors.js';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
@@ -52,7 +42,7 @@ function StepShell({ title, onBack, children, footer }) {
           onClick={onBack}
           style={{
             ...body,
-            background: tokens.cream,
+            background: colors.cream,
             border: 'none',
             width: '36px',
             height: '36px',
@@ -65,9 +55,9 @@ function StepShell({ title, onBack, children, footer }) {
           }}
           aria-label="back"
         >
-          <ChevronLeft size={18} color={tokens.deepSage} />
+          <ChevronLeft size={18} color={colors.deepBrown} />
         </button>
-        <div style={{ ...display, fontSize: '22px', color: tokens.deepSage, lineHeight: 1.15 }}>
+        <div style={{ ...display, fontSize: '22px', color: colors.deepBrown, lineHeight: 1.15 }}>
           {title}
         </div>
       </div>
@@ -85,8 +75,8 @@ function PrimaryButton({ children, onClick, disabled }) {
       style={{
         ...body,
         width: '100%',
-        background: disabled ? tokens.cream : tokens.copper,
-        color: disabled ? tokens.muted : tokens.ivory,
+        background: disabled ? colors.cream : colors.copper,
+        color: disabled ? colors.textMuted : colors.ivory,
         border: 'none',
         padding: '17px',
         borderRadius: '20px',
@@ -109,9 +99,9 @@ function ChoiceCard({ active, onClick, disabled, title, subtitle, accessory, ico
       style={{
         ...body,
         textAlign: 'left',
-        background: active ? tokens.deepSage : tokens.ivory,
-        color: active ? tokens.ivory : tokens.text,
-        border: active ? 'none' : '1px solid rgba(42,46,40,0.08)',
+        background: active ? colors.deepBrown : colors.ivory,
+        color: active ? colors.ivory : colors.textMain,
+        border: active ? 'none' : '1px solid rgba(42,32,25,0.08)',
         borderRadius: '20px',
         padding: '16px',
         marginBottom: '10px',
@@ -131,7 +121,7 @@ function ChoiceCard({ active, onClick, disabled, title, subtitle, accessory, ico
             style={{
               fontSize: '12px',
               opacity: active ? 0.75 : 1,
-              color: active ? tokens.ivory : tokens.muted,
+              color: active ? colors.ivory : colors.textMuted,
               marginTop: '4px',
             }}
           >
@@ -164,13 +154,13 @@ function BranchStep({ service, draft, onPick, onBack }) {
                   width: 44,
                   height: 44,
                   borderRadius: '50%',
-                  background: active ? 'rgba(251,248,241,0.12)' : tokens.cream,
+                  background: active ? 'rgba(240,230,217,0.12)' : colors.cream,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                <MapPin size={18} color={active ? tokens.ivory : tokens.deepSage} />
+                <MapPin size={18} color={active ? colors.ivory : colors.deepBrown} />
               </div>
             }
             title={localized(b, 'name')}
@@ -223,14 +213,14 @@ function PartyPeopleStep({ draft, onPick, onBack }) {
       <ChoiceCard
         active={draft.partyPeople === 2}
         onClick={() => onPick(2)}
-        icon={<Users size={22} color={tokens.copper} />}
+        icon={<Users size={22} color={colors.copper} />}
         title={t('booking.people_two')}
         subtitle={t('booking.people_two_subtitle')}
       />
       <ChoiceCard
         active={draft.partyPeople === 3}
         onClick={() => onPick(3)}
-        icon={<Users size={22} color={tokens.copper} />}
+        icon={<Users size={22} color={colors.copper} />}
         title={t('booking.people_three')}
         subtitle={t('booking.people_three_subtitle')}
       />
@@ -255,13 +245,13 @@ function DurationStep({ service, draft, onPick, onBack }) {
                   width: 44,
                   height: 44,
                   borderRadius: '50%',
-                  background: active ? 'rgba(251,248,241,0.12)' : tokens.cream,
+                  background: active ? 'rgba(240,230,217,0.12)' : colors.cream,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                <Clock size={18} color={active ? tokens.ivory : tokens.deepSage} />
+                <Clock size={18} color={active ? colors.ivory : colors.deepBrown} />
               </div>
             }
             title={`${d.minutes} ${t('common.minutes_short')}`}
@@ -280,8 +270,8 @@ function MasterAvatar({ name, isAny }) {
         width: 44,
         height: 44,
         borderRadius: '50%',
-        background: `linear-gradient(135deg, ${tokens.deepSage} 0%, ${tokens.copper} 100%)`,
-        color: tokens.ivory,
+        background: `linear-gradient(135deg, ${colors.deepBrown} 0%, ${colors.copper} 100%)`,
+        color: colors.ivory,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -326,7 +316,7 @@ function MasterStep({ draft, onPick, onBack }) {
                   alignItems: 'center',
                   gap: 4,
                   fontSize: 12,
-                  color: active ? tokens.ivory : tokens.copper,
+                  color: active ? colors.ivory : colors.copper,
                   fontWeight: 600,
                 }}
               >
@@ -397,9 +387,9 @@ function DateTimeStep({ draft, onPickDate, onPickTime, onConfirm, onBack }) {
                 minWidth: '60px',
                 padding: '10px 6px',
                 borderRadius: '16px',
-                background: active ? tokens.deepSage : tokens.ivory,
-                color: active ? tokens.ivory : tokens.deepSage,
-                border: active ? 'none' : '1px solid rgba(42,46,40,0.08)',
+                background: active ? colors.deepBrown : colors.ivory,
+                color: active ? colors.ivory : colors.deepBrown,
+                border: active ? 'none' : '1px solid rgba(42,32,25,0.08)',
                 cursor: 'pointer',
                 textAlign: 'center',
               }}
@@ -426,9 +416,9 @@ function DateTimeStep({ draft, onPickDate, onPickTime, onConfirm, onBack }) {
                 ...body,
                 padding: '12px 0',
                 borderRadius: '14px',
-                background: active ? tokens.copper : tokens.ivory,
-                color: active ? tokens.ivory : tokens.deepSage,
-                border: active ? 'none' : '1px solid rgba(42,46,40,0.08)',
+                background: active ? colors.copper : colors.ivory,
+                color: active ? colors.ivory : colors.deepBrown,
+                border: active ? 'none' : '1px solid rgba(42,32,25,0.08)',
                 cursor: 'pointer',
                 fontSize: '14px',
                 fontWeight: 600,
@@ -444,7 +434,7 @@ function DateTimeStep({ draft, onPickDate, onPickTime, onConfirm, onBack }) {
                     right: 6,
                     fontSize: '8px',
                     fontWeight: 700,
-                    color: active ? tokens.ivory : tokens.copper,
+                    color: active ? colors.ivory : colors.copper,
                     letterSpacing: '0.04em',
                   }}
                 >
@@ -496,8 +486,8 @@ function ConfirmStep({ service, draft, onConfirm, onBack }) {
     >
       <div
         style={{
-          background: tokens.deepSage,
-          color: tokens.ivory,
+          background: colors.deepBrown,
+          color: colors.ivory,
           borderRadius: '24px',
           padding: '20px',
           marginBottom: '16px',
@@ -522,7 +512,7 @@ function ConfirmStep({ service, draft, onConfirm, onBack }) {
         <div style={{ fontSize: 12, opacity: 0.75, marginBottom: 16, position: 'relative' }}>
           {duration.minutes} {t('common.minutes_short')} · {branch ? localized(branch, 'name') : ''}
         </div>
-        <div style={{ borderTop: '1px solid rgba(251,248,241,0.18)', paddingTop: 12, position: 'relative' }}>
+        <div style={{ borderTop: '1px solid rgba(240,230,217,0.18)', paddingTop: 12, position: 'relative' }}>
           <SummaryRow label={t('booking.summary_master')} value={master ? localized(master, 'name') : t('booking.any_master')} />
           <SummaryRow label={t('booking.summary_when')} value={whenLabel} />
           <SummaryRow label={t('booking.summary_duration')} value={`${duration.minutes} ${t('common.minutes_short')}`} />
@@ -532,19 +522,19 @@ function ConfirmStep({ service, draft, onConfirm, onBack }) {
               value={draft.visitType === 'party' ? `${t('booking.visit_type_party')} · ${draft.partyPeople}` : t('booking.visit_type_date')}
             />
           )}
-          <div style={{ borderTop: '1px solid rgba(251,248,241,0.18)', marginTop: 10, paddingTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+          <div style={{ borderTop: '1px solid rgba(240,230,217,0.18)', marginTop: 10, paddingTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <span style={{ fontSize: 13, opacity: 0.8 }}>{t('booking.summary_total')}</span>
             <div style={{ textAlign: 'right' }}>
               {happy && (
-                <div style={{ fontSize: 11, color: 'rgba(251,248,241,0.5)', textDecoration: 'line-through' }}>
+                <div style={{ fontSize: 11, color: 'rgba(240,230,217,0.5)', textDecoration: 'line-through' }}>
                   {formatPrice(duration.price)} {t('common.rub')}
                 </div>
               )}
-              <div style={{ ...display, fontSize: 22, color: happy ? tokens.copper : tokens.ivory }}>
+              <div style={{ ...display, fontSize: 22, color: happy ? colors.copper : colors.ivory }}>
                 {formatPrice(finalPrice)} {t('common.rub')}
               </div>
               {happy && (
-                <div style={{ fontSize: 10, color: tokens.copper, fontWeight: 700, letterSpacing: '0.06em' }}>
+                <div style={{ fontSize: 10, color: colors.copper, fontWeight: 700, letterSpacing: '0.06em' }}>
                   {t('booking.summary_happy_hours')}
                 </div>
               )}
@@ -555,7 +545,7 @@ function ConfirmStep({ service, draft, onConfirm, onBack }) {
 
       <div
         style={{
-          background: tokens.cream,
+          background: colors.cream,
           borderRadius: '16px',
           padding: '14px 16px',
           display: 'flex',
@@ -563,8 +553,8 @@ function ConfirmStep({ service, draft, onConfirm, onBack }) {
           gap: '12px',
         }}
       >
-        <Calendar size={16} color={tokens.copper} />
-        <div style={{ fontSize: 12, color: tokens.deepSage, lineHeight: 1.4 }}>
+        <Calendar size={16} color={colors.copper} />
+        <div style={{ fontSize: 12, color: colors.deepBrown, lineHeight: 1.4 }}>
           {t('booking.reminder_note')}
         </div>
       </div>
@@ -583,27 +573,27 @@ function CourseConfirmStep({ service, draft, onPurchase, onBack }) {
     >
       <div
         style={{
-          background: tokens.ivory,
+          background: colors.ivory,
           borderRadius: '22px',
           padding: '20px',
-          border: `2px solid ${tokens.copper}`,
+          border: `2px solid ${colors.copper}`,
           marginBottom: '14px',
         }}
       >
-        <div style={{ ...display, fontSize: '22px', color: tokens.deepSage, marginBottom: 6 }}>
+        <div style={{ ...display, fontSize: '22px', color: colors.deepBrown, marginBottom: 6 }}>
           {localized(service, 'name')}
         </div>
-        <div style={{ fontSize: 12, color: tokens.muted, marginBottom: 16, lineHeight: 1.45 }}>
+        <div style={{ fontSize: 12, color: colors.textMuted, marginBottom: 16, lineHeight: 1.45 }}>
           {localized(service, 'description')}
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderTop: '1px solid rgba(42,46,40,0.08)', paddingTop: 12 }}>
-          <span style={{ fontSize: 12, color: tokens.muted }}>{branch ? localized(branch, 'name') : ''}</span>
-          <span style={{ ...display, fontSize: 24, color: tokens.copper }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderTop: '1px solid rgba(42,32,25,0.08)', paddingTop: 12 }}>
+          <span style={{ fontSize: 12, color: colors.textMuted }}>{branch ? localized(branch, 'name') : ''}</span>
+          <span style={{ ...display, fontSize: 24, color: colors.copper }}>
             {formatPrice(service.durations[0].price)} {t('common.rub')}
           </span>
         </div>
       </div>
-      <div style={{ fontSize: 12, color: tokens.muted, lineHeight: 1.5, padding: '0 4px' }}>
+      <div style={{ fontSize: 12, color: colors.textMuted, lineHeight: 1.5, padding: '0 4px' }}>
         {t('booking.course_purchase_subtitle')}
       </div>
     </StepShell>
@@ -628,7 +618,7 @@ function TrioModal({ onYes, onNo }) {
     >
       <div
         style={{
-          background: tokens.ivory,
+          background: colors.ivory,
           borderRadius: '24px',
           padding: '24px',
           maxWidth: '320px',
@@ -641,24 +631,24 @@ function TrioModal({ onYes, onNo }) {
             width: 52,
             height: 52,
             borderRadius: '50%',
-            background: tokens.copperSoft,
+            background: colors.copperSoft,
             margin: '0 auto 14px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <Users size={22} color={tokens.copper} />
+          <Users size={22} color={colors.copper} />
         </div>
-        <div style={{ ...display, fontSize: '18px', color: tokens.deepSage, marginBottom: 16, lineHeight: 1.3 }}>
+        <div style={{ ...display, fontSize: '18px', color: colors.deepBrown, marginBottom: 16, lineHeight: 1.3 }}>
           {t('booking.trio_only_satpayeva')}
         </div>
         <button
           onClick={onYes}
           style={{
             ...body,
-            background: tokens.copper,
-            color: tokens.ivory,
+            background: colors.copper,
+            color: colors.ivory,
             border: 'none',
             padding: '14px',
             borderRadius: '16px',
@@ -676,8 +666,8 @@ function TrioModal({ onYes, onNo }) {
           style={{
             ...body,
             background: 'transparent',
-            color: tokens.deepSage,
-            border: '1px solid rgba(42,46,40,0.15)',
+            color: colors.deepBrown,
+            border: '1px solid rgba(42,32,25,0.15)',
             padding: '14px',
             borderRadius: '16px',
             fontSize: '14px',
@@ -741,16 +731,16 @@ export default function BookingScreen() {
 
   if (!service) {
     return (
-      <div style={{ padding: '24px', textAlign: 'center', color: tokens.muted }}>
-        <div style={{ ...display, fontSize: '20px', color: tokens.deepSage, marginBottom: 12 }}>
+      <div style={{ padding: '24px', textAlign: 'center', color: colors.textMuted }}>
+        <div style={{ ...display, fontSize: '20px', color: colors.deepBrown, marginBottom: 12 }}>
           {t('booking.choose_service')}
         </div>
         <button
           onClick={() => navigate('catalog')}
           style={{
             ...body,
-            background: tokens.copper,
-            color: tokens.ivory,
+            background: colors.copper,
+            color: colors.ivory,
             border: 'none',
             padding: '12px 20px',
             borderRadius: '18px',

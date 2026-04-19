@@ -13,17 +13,7 @@ import {
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import GiftCertificate, { GIFT_DESIGNS, getDesignConfig } from '../components/GiftCertificate.jsx';
-
-const tokens = {
-  deepSage: '#344237',
-  sage: '#4A5D4F',
-  copper: '#B8794A',
-  copperSoft: 'rgba(184,121,74,0.10)',
-  ivory: '#FBF8F1',
-  cream: '#F2EDE3',
-  muted: '#8A8B86',
-  text: '#2A2E28',
-};
+import { colors } from '../theme/colors.js';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
@@ -100,8 +90,8 @@ function PrimaryButton({ children, onClick, disabled, icon: Icon }) {
       style={{
         ...body,
         width: '100%',
-        background: disabled ? tokens.cream : tokens.copper,
-        color: disabled ? tokens.muted : tokens.ivory,
+        background: disabled ? colors.cream : colors.copper,
+        color: disabled ? colors.textMuted : colors.ivory,
         border: 'none',
         padding: '17px',
         borderRadius: '20px',
@@ -130,8 +120,8 @@ function OutlineButton({ children, onClick, icon: Icon }) {
         ...body,
         width: '100%',
         background: 'transparent',
-        color: tokens.deepSage,
-        border: `1.5px solid ${tokens.deepSage}`,
+        color: colors.deepBrown,
+        border: `1.5px solid ${colors.deepBrown}`,
         padding: '15px',
         borderRadius: '20px',
         fontSize: '15px',
@@ -155,7 +145,7 @@ function BackButton({ onClick }) {
       onClick={onClick}
       style={{
         ...body,
-        background: tokens.cream,
+        background: colors.cream,
         border: 'none',
         width: '36px',
         height: '36px',
@@ -168,7 +158,7 @@ function BackButton({ onClick }) {
       }}
       aria-label="back"
     >
-      <ChevronLeft size={18} color={tokens.deepSage} />
+      <ChevronLeft size={18} color={colors.deepBrown} />
     </button>
   );
 }
@@ -179,11 +169,11 @@ function StepShell({ title, subtitle, onBack, children, footer }) {
       <div style={{ padding: '4px 24px 16px', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
         <BackButton onClick={onBack} />
         <div>
-          <div style={{ ...display, fontSize: '22px', color: tokens.deepSage, lineHeight: 1.15 }}>
+          <div style={{ ...display, fontSize: '22px', color: colors.deepBrown, lineHeight: 1.15 }}>
             {title}
           </div>
           {subtitle && (
-            <div style={{ ...body, color: tokens.muted, fontSize: 13, marginTop: 4 }}>{subtitle}</div>
+            <div style={{ ...body, color: colors.textMuted, fontSize: 13, marginTop: 4 }}>{subtitle}</div>
           )}
         </div>
       </div>
@@ -204,16 +194,16 @@ function GiftBoxArt() {
     >
       <defs>
         <linearGradient id="box-body" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#4A5D4F" />
-          <stop offset="100%" stopColor="#2D382F" />
+          <stop offset="0%" stopColor="#5C4436" />
+          <stop offset="100%" stopColor="#3D2E24" />
         </linearGradient>
         <linearGradient id="box-lid" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#56685A" />
-          <stop offset="100%" stopColor="#3A4940" />
+          <stop offset="0%" stopColor="#6B5342" />
+          <stop offset="100%" stopColor="#3D2E24" />
         </linearGradient>
       </defs>
 
-      <ellipse cx="90" cy="160" rx="62" ry="6" fill="rgba(42,46,40,0.14)" />
+      <ellipse cx="90" cy="160" rx="62" ry="6" fill="rgba(42,32,25,0.14)" />
 
       <rect x="26" y="72" width="128" height="84" rx="8" fill="url(#box-body)" />
       <rect x="22" y="62" width="136" height="22" rx="6" fill="url(#box-lid)" />
@@ -284,7 +274,7 @@ function HowItWorks({ t }) {
           fontSize: 11,
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          color: tokens.muted,
+          color: colors.textMuted,
           fontWeight: 600,
           marginBottom: 14,
         }}
@@ -301,8 +291,8 @@ function HowItWorks({ t }) {
                 display: 'flex',
                 alignItems: 'center',
                 gap: 14,
-                background: tokens.ivory,
-                border: '1px solid rgba(42,46,40,0.06)',
+                background: colors.ivory,
+                border: '1px solid rgba(42,32,25,0.06)',
                 borderRadius: 16,
                 padding: '12px 14px',
               }}
@@ -312,8 +302,8 @@ function HowItWorks({ t }) {
                   width: 34,
                   height: 34,
                   borderRadius: '50%',
-                  background: tokens.copperSoft,
-                  color: tokens.copper,
+                  background: colors.copperSoft,
+                  color: colors.copper,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -322,8 +312,8 @@ function HowItWorks({ t }) {
               >
                 <Icon size={16} strokeWidth={2} />
               </div>
-              <div style={{ ...body, fontSize: 14, color: tokens.text }}>
-                <span style={{ color: tokens.muted, marginRight: 6 }}>{idx + 1}</span>
+              <div style={{ ...body, fontSize: 14, color: colors.textMain }}>
+                <span style={{ color: colors.textMuted, marginRight: 6 }}>{idx + 1}</span>
                 {s.label}
               </div>
             </div>
@@ -357,8 +347,8 @@ function PromoBanner({ t }) {
           width: 36,
           height: 36,
           borderRadius: '50%',
-          background: tokens.copper,
-          color: tokens.ivory,
+          background: colors.copper,
+          color: colors.ivory,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -374,13 +364,13 @@ function PromoBanner({ t }) {
             fontSize: 10,
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: tokens.copper,
+            color: colors.copper,
             fontWeight: 700,
           }}
         >
           {t('gift.promo_eyebrow')}
         </div>
-        <div style={{ ...body, fontSize: 14, color: tokens.text, fontWeight: 500, marginTop: 2 }}>
+        <div style={{ ...body, fontSize: 14, color: colors.textMain, fontWeight: 500, marginTop: 2 }}>
           {t('gift.promo_title')}
         </div>
       </div>
@@ -388,14 +378,14 @@ function PromoBanner({ t }) {
         style={{
           ...display,
           fontSize: 20,
-          color: tokens.copper,
+          color: colors.copper,
           textAlign: 'center',
           flexShrink: 0,
           lineHeight: 1,
         }}
       >
         {days}
-        <div style={{ ...body, fontSize: 9, color: tokens.muted, marginTop: 2, textTransform: 'lowercase' }}>
+        <div style={{ ...body, fontSize: 9, color: colors.textMuted, marginTop: 2, textTransform: 'lowercase' }}>
           {t('gift.promo_days_left')}
         </div>
       </div>
@@ -413,17 +403,17 @@ function IntroStep({ t, onStart }) {
             fontSize: 11,
             letterSpacing: '0.16em',
             textTransform: 'uppercase',
-            color: tokens.copper,
+            color: colors.copper,
             fontWeight: 700,
             marginBottom: 8,
           }}
         >
           Shanti
         </div>
-        <h1 style={{ ...display, fontSize: 32, color: tokens.deepSage, margin: '0 0 8px', lineHeight: 1.1 }}>
+        <h1 style={{ ...display, fontSize: 32, color: colors.deepBrown, margin: '0 0 8px', lineHeight: 1.1 }}>
           {t('gift.title')}
         </h1>
-        <p style={{ ...body, color: tokens.muted, fontSize: 14, margin: '0 0 20px', lineHeight: 1.45 }}>
+        <p style={{ ...body, color: colors.textMuted, fontSize: 14, margin: '0 0 20px', lineHeight: 1.45 }}>
           {t('gift.subtitle')}
         </p>
         <GiftBoxArt />
@@ -482,7 +472,7 @@ function AmountStep({ t, value, onChange, onNext, onBack }) {
               fontSize: 56,
               background: 'none',
               border: 'none',
-              color: tokens.deepSage,
+              color: colors.deepBrown,
               textAlign: 'right',
               outline: 'none',
               width: '60%',
@@ -490,13 +480,13 @@ function AmountStep({ t, value, onChange, onNext, onBack }) {
               lineHeight: 1,
             }}
           />
-          <div style={{ ...display, fontSize: 36, color: tokens.muted, lineHeight: 1.1 }}>₸</div>
+          <div style={{ ...display, fontSize: 36, color: colors.textMuted, lineHeight: 1.1 }}>₸</div>
         </div>
         <div
           style={{
             ...body,
             textAlign: 'center',
-            color: valid || !hasValue ? tokens.muted : tokens.copper,
+            color: valid || !hasValue ? colors.textMuted : colors.copper,
             fontSize: 13,
           }}
         >
@@ -520,9 +510,9 @@ function AmountStep({ t, value, onChange, onNext, onBack }) {
                 onClick={() => onChange(amount)}
                 style={{
                   ...body,
-                  background: active ? tokens.deepSage : tokens.ivory,
-                  color: active ? tokens.ivory : tokens.text,
-                  border: active ? 'none' : '1px solid rgba(42,46,40,0.08)',
+                  background: active ? colors.deepBrown : colors.ivory,
+                  color: active ? colors.ivory : colors.textMain,
+                  border: active ? 'none' : '1px solid rgba(42,32,25,0.08)',
                   borderRadius: 14,
                   padding: '10px 16px',
                   fontSize: 14,
@@ -547,13 +537,13 @@ function FormField({ label, required, children }) {
         style={{
           ...body,
           fontSize: 12,
-          color: tokens.muted,
+          color: colors.textMuted,
           marginBottom: 6,
           fontWeight: 500,
         }}
       >
         {label}
-        {required && <span style={{ color: tokens.copper, marginLeft: 4 }}>*</span>}
+        {required && <span style={{ color: colors.copper, marginLeft: 4 }}>*</span>}
       </div>
       {children}
     </div>
@@ -563,12 +553,12 @@ function FormField({ label, required, children }) {
 const inputStyle = {
   ...body,
   width: '100%',
-  background: tokens.cream,
-  border: '1px solid rgba(42,46,40,0.06)',
+  background: colors.cream,
+  border: '1px solid rgba(42,32,25,0.06)',
   borderRadius: 14,
   padding: '14px 16px',
   fontSize: 15,
-  color: tokens.text,
+  color: colors.textMain,
   outline: 'none',
   boxSizing: 'border-box',
   fontWeight: 500,
@@ -650,8 +640,8 @@ function CardMark() {
         width: 36,
         height: 36,
         borderRadius: 10,
-        background: tokens.deepSage,
-        color: tokens.ivory,
+        background: colors.deepBrown,
+        color: colors.ivory,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -673,8 +663,8 @@ function PaymentMethodRow({ active, onClick, label, mark }) {
         alignItems: 'center',
         gap: 14,
         padding: 14,
-        background: active ? tokens.cream : tokens.ivory,
-        border: active ? `1.5px solid ${tokens.deepSage}` : '1px solid rgba(42,46,40,0.08)',
+        background: active ? colors.cream : colors.ivory,
+        border: active ? `1.5px solid ${colors.deepBrown}` : '1px solid rgba(42,32,25,0.08)',
         borderRadius: 18,
         cursor: 'pointer',
         marginBottom: 10,
@@ -682,20 +672,20 @@ function PaymentMethodRow({ active, onClick, label, mark }) {
       }}
     >
       {mark}
-      <div style={{ flex: 1, fontSize: 15, fontWeight: 600, color: tokens.text }}>{label}</div>
+      <div style={{ flex: 1, fontSize: 15, fontWeight: 600, color: colors.textMain }}>{label}</div>
       <div
         style={{
           width: 22,
           height: 22,
           borderRadius: '50%',
-          border: `2px solid ${active ? tokens.deepSage : 'rgba(42,46,40,0.18)'}`,
+          border: `2px solid ${active ? colors.deepBrown : 'rgba(42,32,25,0.18)'}`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: active ? tokens.deepSage : 'transparent',
+          background: active ? colors.deepBrown : 'transparent',
         }}
       >
-        {active && <Check size={12} color={tokens.ivory} strokeWidth={3} />}
+        {active && <Check size={12} color={colors.ivory} strokeWidth={3} />}
       </div>
     </button>
   );
@@ -716,8 +706,8 @@ function PaymentStep({ t, draft, onPaid, onBack, paying }) {
       <div style={{ paddingTop: 4 }}>
         <div
           style={{
-            background: tokens.deepSage,
-            color: tokens.ivory,
+            background: colors.deepBrown,
+            color: colors.ivory,
             padding: 18,
             borderRadius: 22,
             marginBottom: 22,
@@ -750,7 +740,7 @@ function PaymentStep({ t, draft, onPaid, onBack, paying }) {
         <div
           style={{
             ...body,
-            color: tokens.muted,
+            color: colors.textMuted,
             fontSize: 11,
             textTransform: 'uppercase',
             letterSpacing: '0.1em',
@@ -778,7 +768,7 @@ function PaymentStep({ t, draft, onPaid, onBack, paying }) {
             style={{
               ...body,
               textAlign: 'center',
-              color: tokens.muted,
+              color: colors.textMuted,
               fontSize: 13,
               marginTop: 14,
             }}
@@ -789,8 +779,8 @@ function PaymentStep({ t, draft, onPaid, onBack, paying }) {
                 height: 28,
                 margin: '0 auto 8px',
                 borderRadius: '50%',
-                border: `3px solid ${tokens.cream}`,
-                borderTopColor: tokens.copper,
+                border: `3px solid ${colors.cream}`,
+                borderTopColor: colors.copper,
                 animation: 'shanti-spin 0.8s linear infinite',
               }}
             />
@@ -858,7 +848,7 @@ function DesignStep({ t, draft, onPick, onBack }) {
                   validUntil={draft.validUntil || addMonths(new Date(), 3)}
                   width={280}
                 />
-                <div style={{ fontSize: 13, fontWeight: 600, color: tokens.text }}>
+                <div style={{ fontSize: 13, fontWeight: 600, color: colors.textMain }}>
                   <span style={{ marginRight: 6 }}>{cfg.emoji}</span>
                   {t(DESIGN_LABEL_KEY[id])}
                 </div>
@@ -885,17 +875,17 @@ function ReadyStep({ t, draft, onSend, onDownload, onHome }) {
             fontSize: 11,
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: tokens.copper,
+            color: colors.copper,
             fontWeight: 700,
             marginBottom: 6,
           }}
         >
           ✓ Оплачено
         </div>
-        <div style={{ ...display, fontSize: 28, color: tokens.deepSage, marginBottom: 4 }}>
+        <div style={{ ...display, fontSize: 28, color: colors.deepBrown, marginBottom: 4 }}>
           {t('gift.ready')}
         </div>
-        <div style={{ ...body, color: tokens.muted, fontSize: 13, marginBottom: 18 }}>
+        <div style={{ ...body, color: colors.textMuted, fontSize: 13, marginBottom: 18 }}>
           {t('gift.ready_subtitle')}
         </div>
 
@@ -928,7 +918,7 @@ function ReadyStep({ t, draft, onSend, onDownload, onHome }) {
           marginTop: 14,
           background: 'none',
           border: 'none',
-          color: tokens.muted,
+          color: colors.textMuted,
           fontSize: 13,
           cursor: 'pointer',
           padding: 8,

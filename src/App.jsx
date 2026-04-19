@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { Home, Sparkles, Gift, Calendar, User } from 'lucide-react';
 import { AppProvider, AppContext } from './context/AppContext.jsx';
 import { useTranslation } from './hooks/useTranslation.js';
+import { colors } from './theme/colors.js';
 
 import HomeScreen from './screens/HomeScreen.jsx';
 import CatalogScreen from './screens/CatalogScreen.jsx';
@@ -12,16 +13,6 @@ import FeedbackScreen from './screens/FeedbackScreen.jsx';
 import BonusScreen from './screens/BonusScreen.jsx';
 import ProfileScreen from './screens/ProfileScreen.jsx';
 import ReviewsScreen from './screens/ReviewsScreen.jsx';
-
-const tokens = {
-  deepSage: '#344237',
-  sage: '#4A5D4F',
-  copper: '#B8794A',
-  ivory: '#FBF8F1',
-  cream: '#F2EDE3',
-  muted: '#8A8B86',
-  text: '#2A2E28',
-};
 
 const screens = {
   home: HomeScreen,
@@ -54,9 +45,9 @@ function Shell() {
       className="shanti-wrapper"
       style={{
         minHeight: '100vh',
-        background: 'linear-gradient(180deg, #F7F3EC 0%, #F2EDE3 100%)',
+        background: `linear-gradient(180deg, ${colors.cream} 0%, ${colors.sand} 100%)`,
         fontFamily: "'Manrope', sans-serif",
-        color: tokens.text,
+        color: colors.textMain,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -69,10 +60,10 @@ function Shell() {
           width: '100%',
           maxWidth: '420px',
           height: 'min(900px, calc(100vh - 40px))',
-          background: tokens.ivory,
+          background: colors.ivory,
           borderRadius: '44px',
           overflow: 'hidden',
-          boxShadow: '0 40px 80px -20px rgba(42,46,40,0.25), 0 0 0 1px rgba(42,46,40,0.06)',
+          boxShadow: '0 40px 80px -20px rgba(42,32,25,0.25), 0 0 0 1px rgba(42,32,25,0.06)',
           border: '10px solid #1a1d19',
           position: 'relative',
           display: 'flex',
@@ -105,8 +96,8 @@ function Shell() {
               top: 24,
               left: '50%',
               transform: 'translateX(-50%)',
-              background: tokens.deepSage,
-              color: tokens.ivory,
+              background: colors.deepBrown,
+              color: colors.ivory,
               padding: '12px 20px',
               borderRadius: '20px',
               fontSize: '13px',
@@ -134,9 +125,9 @@ function BottomNav({ items, active, onChange }) {
         bottom: 0,
         left: 0,
         right: 0,
-        background: 'rgba(251,248,241,0.92)',
+        background: 'rgba(240,230,217,0.92)',
         backdropFilter: 'blur(20px)',
-        borderTop: '1px solid rgba(42,46,40,0.08)',
+        borderTop: '1px solid rgba(42,32,25,0.08)',
         padding: '12px 0 24px',
         display: 'flex',
         justifyContent: 'space-around',
@@ -152,9 +143,9 @@ function BottomNav({ items, active, onChange }) {
               key={item.id}
               onClick={() => onChange(item.id)}
               style={{
-                background: tokens.copper,
-                color: tokens.ivory,
-                border: '4px solid rgba(251,248,241,0.95)',
+                background: colors.copper,
+                color: colors.ivory,
+                border: `4px solid rgba(240,230,217,0.95)`,
                 width: '58px',
                 height: '58px',
                 borderRadius: '50%',
@@ -185,7 +176,7 @@ function BottomNav({ items, active, onChange }) {
               flexDirection: 'column',
               alignItems: 'center',
               gap: '4px',
-              color: isActive ? tokens.deepSage : tokens.muted,
+              color: isActive ? colors.deepBrown : colors.textMuted,
               fontWeight: isActive ? 600 : 500,
               fontSize: '11px',
               fontFamily: "'Manrope', sans-serif",

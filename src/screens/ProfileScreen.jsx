@@ -4,17 +4,7 @@ import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { branches, getBranch } from '../data/branches.js';
 import { getMaster } from '../data/masters.js';
-
-const tokens = {
-  deepSage: '#344237',
-  sage: '#4A5D4F',
-  copper: '#B8794A',
-  copperSoft: 'rgba(184,121,74,0.12)',
-  ivory: '#FBF8F1',
-  cream: '#F2EDE3',
-  muted: '#8A8B86',
-  text: '#2A2E28',
-};
+import { colors } from '../theme/colors.js';
 
 const display = {
   fontFamily: "'Fraunces', serif",
@@ -25,8 +15,8 @@ const display = {
 const body = { fontFamily: "'Manrope', sans-serif" };
 
 const cardBase = {
-  background: tokens.ivory,
-  border: '1px solid rgba(42,46,40,0.06)',
+  background: colors.ivory,
+  border: '1px solid rgba(42,32,25,0.06)',
   borderRadius: 20,
   overflow: 'hidden',
 };
@@ -45,7 +35,7 @@ function SectionTitle({ children }) {
         ...body,
         fontSize: 11,
         letterSpacing: '0.12em',
-        color: tokens.muted,
+        color: colors.textMuted,
         fontWeight: 700,
         textTransform: 'uppercase',
         margin: '0 4px 10px',
@@ -66,25 +56,25 @@ function PreferenceRow({ label, value, interactive = true, onClick, isLast }) {
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: 12,
-    borderBottom: isLast ? 'none' : '1px solid rgba(42,46,40,0.06)',
+    borderBottom: isLast ? 'none' : '1px solid rgba(42,32,25,0.06)',
     cursor: interactive ? 'pointer' : 'default',
     textAlign: 'left',
     fontFamily: body.fontFamily,
   };
   const content = (
     <>
-      <span style={{ fontSize: 14, color: tokens.text, fontWeight: 500 }}>{label}</span>
+      <span style={{ fontSize: 14, color: colors.textMain, fontWeight: 500 }}>{label}</span>
       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, minWidth: 0 }}>
         <span
           style={{
             fontSize: 14,
-            color: tokens.muted,
+            color: colors.textMuted,
             whiteSpace: 'nowrap',
           }}
         >
           {value}
         </span>
-        {interactive && <ChevronDown size={16} color={tokens.muted} />}
+        {interactive && <ChevronDown size={16} color={colors.textMuted} />}
       </span>
     </>
   );
@@ -109,7 +99,7 @@ function Switch({ on, onChange }) {
         width: 40,
         height: 22,
         borderRadius: 999,
-        background: on ? tokens.deepSage : '#D4CFC4',
+        background: on ? colors.deepBrown : '#D4CFC4',
         border: 'none',
         padding: 3,
         cursor: 'pointer',
@@ -142,10 +132,10 @@ function ToggleRow({ label, on, onChange, isLast }) {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '14px 16px',
-        borderBottom: isLast ? 'none' : '1px solid rgba(42,46,40,0.06)',
+        borderBottom: isLast ? 'none' : '1px solid rgba(42,32,25,0.06)',
       }}
     >
-      <span style={{ ...body, fontSize: 14, color: tokens.text, fontWeight: 500 }}>{label}</span>
+      <span style={{ ...body, fontSize: 14, color: colors.textMain, fontWeight: 500 }}>{label}</span>
       <Switch on={on} onChange={onChange} />
     </div>
   );
@@ -158,7 +148,7 @@ function BranchRow({ branch, localized, isLast }) {
         display: 'flex',
         gap: 12,
         padding: '14px 16px',
-        borderBottom: isLast ? 'none' : '1px solid rgba(42,46,40,0.06)',
+        borderBottom: isLast ? 'none' : '1px solid rgba(42,32,25,0.06)',
         alignItems: 'flex-start',
       }}
     >
@@ -167,7 +157,7 @@ function BranchRow({ branch, localized, isLast }) {
           width: 28,
           height: 28,
           borderRadius: '50%',
-          background: tokens.copperSoft,
+          background: colors.copperSoft,
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -175,13 +165,13 @@ function BranchRow({ branch, localized, isLast }) {
           marginTop: 2,
         }}
       >
-        <MapPin size={14} color={tokens.copper} />
+        <MapPin size={14} color={colors.copper} />
       </span>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 2, minWidth: 0 }}>
-        <div style={{ ...body, fontSize: 14, color: tokens.text, fontWeight: 600 }}>
+        <div style={{ ...body, fontSize: 14, color: colors.textMain, fontWeight: 600 }}>
           {localized(branch, 'name')}
         </div>
-        <div style={{ ...body, fontSize: 13, color: tokens.muted, lineHeight: 1.4 }}>
+        <div style={{ ...body, fontSize: 13, color: colors.textMuted, lineHeight: 1.4 }}>
           {localized(branch, 'address')}
         </div>
         <a
@@ -189,7 +179,7 @@ function BranchRow({ branch, localized, isLast }) {
           style={{
             ...body,
             fontSize: 13,
-            color: tokens.copper,
+            color: colors.copper,
             fontWeight: 600,
             textDecoration: 'none',
             marginTop: 2,
@@ -214,7 +204,7 @@ function InstagramRow({ handle, isLast }) {
         gap: 12,
         padding: '14px 16px',
         textDecoration: 'none',
-        borderBottom: isLast ? 'none' : '1px solid rgba(42,46,40,0.06)',
+        borderBottom: isLast ? 'none' : '1px solid rgba(42,32,25,0.06)',
       }}
     >
       <span
@@ -222,16 +212,16 @@ function InstagramRow({ handle, isLast }) {
           width: 28,
           height: 28,
           borderRadius: '50%',
-          background: tokens.copperSoft,
+          background: colors.copperSoft,
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
           flexShrink: 0,
         }}
       >
-        <Instagram size={14} color={tokens.copper} />
+        <Instagram size={14} color={colors.copper} />
       </span>
-      <span style={{ ...body, fontSize: 14, color: tokens.copper, fontWeight: 600 }}>
+      <span style={{ ...body, fontSize: 14, color: colors.copper, fontWeight: 600 }}>
         {handle}
       </span>
     </a>
@@ -257,7 +247,7 @@ export default function ProfileScreen() {
   ];
 
   return (
-    <div style={{ padding: '20px 16px 32px', background: tokens.ivory, minHeight: '100%' }}>
+    <div style={{ padding: '20px 16px 32px', background: colors.ivory, minHeight: '100%' }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24 }}>
         <div
@@ -265,7 +255,7 @@ export default function ProfileScreen() {
             width: 72,
             height: 72,
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, #B8794A 0%, #8E5B36 100%)',
+            background: `linear-gradient(135deg, ${colors.copper} 0%, ${colors.copperDark} 100%)`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -276,8 +266,8 @@ export default function ProfileScreen() {
           <span style={{ ...display, fontSize: 32, color: '#fff' }}>{avatarLetter}</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
-          <div style={{ ...display, fontSize: 24, color: tokens.deepSage }}>{user.name}</div>
-          <div style={{ ...body, fontSize: 13, color: tokens.muted }}>
+          <div style={{ ...display, fontSize: 24, color: colors.deepBrown }}>{user.name}</div>
+          <div style={{ ...body, fontSize: 13, color: colors.textMuted }}>
             {formatPhone(user.phone)}
           </div>
         </div>
@@ -325,8 +315,8 @@ export default function ProfileScreen() {
                   fontSize: 14,
                   fontWeight: 600,
                   cursor: 'pointer',
-                  background: active ? tokens.copper : tokens.ivory,
-                  color: active ? tokens.ivory : tokens.text,
+                  background: active ? colors.copper : colors.ivory,
+                  color: active ? colors.ivory : colors.textMain,
                   border: active
                     ? '1px solid transparent'
                     : '1px solid rgba(184,121,74,0.35)',
@@ -384,8 +374,8 @@ export default function ProfileScreen() {
           ...body,
           width: '100%',
           background: 'transparent',
-          border: '1px solid rgba(42,46,40,0.12)',
-          color: tokens.muted,
+          border: '1px solid rgba(42,32,25,0.12)',
+          color: colors.textMuted,
           padding: 14,
           borderRadius: 18,
           fontSize: 14,

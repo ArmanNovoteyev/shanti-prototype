@@ -4,17 +4,7 @@ import { useTranslation } from '../hooks/useTranslation.js';
 import { reviews } from '../data/reviews.js';
 import { branches, getBranch } from '../data/branches.js';
 import { masters, getMaster } from '../data/masters.js';
-
-const tokens = {
-  deepSage: '#344237',
-  sage: '#4A5D4F',
-  copper: '#B8794A',
-  copperSoft: 'rgba(184,121,74,0.12)',
-  ivory: '#FBF8F1',
-  cream: '#F2EDE3',
-  muted: '#8A8B86',
-  text: '#2A2E28',
-};
+import { colors } from '../theme/colors.js';
 
 const display = {
   fontFamily: "'Fraunces', serif",
@@ -25,7 +15,7 @@ const display = {
 const body = { fontFamily: "'Manrope', sans-serif" };
 
 const CHEVRON_SVG =
-  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1.5L6 6.5L11 1.5' stroke='%238A8B86' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>\")";
+  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1.5L6 6.5L11 1.5' stroke='%239A8B7A' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>\")";
 
 function Stars({ rating }) {
   return (
@@ -36,8 +26,8 @@ function Stars({ rating }) {
           <Star
             key={i}
             size={14}
-            color={filled ? tokens.copper : tokens.muted}
-            fill={filled ? tokens.copper : 'none'}
+            color={filled ? colors.copper : colors.textMuted}
+            fill={filled ? colors.copper : 'none'}
             strokeWidth={filled ? 0 : 1.4}
           />
         );
@@ -52,8 +42,8 @@ function ReviewCard({ review, localized }) {
   return (
     <article
       style={{
-        background: tokens.ivory,
-        border: '1px solid rgba(42,46,40,0.06)',
+        background: colors.ivory,
+        border: '1px solid rgba(42,32,25,0.06)',
         borderRadius: 20,
         padding: 16,
       }}
@@ -66,7 +56,7 @@ function ReviewCard({ review, localized }) {
           gap: 8,
         }}
       >
-        <span style={{ ...body, fontSize: 14, fontWeight: 600, color: tokens.text }}>
+        <span style={{ ...body, fontSize: 14, fontWeight: 600, color: colors.textMain }}>
           {review.author}
         </span>
         <Stars rating={review.rating} />
@@ -75,7 +65,7 @@ function ReviewCard({ review, localized }) {
         style={{
           ...body,
           fontSize: 14,
-          color: tokens.text,
+          color: colors.textMain,
           lineHeight: 1.55,
           margin: '10px 0 10px',
         }}
@@ -86,7 +76,7 @@ function ReviewCard({ review, localized }) {
         style={{
           ...body,
           fontSize: 12,
-          color: tokens.muted,
+          color: colors.textMuted,
           display: 'flex',
           flexWrap: 'wrap',
           gap: '4px 8px',
@@ -127,12 +117,12 @@ export default function ReviewsScreen() {
     ...body,
     flex: 1,
     minWidth: 0,
-    background: tokens.ivory,
-    border: '1px solid rgba(42,46,40,0.1)',
+    background: colors.ivory,
+    border: '1px solid rgba(42,32,25,0.1)',
     borderRadius: 14,
     padding: '12px 36px 12px 14px',
     fontSize: 14,
-    color: tokens.text,
+    color: colors.textMain,
     appearance: 'none',
     WebkitAppearance: 'none',
     MozAppearance: 'none',
@@ -143,20 +133,20 @@ export default function ReviewsScreen() {
   };
 
   return (
-    <div style={{ padding: '20px 16px 32px', background: tokens.ivory, minHeight: '100%' }}>
+    <div style={{ padding: '20px 16px 32px', background: colors.ivory, minHeight: '100%' }}>
       {/* Header */}
       <div style={{ marginBottom: 18 }}>
         <div
           style={{
             ...display,
             fontSize: 28,
-            color: tokens.deepSage,
+            color: colors.deepBrown,
             margin: '4px 4px 4px',
           }}
         >
           {t('home.reviews_title')}
         </div>
-        <div style={{ ...body, fontSize: 13, color: tokens.muted, margin: '0 4px' }}>
+        <div style={{ ...body, fontSize: 13, color: colors.textMuted, margin: '0 4px' }}>
           {t('reviews.subtitle')}
         </div>
       </div>
@@ -195,14 +185,14 @@ export default function ReviewsScreen() {
       {filtered.length === 0 ? (
         <div
           style={{
-            background: tokens.ivory,
-            border: '1px solid rgba(42,46,40,0.06)',
+            background: colors.ivory,
+            border: '1px solid rgba(42,32,25,0.06)',
             borderRadius: 20,
             padding: 24,
             textAlign: 'center',
           }}
         >
-          <div style={{ ...body, fontSize: 14, color: tokens.muted, marginBottom: 14 }}>
+          <div style={{ ...body, fontSize: 14, color: colors.textMuted, marginBottom: 14 }}>
             {t('reviews.empty')}
           </div>
           <button
@@ -213,8 +203,8 @@ export default function ReviewsScreen() {
             }}
             style={{
               ...body,
-              background: tokens.copper,
-              color: tokens.ivory,
+              background: colors.copper,
+              color: colors.ivory,
               border: 'none',
               borderRadius: 14,
               padding: '10px 18px',

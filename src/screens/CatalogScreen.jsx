@@ -3,17 +3,7 @@ import { Clock, Flame, Heart, ChevronRight, Award } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { services, SERVICE_CATEGORIES } from '../data/services.js';
-
-const tokens = {
-  deepSage: '#344237',
-  sage: '#4A5D4F',
-  copper: '#B8794A',
-  copperSoft: 'rgba(184,121,74,0.10)',
-  ivory: '#FBF8F1',
-  cream: '#F2EDE3',
-  muted: '#8A8B86',
-  text: '#2A2E28',
-};
+import { colors } from '../theme/colors.js';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
@@ -44,9 +34,9 @@ function CategoryTabs({ active, onChange }) {
               ...body,
               padding: '10px 16px',
               borderRadius: '20px',
-              background: isActive ? tokens.deepSage : 'transparent',
-              color: isActive ? tokens.ivory : tokens.deepSage,
-              border: isActive ? 'none' : '1px solid rgba(42,46,40,0.15)',
+              background: isActive ? colors.deepBrown : 'transparent',
+              color: isActive ? colors.ivory : colors.deepBrown,
+              border: isActive ? 'none' : '1px solid rgba(42,32,25,0.15)',
               fontSize: '13px',
               fontWeight: 500,
               cursor: 'pointer',
@@ -68,17 +58,17 @@ function PriceRange({ durations }) {
   const min = Math.min(...durations.map((d) => d.price));
   if (durations.length === 1) {
     return (
-      <div style={{ ...display, fontSize: '17px', color: tokens.copper, whiteSpace: 'nowrap' }}>
+      <div style={{ ...display, fontSize: '17px', color: colors.copper, whiteSpace: 'nowrap' }}>
         {formatPrice(min)} {t('common.rub')}
       </div>
     );
   }
   return (
     <div style={{ textAlign: 'right', whiteSpace: 'nowrap' }}>
-      <div style={{ fontSize: '10px', color: tokens.muted, letterSpacing: '0.04em', marginBottom: '2px' }}>
+      <div style={{ fontSize: '10px', color: colors.textMuted, letterSpacing: '0.04em', marginBottom: '2px' }}>
         {t('catalog.from_price')}
       </div>
-      <div style={{ ...display, fontSize: '17px', color: tokens.copper }}>
+      <div style={{ ...display, fontSize: '17px', color: colors.copper }}>
         {formatPrice(min)} {t('common.rub')}
       </div>
     </div>
@@ -89,14 +79,14 @@ function DurationChips({ durations }) {
   const { t } = useTranslation();
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-      <Clock size={12} color={tokens.muted} />
+      <Clock size={12} color={colors.textMuted} />
       {durations.map((d, i) => (
         <span
           key={d.minutes}
           style={{
             fontSize: '11px',
-            color: tokens.deepSage,
-            background: tokens.cream,
+            color: colors.deepBrown,
+            background: colors.cream,
             padding: '3px 8px',
             borderRadius: '10px',
             fontWeight: 500,
@@ -116,14 +106,14 @@ function ServiceBadges({ service }) {
   if (service.category === 'spa_duo') {
     items.push({
       key: 'duo',
-      icon: <Heart size={11} fill={tokens.copper} color={tokens.copper} />,
+      icon: <Heart size={11} fill={colors.copper} color={colors.copper} />,
       label: t('catalog.badge_duo'),
     });
   }
   if (service.hasHerbalBarrel) {
     items.push({
       key: 'herbal',
-      icon: <Flame size={11} color={tokens.copper} />,
+      icon: <Flame size={11} color={colors.copper} />,
       label: t('catalog.badge_herbal'),
     });
   }
@@ -137,8 +127,8 @@ function ServiceBadges({ service }) {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '4px',
-            background: tokens.copperSoft,
-            color: tokens.copper,
+            background: colors.copperSoft,
+            color: colors.copper,
             padding: '3px 8px',
             borderRadius: '10px',
             fontSize: '10px',
@@ -163,11 +153,11 @@ function ServiceCard({ service }) {
       style={{
         ...body,
         textAlign: 'left',
-        background: tokens.ivory,
+        background: colors.ivory,
         borderRadius: '20px',
         padding: '18px',
         marginBottom: '12px',
-        border: '1px solid rgba(42,46,40,0.06)',
+        border: '1px solid rgba(42,32,25,0.06)',
         cursor: 'pointer',
         width: '100%',
         display: 'block',
@@ -183,7 +173,7 @@ function ServiceCard({ service }) {
           marginBottom: '6px',
         }}
       >
-        <div style={{ ...display, fontSize: '17px', color: tokens.deepSage, lineHeight: 1.2, flex: 1 }}>
+        <div style={{ ...display, fontSize: '17px', color: colors.deepBrown, lineHeight: 1.2, flex: 1 }}>
           {localized(service, 'name')}
         </div>
         <PriceRange durations={service.durations} />
@@ -191,7 +181,7 @@ function ServiceCard({ service }) {
       <div
         style={{
           fontSize: '12px',
-          color: tokens.muted,
+          color: colors.textMuted,
           lineHeight: 1.4,
           marginBottom: '12px',
         }}
@@ -200,7 +190,7 @@ function ServiceCard({ service }) {
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <DurationChips durations={service.durations} />
-        <ChevronRight size={16} color={tokens.copper} />
+        <ChevronRight size={16} color={colors.copper} />
       </div>
     </button>
   );
@@ -212,11 +202,11 @@ function SubscriptionCard({ service }) {
   return (
     <div
       style={{
-        background: tokens.ivory,
+        background: colors.ivory,
         borderRadius: '22px',
         padding: '20px',
         marginBottom: '12px',
-        border: `2px solid ${tokens.copper}`,
+        border: `2px solid ${colors.copper}`,
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -226,8 +216,8 @@ function SubscriptionCard({ service }) {
           position: 'absolute',
           top: 14,
           right: 14,
-          background: tokens.copper,
-          color: tokens.ivory,
+          background: colors.copper,
+          color: colors.ivory,
           fontSize: '10px',
           fontWeight: 700,
           letterSpacing: '0.08em',
@@ -245,7 +235,7 @@ function SubscriptionCard({ service }) {
         style={{
           ...display,
           fontSize: '20px',
-          color: tokens.deepSage,
+          color: colors.deepBrown,
           marginBottom: '6px',
           paddingRight: '110px',
           lineHeight: 1.2,
@@ -253,7 +243,7 @@ function SubscriptionCard({ service }) {
       >
         {localized(service, 'name')}
       </div>
-      <div style={{ fontSize: '12px', color: tokens.muted, marginBottom: '14px', lineHeight: 1.45 }}>
+      <div style={{ fontSize: '12px', color: colors.textMuted, marginBottom: '14px', lineHeight: 1.45 }}>
         {localized(service, 'description')}
       </div>
       <div
@@ -265,10 +255,10 @@ function SubscriptionCard({ service }) {
         }}
       >
         <div>
-          <div style={{ fontSize: '11px', color: tokens.muted, letterSpacing: '0.04em' }}>
+          <div style={{ fontSize: '11px', color: colors.textMuted, letterSpacing: '0.04em' }}>
             {t('catalog.course_subtitle')}
           </div>
-          <div style={{ ...display, fontSize: '22px', color: tokens.copper }}>
+          <div style={{ ...display, fontSize: '22px', color: colors.copper }}>
             {formatPrice(service.durations[0].price)} {t('common.rub')}
           </div>
         </div>
@@ -278,8 +268,8 @@ function SubscriptionCard({ service }) {
           }}
           style={{
             ...body,
-            background: tokens.copper,
-            color: tokens.ivory,
+            background: colors.copper,
+            color: colors.ivory,
             border: 'none',
             padding: '12px 18px',
             borderRadius: '18px',
@@ -305,10 +295,10 @@ export default function CatalogScreen() {
   return (
     <div>
       <div style={{ padding: '4px 24px 4px' }}>
-        <div style={{ ...display, fontSize: '30px', color: tokens.deepSage, lineHeight: 1.1 }}>
+        <div style={{ ...display, fontSize: '30px', color: colors.deepBrown, lineHeight: 1.1 }}>
           {t('catalog.title')}
         </div>
-        <div style={{ fontSize: '13px', color: tokens.muted, marginTop: '4px', marginBottom: '20px' }}>
+        <div style={{ fontSize: '13px', color: colors.textMuted, marginTop: '4px', marginBottom: '20px' }}>
           {t('catalog.subtitle')}
         </div>
       </div>

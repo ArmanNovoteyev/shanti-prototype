@@ -12,17 +12,7 @@ import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { reviews } from '../data/reviews.js';
 import { branches } from '../data/branches.js';
-
-const tokens = {
-  deepSage: '#344237',
-  sage: '#4A5D4F',
-  copper: '#B8794A',
-  copperSoft: 'rgba(184,121,74,0.12)',
-  ivory: '#FBF8F1',
-  cream: '#F2EDE3',
-  muted: '#8A8B86',
-  text: '#2A2E28',
-};
+import { colors } from '../theme/colors.js';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
@@ -58,7 +48,7 @@ function LogoMark() {
         ...display,
         fontSize: '17px',
         letterSpacing: '0.32em',
-        color: tokens.deepSage,
+        color: colors.deepBrown,
         fontWeight: 600,
       }}
     >
@@ -84,7 +74,7 @@ function Header() {
     >
       <LogoMark />
       <div style={{ flex: 1, textAlign: 'right', marginRight: '12px' }}>
-        <div style={{ fontSize: '11px', color: tokens.muted, letterSpacing: '0.04em' }}>
+        <div style={{ fontSize: '11px', color: colors.textMuted, letterSpacing: '0.04em' }}>
           {t('home.greeting_with_name', { greeting: greetingPrefix, name: localizedName })}
         </div>
       </div>
@@ -93,8 +83,8 @@ function Header() {
           width: '40px',
           height: '40px',
           borderRadius: '50%',
-          background: tokens.ivory,
-          border: '1px solid rgba(42,46,40,0.08)',
+          background: colors.ivory,
+          border: '1px solid rgba(42,32,25,0.08)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -103,7 +93,7 @@ function Header() {
         }}
         aria-label="notifications"
       >
-        <Bell size={17} color={tokens.deepSage} strokeWidth={1.7} />
+        <Bell size={17} color={colors.deepBrown} strokeWidth={1.7} />
         <span
           style={{
             position: 'absolute',
@@ -111,9 +101,9 @@ function Header() {
             right: 10,
             width: 7,
             height: 7,
-            background: tokens.copper,
+            background: colors.copper,
             borderRadius: '50%',
-            border: `2px solid ${tokens.ivory}`,
+            border: `2px solid ${colors.ivory}`,
           }}
         />
       </button>
@@ -138,7 +128,7 @@ function Hero() {
           flexDirection: 'column',
           justifyContent: 'flex-end',
           padding: '22px',
-          color: tokens.ivory,
+          color: colors.ivory,
         }}
       >
         <div
@@ -146,7 +136,7 @@ function Hero() {
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(to bottom, rgba(52,66,55,0.25) 0%, rgba(52,66,55,0.85) 100%)',
+              'linear-gradient(to bottom, rgba(61,46,36,0.25) 0%, rgba(61,46,36,0.85) 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -158,8 +148,8 @@ function Hero() {
             width: 72,
             height: 72,
             borderRadius: '50%',
-            background: 'rgba(251,248,241,0.12)',
-            border: '1px solid rgba(251,248,241,0.22)',
+            background: 'rgba(240,230,217,0.12)',
+            border: '1px solid rgba(240,230,217,0.22)',
             backdropFilter: 'blur(2px)',
           }}
         />
@@ -204,8 +194,8 @@ function BonusTeaser() {
         style={{
           ...body,
           width: '100%',
-          background: tokens.ivory,
-          border: `1px solid ${tokens.copperSoft}`,
+          background: colors.ivory,
+          border: `1px solid ${colors.copperSoft}`,
           borderRadius: 20,
           padding: '13px 14px',
           display: 'flex',
@@ -222,8 +212,8 @@ function BonusTeaser() {
             width: 38,
             height: 38,
             borderRadius: '50%',
-            background: tokens.copperSoft,
-            color: tokens.copper,
+            background: colors.copperSoft,
+            color: colors.copper,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -236,14 +226,14 @@ function BonusTeaser() {
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
           <div style={{ flex: hasCourse ? '0 0 auto' : 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
-              <span style={{ ...display, fontSize: 18, color: tokens.deepSage, lineHeight: 1 }}>
+              <span style={{ ...display, fontSize: 18, color: colors.deepBrown, lineHeight: 1 }}>
                 {balanceStr}
               </span>
-              <span style={{ fontSize: 11, color: tokens.muted, fontWeight: 600 }}>
+              <span style={{ fontSize: 11, color: colors.textMuted, fontWeight: 600 }}>
                 {t('bonus.teaser_unit')}
               </span>
             </div>
-            <div style={{ fontSize: 11, color: tokens.muted, marginTop: 3 }}>
+            <div style={{ fontSize: 11, color: colors.textMuted, marginTop: 3 }}>
               {t('bonus.teaser_rate')}
             </div>
           </div>
@@ -254,7 +244,7 @@ function BonusTeaser() {
                 style={{
                   width: 1,
                   alignSelf: 'stretch',
-                  background: 'rgba(42,46,40,0.1)',
+                  background: 'rgba(42,32,25,0.1)',
                   margin: '2px 0',
                 }}
               />
@@ -266,7 +256,7 @@ function BonusTeaser() {
                     gap: 6,
                     fontSize: 13,
                     fontWeight: 600,
-                    color: tokens.deepSage,
+                    color: colors.deepBrown,
                   }}
                 >
                   <span style={{ whiteSpace: 'nowrap' }}>{t('bonus.back_balance_title')}</span>
@@ -274,8 +264,8 @@ function BonusTeaser() {
                     style={{
                       fontSize: 11,
                       fontWeight: 700,
-                      color: tokens.copper,
-                      background: tokens.copperSoft,
+                      color: colors.copper,
+                      background: colors.copperSoft,
                       padding: '1px 7px',
                       borderRadius: 7,
                       whiteSpace: 'nowrap',
@@ -284,7 +274,7 @@ function BonusTeaser() {
                     {backBalance.done}/{backBalance.total}
                   </span>
                 </div>
-                <div style={{ fontSize: 11, color: tokens.muted, marginTop: 3 }}>
+                <div style={{ fontSize: 11, color: colors.textMuted, marginTop: 3 }}>
                   {t('bonus.teaser_sub')}
                 </div>
               </div>
@@ -292,7 +282,7 @@ function BonusTeaser() {
           )}
         </div>
 
-        <ChevronRight size={18} color={tokens.muted} style={{ flexShrink: 0 }} />
+        <ChevronRight size={18} color={colors.textMuted} style={{ flexShrink: 0 }} />
       </button>
     </div>
   );
@@ -308,25 +298,25 @@ function NextVisitCard() {
       <div style={{ padding: '0 24px', marginBottom: '20px' }}>
         <div
           style={{
-            background: tokens.cream,
+            background: colors.cream,
             borderRadius: '24px',
             padding: '22px',
-            border: '1px dashed rgba(42,46,40,0.15)',
+            border: '1px dashed rgba(42,32,25,0.15)',
             textAlign: 'center',
           }}
         >
-          <div style={{ ...display, fontSize: '20px', color: tokens.deepSage, marginBottom: '6px' }}>
+          <div style={{ ...display, fontSize: '20px', color: colors.deepBrown, marginBottom: '6px' }}>
             {t('home.no_visits')}
           </div>
-          <div style={{ fontSize: '13px', color: tokens.muted, marginBottom: '14px' }}>
+          <div style={{ fontSize: '13px', color: colors.textMuted, marginBottom: '14px' }}>
             {t('home.no_visits_cta')}
           </div>
           <button
             onClick={() => navigate('catalog')}
             style={{
               ...body,
-              background: tokens.copper,
-              color: tokens.ivory,
+              background: colors.copper,
+              color: colors.ivory,
               border: 'none',
               padding: '10px 20px',
               borderRadius: '18px',
@@ -349,10 +339,10 @@ function NextVisitCard() {
     <div style={{ padding: '0 24px', marginBottom: '20px' }}>
       <div
         style={{
-          background: tokens.deepSage,
+          background: colors.deepBrown,
           borderRadius: '28px',
           padding: '22px',
-          color: tokens.ivory,
+          color: colors.ivory,
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -397,7 +387,7 @@ function NextVisitCard() {
           style={{
             marginTop: '16px',
             paddingTop: '16px',
-            borderTop: '1px solid rgba(251,248,241,0.15)',
+            borderTop: '1px solid rgba(240,230,217,0.15)',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -409,8 +399,8 @@ function NextVisitCard() {
             onClick={() => navigate('bookings')}
             style={{
               ...body,
-              background: tokens.copper,
-              color: tokens.ivory,
+              background: colors.copper,
+              color: colors.ivory,
               border: 'none',
               padding: '7px 14px',
               borderRadius: '18px',
@@ -437,8 +427,8 @@ function PrimaryCTA() {
         style={{
           ...body,
           width: '100%',
-          background: tokens.copper,
-          color: tokens.ivory,
+          background: colors.copper,
+          color: colors.ivory,
           border: 'none',
           padding: '17px',
           borderRadius: '20px',
@@ -468,9 +458,9 @@ function HappyHoursBanner() {
           borderRadius: '22px',
           padding: '18px 20px',
           background: active
-            ? `linear-gradient(120deg, ${tokens.copper} 0%, #D08C56 100%)`
-            : tokens.copperSoft,
-          color: active ? tokens.ivory : tokens.deepSage,
+            ? `linear-gradient(120deg, ${colors.copper} 0%, #D08C56 100%)`
+            : colors.copperSoft,
+          color: active ? colors.ivory : colors.deepBrown,
           display: 'flex',
           alignItems: 'center',
           gap: '14px',
@@ -481,14 +471,14 @@ function HappyHoursBanner() {
             width: '38px',
             height: '38px',
             borderRadius: '50%',
-            background: active ? 'rgba(251,248,241,0.18)' : tokens.ivory,
+            background: active ? 'rgba(240,230,217,0.18)' : colors.ivory,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             flexShrink: 0,
           }}
         >
-          <Clock size={18} color={active ? tokens.ivory : tokens.copper} strokeWidth={2} />
+          <Clock size={18} color={active ? colors.ivory : colors.copper} strokeWidth={2} />
         </div>
         <div style={{ flex: 1 }}>
           <div
@@ -523,7 +513,7 @@ function GiftBanner() {
           ...body,
           width: '100%',
           textAlign: 'left',
-          background: 'linear-gradient(135deg, #E8DDC8 0%, #D4C4A8 100%)',
+          background: `linear-gradient(135deg, ${colors.cream} 0%, ${colors.sand} 100%)`,
           border: 'none',
           borderRadius: '22px',
           padding: '18px 20px',
@@ -538,8 +528,8 @@ function GiftBanner() {
             width: '44px',
             height: '44px',
             borderRadius: '50%',
-            background: tokens.deepSage,
-            color: tokens.ivory,
+            background: colors.deepBrown,
+            color: colors.ivory,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -549,14 +539,14 @@ function GiftBanner() {
           <Gift size={20} strokeWidth={1.8} />
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ ...display, fontSize: '17px', color: tokens.deepSage, lineHeight: 1.2 }}>
+          <div style={{ ...display, fontSize: '17px', color: colors.deepBrown, lineHeight: 1.2 }}>
             {t('home.gift_banner_title')}
           </div>
-          <div style={{ fontSize: '12px', color: tokens.deepSage, opacity: 0.7, marginTop: '2px' }}>
+          <div style={{ fontSize: '12px', color: colors.deepBrown, opacity: 0.7, marginTop: '2px' }}>
             {t('home.gift_banner_subtitle')}
           </div>
         </div>
-        <ChevronRight size={18} color={tokens.deepSage} />
+        <ChevronRight size={18} color={colors.deepBrown} />
       </button>
     </div>
   );
@@ -572,25 +562,25 @@ function ReviewCard({ review }) {
       style={{
         flexShrink: 0,
         width: '260px',
-        background: tokens.ivory,
+        background: colors.ivory,
         borderRadius: '20px',
         padding: '18px',
-        border: '1px solid rgba(42,46,40,0.06)',
+        border: '1px solid rgba(42,32,25,0.06)',
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ ...display, fontSize: '15px', color: tokens.deepSage }}>{review.author}</div>
+        <div style={{ ...display, fontSize: '15px', color: colors.deepBrown }}>{review.author}</div>
         <div style={{ display: 'flex', gap: '2px' }}>
           {Array.from({ length: review.rating }).map((_, i) => (
-            <Star key={i} size={11} fill={tokens.copper} color={tokens.copper} />
+            <Star key={i} size={11} fill={colors.copper} color={colors.copper} />
           ))}
         </div>
       </div>
-      <div style={{ fontSize: '12px', color: tokens.text, lineHeight: 1.45, flex: 1 }}>{text}</div>
-      <div style={{ fontSize: '11px', color: tokens.muted, display: 'flex', justifyContent: 'space-between' }}>
+      <div style={{ fontSize: '12px', color: colors.textMain, lineHeight: 1.45, flex: 1 }}>{text}</div>
+      <div style={{ fontSize: '11px', color: colors.textMuted, display: 'flex', justifyContent: 'space-between' }}>
         <span>{review.service}</span>
         <span>{review.date}</span>
       </div>
@@ -613,7 +603,7 @@ function ReviewsCarousel() {
           justifyContent: 'space-between',
         }}
       >
-        <div style={{ ...display, fontSize: '20px', color: tokens.deepSage }}>
+        <div style={{ ...display, fontSize: '20px', color: colors.deepBrown }}>
           {t('home.reviews_title')}
         </div>
         <button
@@ -624,7 +614,7 @@ function ReviewsCarousel() {
             border: 'none',
             padding: 0,
             fontSize: '12px',
-            color: tokens.copper,
+            color: colors.copper,
             fontWeight: 600,
             cursor: 'pointer',
             fontFamily: "'Manrope', sans-serif",
@@ -668,7 +658,7 @@ function AtmosphereGallery() {
   return (
     <div style={{ marginBottom: '24px' }}>
       <div style={{ padding: '0 24px', marginBottom: '12px' }}>
-        <div style={{ ...display, fontSize: '24px', color: tokens.deepSage }}>
+        <div style={{ ...display, fontSize: '24px', color: colors.deepBrown }}>
           {t('home.atmosphere')}
         </div>
       </div>
@@ -691,8 +681,8 @@ function AtmosphereGallery() {
               borderRadius: 20,
               overflow: 'hidden',
               scrollSnapAlign: 'start',
-              background: tokens.cream,
-              boxShadow: '0 10px 24px -16px rgba(42,46,40,0.28)',
+              background: colors.cream,
+              boxShadow: '0 10px 24px -16px rgba(42,32,25,0.28)',
             }}
           >
             <img
@@ -720,10 +710,10 @@ function SocialProof() {
     <div style={{ padding: '0 24px', marginBottom: '8px' }}>
       <div
         style={{
-          background: tokens.ivory,
+          background: colors.ivory,
           borderRadius: '22px',
           padding: '20px',
-          border: '1px solid rgba(42,46,40,0.06)',
+          border: '1px solid rgba(42,32,25,0.06)',
         }}
       >
         <div
@@ -734,12 +724,12 @@ function SocialProof() {
             marginBottom: '14px',
           }}
         >
-          <Sparkles size={16} color={tokens.copper} />
-          <div style={{ ...display, fontSize: '17px', color: tokens.deepSage }}>
+          <Sparkles size={16} color={colors.copper} />
+          <div style={{ ...display, fontSize: '17px', color: colors.deepBrown }}>
             {t('home.social_proof_title')}
           </div>
         </div>
-        <div style={{ fontSize: '13px', color: tokens.muted, marginBottom: '14px' }}>
+        <div style={{ fontSize: '13px', color: colors.textMuted, marginBottom: '14px' }}>
           {t('home.social_proof_subtitle')}
         </div>
         <div style={{ display: 'flex', gap: '12px' }}>
@@ -748,7 +738,7 @@ function SocialProof() {
               key={b.id}
               style={{
                 flex: 1,
-                background: tokens.cream,
+                background: colors.cream,
                 borderRadius: '14px',
                 padding: '12px',
                 textAlign: 'center',
@@ -758,7 +748,7 @@ function SocialProof() {
                 style={{
                   ...display,
                   fontSize: '20px',
-                  color: tokens.deepSage,
+                  color: colors.deepBrown,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -766,12 +756,12 @@ function SocialProof() {
                 }}
               >
                 {b.rating}
-                <Star size={13} fill={tokens.copper} color={tokens.copper} />
+                <Star size={13} fill={colors.copper} color={colors.copper} />
               </div>
-              <div style={{ fontSize: '10px', color: tokens.muted, marginTop: '4px' }}>
+              <div style={{ fontSize: '10px', color: colors.textMuted, marginTop: '4px' }}>
                 {t(`home.social_proof_branch_${b.id}`)}
               </div>
-              <div style={{ fontSize: '10px', color: tokens.muted }}>
+              <div style={{ fontSize: '10px', color: colors.textMuted }}>
                 {b.reviews_count} отзывов
               </div>
             </div>

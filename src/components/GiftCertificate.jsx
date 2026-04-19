@@ -1,5 +1,6 @@
 import { QRCodeSVG } from 'qrcode.react';
 import { useTranslation } from '../hooks/useTranslation.js';
+import { colors } from '../theme/colors.js';
 
 const DESIGN_CONFIG = {
   ny: {
@@ -201,7 +202,7 @@ export default function GiftCertificate({
         overflow: 'hidden',
         background: cfg.background,
         color: cfg.text,
-        boxShadow: '0 12px 30px -12px rgba(0,0,0,0.35)',
+        boxShadow: `0 12px 30px -12px ${colors.warmDark}59`,
         fontFamily: "'Manrope', sans-serif",
         flexShrink: 0,
       }}
@@ -227,7 +228,7 @@ export default function GiftCertificate({
               width: 'auto',
               objectFit: 'contain',
               filter: LOGO_SHADOW_DESIGNS.has(design)
-                ? 'drop-shadow(0 1px 2px rgba(74,50,32,0.25))'
+                ? `drop-shadow(0 1px 2px ${colors.warmDark}40)`
                 : undefined,
             }}
           />

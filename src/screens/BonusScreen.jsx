@@ -2,25 +2,14 @@ import { useContext, useMemo } from 'react';
 import { Activity, Gift, UserPlus, Check, Sparkles } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
-
-const tokens = {
-  deepSage: '#344237',
-  sage: '#4A5D4F',
-  copper: '#B8794A',
-  copperSoft: 'rgba(184,121,74,0.12)',
-  ivory: '#FBF8F1',
-  cream: '#F2EDE3',
-  muted: '#8A8B86',
-  text: '#2A2E28',
-  earned: '#5B8A4E',
-};
+import { colors } from '../theme/colors.js';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
 
 const cardBase = {
-  background: tokens.ivory,
-  border: '1px solid rgba(42,46,40,0.06)',
+  background: colors.ivory,
+  border: '1px solid rgba(42,32,25,0.06)',
   borderRadius: 24,
   padding: 20,
 };
@@ -41,8 +30,8 @@ function BalanceCard({ t, balance }) {
   return (
     <div
       style={{
-        background: `linear-gradient(135deg, ${tokens.deepSage} 0%, #2A3A30 100%)`,
-        color: tokens.ivory,
+        background: `linear-gradient(135deg, ${colors.deepBrown} 0%, ${colors.warmDark} 100%)`,
+        color: colors.ivory,
         padding: 22,
         borderRadius: 26,
         position: 'relative',
@@ -51,7 +40,7 @@ function BalanceCard({ t, balance }) {
     >
       <Sparkles
         size={120}
-        color={tokens.copper}
+        color={colors.copper}
         style={{ position: 'absolute', right: -28, top: -22, opacity: 0.12 }}
       />
       <div style={{ position: 'relative' }}>
@@ -99,8 +88,8 @@ function BackBalanceCard({ t, tracker, onBook }) {
             width: 42,
             height: 42,
             borderRadius: '50%',
-            background: tokens.copperSoft,
-            color: tokens.copper,
+            background: colors.copperSoft,
+            color: colors.copper,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -116,16 +105,16 @@ function BackBalanceCard({ t, tracker, onBook }) {
               fontSize: 10,
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: tokens.copper,
+              color: colors.copper,
               fontWeight: 700,
             }}
           >
             {t('bonus.back_balance_eyebrow')}
           </div>
-          <div style={{ ...display, fontSize: 19, color: tokens.deepSage, marginTop: 2 }}>
+          <div style={{ ...display, fontSize: 19, color: colors.deepBrown, marginTop: 2 }}>
             {t('bonus.back_balance_title')}
           </div>
-          <div style={{ ...body, fontSize: 12, color: tokens.muted, marginTop: 2 }}>
+          <div style={{ ...body, fontSize: 12, color: colors.textMuted, marginTop: 2 }}>
             {t('bonus.back_balance_subtitle')}
           </div>
         </div>
@@ -157,17 +146,17 @@ function BackBalanceCard({ t, tracker, onBook }) {
                   width: 30,
                   height: 30,
                   borderRadius: '50%',
-                  background: done ? tokens.copper : 'transparent',
-                  border: `2px solid ${done ? tokens.copper : 'rgba(42,46,40,0.18)'}`,
+                  background: done ? colors.copper : 'transparent',
+                  border: `2px solid ${done ? colors.copper : 'rgba(42,32,25,0.18)'}`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   transition: 'background 0.2s',
                 }}
               >
-                {done && <Check size={14} color={tokens.ivory} strokeWidth={3} />}
+                {done && <Check size={14} color={colors.ivory} strokeWidth={3} />}
               </div>
-              <div style={{ ...body, fontSize: 11, color: tokens.muted, fontWeight: 500 }}>
+              <div style={{ ...body, fontSize: 11, color: colors.textMuted, fontWeight: 500 }}>
                 {i + 1}
               </div>
             </div>
@@ -181,18 +170,18 @@ function BackBalanceCard({ t, tracker, onBook }) {
           justifyContent: 'space-between',
           marginTop: 8,
           fontSize: 13,
-          color: tokens.text,
+          color: colors.textMain,
           ...body,
         }}
       >
         <div>
-          <span style={{ color: tokens.muted }}>{t('bonus.visits_done')}:</span>{' '}
+          <span style={{ color: colors.textMuted }}>{t('bonus.visits_done')}:</span>{' '}
           <strong style={{ fontWeight: 600 }}>
             {t('bonus.visits_done_of', { done: tracker.done, total: tracker.total })}
           </strong>
         </div>
         <div>
-          <span style={{ color: tokens.muted }}>{t('bonus.visits_left')}:</span>{' '}
+          <span style={{ color: colors.textMuted }}>{t('bonus.visits_left')}:</span>{' '}
           <strong style={{ fontWeight: 600 }}>
             {left} {plural(left, 'визит', 'визита', 'визитов')}
           </strong>
@@ -205,8 +194,8 @@ function BackBalanceCard({ t, tracker, onBook }) {
           ...body,
           width: '100%',
           marginTop: 18,
-          background: tokens.copper,
-          color: tokens.ivory,
+          background: colors.copper,
+          color: colors.ivory,
           border: 'none',
           padding: 15,
           borderRadius: 18,
@@ -231,8 +220,8 @@ function FifthVisitCard({ t, progress }) {
             width: 36,
             height: 36,
             borderRadius: '50%',
-            background: tokens.copperSoft,
-            color: tokens.copper,
+            background: colors.copperSoft,
+            color: colors.copper,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -242,13 +231,13 @@ function FifthVisitCard({ t, progress }) {
           <Gift size={16} strokeWidth={2} />
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ ...display, fontSize: 17, color: tokens.deepSage, lineHeight: 1.2 }}>
+          <div style={{ ...display, fontSize: 17, color: colors.deepBrown, lineHeight: 1.2 }}>
             {t('bonus.fifth_visit_title')}
           </div>
         </div>
       </div>
 
-      <div style={{ ...body, fontSize: 13, color: tokens.text, marginBottom: 10 }}>
+      <div style={{ ...body, fontSize: 13, color: colors.textMain, marginBottom: 10 }}>
         {t('bonus.fifth_visit_line', { done: progress.done, left: progress.remaining })}
       </div>
 
@@ -256,7 +245,7 @@ function FifthVisitCard({ t, progress }) {
         style={{
           width: '100%',
           height: 10,
-          background: tokens.cream,
+          background: colors.cream,
           borderRadius: 5,
           overflow: 'hidden',
         }}
@@ -265,7 +254,7 @@ function FifthVisitCard({ t, progress }) {
           style={{
             width: `${progress.percent}%`,
             height: '100%',
-            background: `linear-gradient(90deg, ${tokens.copper} 0%, #D49266 100%)`,
+            background: `linear-gradient(90deg, ${colors.copper} 0%, ${colors.copperSoft} 100%)`,
             transition: 'width 0.4s',
             borderRadius: 5,
           }}
@@ -290,8 +279,8 @@ function ReferralCard({ t, onInvite }) {
           width: 46,
           height: 46,
           borderRadius: '50%',
-          background: tokens.copperSoft,
-          color: tokens.copper,
+          background: colors.copperSoft,
+          color: colors.copper,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -301,10 +290,10 @@ function ReferralCard({ t, onInvite }) {
         <UserPlus size={20} strokeWidth={2} />
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ ...display, fontSize: 16, color: tokens.deepSage, lineHeight: 1.2 }}>
+        <div style={{ ...display, fontSize: 16, color: colors.deepBrown, lineHeight: 1.2 }}>
           {t('bonus.invite_title')}
         </div>
-        <div style={{ ...body, fontSize: 12, color: tokens.muted, marginTop: 3 }}>
+        <div style={{ ...body, fontSize: 12, color: colors.textMuted, marginTop: 3 }}>
           {t('bonus.invite_reward')}
         </div>
       </div>
@@ -312,8 +301,8 @@ function ReferralCard({ t, onInvite }) {
         onClick={onInvite}
         style={{
           ...body,
-          background: tokens.deepSage,
-          color: tokens.ivory,
+          background: colors.deepBrown,
+          color: colors.ivory,
           border: 'none',
           padding: '11px 16px',
           borderRadius: 14,
@@ -338,7 +327,7 @@ function HistoryCard({ t, items }) {
           fontSize: 11,
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
-          color: tokens.muted,
+          color: colors.textMuted,
           fontWeight: 700,
           marginBottom: 12,
         }}
@@ -356,15 +345,15 @@ function HistoryCard({ t, items }) {
               justifyContent: 'space-between',
               padding: '12px 0',
               borderBottom:
-                idx < items.length - 1 ? '1px solid rgba(42,46,40,0.06)' : 'none',
+                idx < items.length - 1 ? '1px solid rgba(42,32,25,0.06)' : 'none',
               gap: 12,
             }}
           >
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ ...body, fontSize: 13, fontWeight: 500, color: tokens.text }}>
+              <div style={{ ...body, fontSize: 13, fontWeight: 500, color: colors.textMain }}>
                 {item.title}
               </div>
-              <div style={{ ...body, fontSize: 11, color: tokens.muted, marginTop: 3 }}>
+              <div style={{ ...body, fontSize: 11, color: colors.textMuted, marginTop: 3 }}>
                 {item.subtitle}
               </div>
             </div>
@@ -372,7 +361,7 @@ function HistoryCard({ t, items }) {
               style={{
                 ...display,
                 fontSize: 17,
-                color: isEarned ? tokens.earned : tokens.muted,
+                color: isEarned ? colors.success : colors.textMuted,
                 fontWeight: 500,
                 flexShrink: 0,
                 whiteSpace: 'nowrap',
@@ -440,7 +429,7 @@ export default function BonusScreen() {
         style={{
           ...display,
           fontSize: 28,
-          color: tokens.deepSage,
+          color: colors.deepBrown,
           margin: '4px 4px 2px',
           lineHeight: 1.1,
         }}
