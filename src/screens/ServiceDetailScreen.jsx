@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import { ChevronLeft, Heart, Flame, Star } from 'lucide-react';
+import { ChevronLeft, Heart, Flame, Star, Check } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { getService } from '../data/services.js';
@@ -162,6 +162,43 @@ function TitleAndDesc({ service }) {
       >
         {desc}
       </p>
+    </div>
+  );
+}
+
+function IncludedSection() {
+  const { t } = useTranslation();
+  const items = t('service_detail.included.items');
+  const list = Array.isArray(items) ? items : [];
+  return (
+    <div
+      style={{
+        margin: '28px 24px 0',
+        paddingTop: 20,
+        borderTop: `1px solid ${colors.sand}`,
+      }}
+    >
+      <div
+        style={{
+          ...body,
+          fontSize: 12,
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: colors.textMuted,
+          fontWeight: 600,
+          marginBottom: 14,
+        }}
+      >
+        {t('service_detail.included.title')}
+      </div>
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {list.map((item, i) => (
+          <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+            <Check size={14} color={colors.copper} strokeWidth={2.4} style={{ marginTop: 4, flexShrink: 0 }} />
+            <span style={{ ...body, fontSize: 14, color: colors.textMain, lineHeight: 1.45 }}>{item}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -429,6 +466,7 @@ export default function ServiceDetailScreen() {
       <HeroSection service={service} />
       <TitleAndDesc service={service} />
       <ServiceStages stages={service.stages} />
+      <IncludedSection />
       <PriceSection service={service} />
       <MastersSection />
       <ServiceReviewsSection service={service} />

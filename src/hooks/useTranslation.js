@@ -15,6 +15,7 @@ export function useTranslation() {
     if (value == null) {
       value = key.split('.').reduce((acc, k) => (acc == null ? acc : acc[k]), locales.ru);
     }
+    if (Array.isArray(value)) return value;
     if (typeof value !== 'string') return key;
     if (vars) {
       return value.replace(/\{\{(\w+)\}\}/g, (_, name) =>

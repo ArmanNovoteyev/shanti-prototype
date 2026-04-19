@@ -197,14 +197,22 @@
     "summary_from": "от {{name}}"
   },
   "service_detail": {
-    "stages_title": "ЭТАПЫ РИТУАЛА",
-    "duration_price": "ДЛИТЕЛЬНОСТЬ И ЦЕНА",
-    "masters": "НАШИ МАСТЕРА",
-    "reviews_about": "ОТЗЫВЫ ОБ ЭТОЙ УСЛУГЕ",
-    "all_reviews": "Все",
-    "cta": "Записаться",
+    "stages_title": "РӘСІМ КЕЗЕҢДЕРІ",
+    "duration_price": "ҰЗАҚТЫҒЫ МЕН БАҒАСЫ",
+    "masters": "БІЗДІҢ ШЕБЕРЛЕР",
+    "reviews_about": "ОСЫ ҚЫЗМЕТ ТУРАЛЫ ПІКІРЛЕР",
+    "all_reviews": "Барлығы",
+    "cta": "Жазылу",
     "duration_minutes": "{{n}} мин",
-    "years_experience": "стаж {{n}} лет"
+    "years_experience": "тәжірибесі {{n}} жыл",
+    "included": {
+      "title": "Бағаға кіреді",
+      "items": [
+        "Бір реттік жинақ: іш киім, тарақ, бас киім, тәпішке",
+        "Халат",
+        "Орамалдар"
+      ]
+    }
   },
   "bookings": {
     "title": "Мои визиты",

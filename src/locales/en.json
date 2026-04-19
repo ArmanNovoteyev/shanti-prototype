@@ -197,14 +197,22 @@
     "summary_from": "от {{name}}"
   },
   "service_detail": {
-    "stages_title": "ЭТАПЫ РИТУАЛА",
-    "duration_price": "ДЛИТЕЛЬНОСТЬ И ЦЕНА",
-    "masters": "НАШИ МАСТЕРА",
-    "reviews_about": "ОТЗЫВЫ ОБ ЭТОЙ УСЛУГЕ",
-    "all_reviews": "Все",
-    "cta": "Записаться",
-    "duration_minutes": "{{n}} мин",
-    "years_experience": "стаж {{n}} лет"
+    "stages_title": "RITUAL STAGES",
+    "duration_price": "DURATION & PRICE",
+    "masters": "OUR MASTERS",
+    "reviews_about": "REVIEWS ABOUT THIS SERVICE",
+    "all_reviews": "All",
+    "cta": "Book now",
+    "duration_minutes": "{{n}} min",
+    "years_experience": "{{n}} years of experience",
+    "included": {
+      "title": "Included in the price",
+      "items": [
+        "Disposable kit: briefs, comb, cap, slippers",
+        "Robe",
+        "Towels"
+      ]
+    }
   },
   "bookings": {
     "title": "Мои визиты",
