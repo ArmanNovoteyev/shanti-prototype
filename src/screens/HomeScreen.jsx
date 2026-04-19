@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Bell,
   Calendar,
@@ -13,6 +13,7 @@ import { useTranslation } from '../hooks/useTranslation.js';
 import { reviews } from '../data/reviews.js';
 import { branches } from '../data/branches.js';
 import { colors } from '../theme/colors.js';
+import { getHeroSlides } from '../data/heroSlides.js';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
@@ -40,12 +41,157 @@ function isHappyHoursNow(date = new Date()) {
   return isWeekday && h >= 11 && h < 14;
 }
 
+function HeroSlide({ slide, greetingSub }) {
+  const { t } = useTranslation();
+  const { navigate } = useContext(AppContext);
+  const eyebrow = slide.eyebrowKey ? t(slide.eyebrowKey) : '';
+  const title = slide.titleKey ? t(slide.titleKey) : '';
+  const sub = slide.subMode === 'greeting' ? greetingSub : slide.subKey ? t(slide.subKey) : '';
+  const cta = slide.ctaKey ? t(slide.ctaKey) : null;
+
+  const handleCta = (e) => {
+    e.stopPropagation();
+    if (slide.navigateTo) navigate(slide.navigateTo, slide.payload);
+  };
+
+  return (
+    <div
+      style={{
+        flex: '0 0 100%',
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        scrollSnapAlign: 'start',
+        backgroundImage: `url(${slide.bg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: '50% 40%',
+        color: colors.ivory,
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: slide.overlay,
+          pointerEvents: 'none',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 32,
+          left: 20,
+          right: 20,
+          color: colors.ivory,
+        }}
+      >
+        {eyebrow && (
+          <div
+            style={{
+              ...body,
+              fontSize: 12,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              opacity: 0.85,
+              marginBottom: 12,
+            }}
+          >
+            {eyebrow}
+          </div>
+        )}
+        <h1
+          style={{
+            ...display,
+            fontStyle: 'italic',
+            fontSize: 40,
+            lineHeight: 1.05,
+            fontWeight: 500,
+            margin: 0,
+            marginBottom: sub || cta ? 14 : 0,
+          }}
+        >
+          {title}
+        </h1>
+        {sub && (
+          <div style={{ ...body, fontSize: 15, opacity: 0.9, marginBottom: cta ? 18 : 0 }}>
+            {sub}
+          </div>
+        )}
+        {cta && (
+          <button
+            type="button"
+            onClick={handleCta}
+            style={{
+              ...body,
+              background: colors.copper,
+              color: colors.ivory,
+              border: 'none',
+              padding: '12px 20px',
+              borderRadius: 18,
+              fontSize: 14,
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              boxShadow: '0 10px 24px -12px rgba(184,121,74,0.55)',
+            }}
+          >
+            {cta} →
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   const { t, lang } = useTranslation();
   const { user } = useContext(AppContext);
   const greetingPrefix = t(getGreetingKey());
   const localizedName =
     lang === 'en' ? 'Aigerim' : lang === 'kk' ? 'Айгерім' : user.name;
+  const greetingSub = t('home.greeting_with_name', {
+    greeting: greetingPrefix,
+    name: localizedName,
+  });
+
+  const slides = useMemo(() => getHeroSlides(new Date()), []);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const scrollerRef = useRef(null);
+  const autoplayRef = useRef(null);
+  const pauseUntilRef = useRef(0);
+
+  const scrollTo = (idx) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    el.scrollTo({ left: idx * el.clientWidth, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    autoplayRef.current = setInterval(() => {
+      if (Date.now() < pauseUntilRef.current) return;
+      setActiveIdx((idx) => {
+        const next = (idx + 1) % slides.length;
+        const el = scrollerRef.current;
+        if (el) el.scrollTo({ left: next * el.clientWidth, behavior: 'smooth' });
+        return next;
+      });
+    }, 5000);
+    return () => clearInterval(autoplayRef.current);
+  }, [slides.length]);
+
+  const handleScroll = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const idx = Math.round(el.scrollLeft / el.clientWidth);
+    if (idx !== activeIdx) setActiveIdx(idx);
+  };
+
+  const pauseAutoplay = () => {
+    pauseUntilRef.current = Date.now() + 8000;
+  };
+
   return (
     <div
       style={{
@@ -56,21 +202,29 @@ function Hero() {
         overflow: 'hidden',
         marginTop: -8,
         marginBottom: 20,
-        backgroundImage: 'url(/assets/photos/23-interior-onyx-tea.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: '50% 40%',
-        color: colors.ivory,
+        background: colors.deepBrown,
       }}
     >
       <div
+        ref={scrollerRef}
+        onScroll={handleScroll}
+        onTouchStart={pauseAutoplay}
+        onMouseDown={pauseAutoplay}
         style={{
-          position: 'absolute',
-          inset: 0,
-          background:
-            'linear-gradient(180deg, rgba(42,32,25,0.20) 0%, rgba(42,32,25,0.15) 40%, rgba(42,32,25,0.55) 100%)',
-          pointerEvents: 'none',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          overflowX: 'auto',
+          overflowY: 'hidden',
+          scrollSnapType: 'x mandatory',
+          scrollbarWidth: 'none',
+          WebkitOverflowScrolling: 'touch',
         }}
-      />
+      >
+        {slides.map((slide) => (
+          <HeroSlide key={slide.id} slide={slide} greetingSub={greetingSub} />
+        ))}
+      </div>
 
       <div
         style={{
@@ -81,6 +235,7 @@ function Hero() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
+          pointerEvents: 'none',
         }}
       >
         <div
@@ -107,6 +262,7 @@ function Hero() {
             justifyContent: 'center',
             cursor: 'pointer',
             position: 'relative',
+            pointerEvents: 'auto',
           }}
           aria-label="notifications"
         >
@@ -129,46 +285,38 @@ function Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: 32,
+          bottom: 16,
           left: 20,
           right: 20,
-          color: colors.ivory,
+          display: 'flex',
+          justifyContent: 'center',
+          gap: 6,
+          pointerEvents: 'none',
         }}
       >
-        <div
-          style={{
-            ...body,
-            fontSize: 12,
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            opacity: 0.85,
-            marginBottom: 12,
-          }}
-        >
-          {t('home.hero_eyebrow')}
-        </div>
-        <h1
-          style={{
-            ...display,
-            fontStyle: 'italic',
-            fontSize: 44,
-            lineHeight: 1.05,
-            fontWeight: 500,
-            margin: 0,
-            marginBottom: 16,
-          }}
-        >
-          {t('home.hero_title')}
-        </h1>
-        <div
-          style={{
-            ...body,
-            fontSize: 15,
-            opacity: 0.9,
-          }}
-        >
-          {t('home.greeting_with_name', { greeting: greetingPrefix, name: localizedName })}.
-        </div>
+        {slides.map((s, i) => (
+          <button
+            key={s.id}
+            type="button"
+            onClick={() => {
+              pauseAutoplay();
+              setActiveIdx(i);
+              scrollTo(i);
+            }}
+            aria-label={`slide ${i + 1}`}
+            style={{
+              pointerEvents: 'auto',
+              width: i === activeIdx ? 22 : 6,
+              height: 6,
+              borderRadius: 3,
+              border: 'none',
+              padding: 0,
+              background: i === activeIdx ? colors.ivory : 'rgba(240,230,217,0.45)',
+              transition: 'width 0.3s ease, background 0.3s ease',
+              cursor: 'pointer',
+            }}
+          />
+        ))}
       </div>
     </div>
   );
