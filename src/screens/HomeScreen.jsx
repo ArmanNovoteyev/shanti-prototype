@@ -40,24 +40,7 @@ function isHappyHoursNow(date = new Date()) {
   return isWeekday && h >= 11 && h < 14;
 }
 
-function LogoMark() {
-  // TODO: swap to <img src="/assets/logo/shanti-logo-on-light.png" /> once asset lands
-  return (
-    <div
-      style={{
-        ...display,
-        fontSize: '17px',
-        letterSpacing: '0.32em',
-        color: colors.deepBrown,
-        fontWeight: 600,
-      }}
-    >
-      SHANTI
-    </div>
-  );
-}
-
-function Header() {
+function Hero() {
   const { t, lang } = useTranslation();
   const { user } = useContext(AppContext);
   const greetingPrefix = t(getGreetingKey());
@@ -66,116 +49,125 @@ function Header() {
   return (
     <div
       style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '4px 24px 20px',
+        width: '100%',
+        height: '62vh',
+        minHeight: 480,
+        position: 'relative',
+        overflow: 'hidden',
+        marginTop: -8,
+        marginBottom: 20,
+        backgroundImage: 'url(/assets/photos/23-interior-onyx-tea.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: '50% 40%',
+        color: colors.ivory,
       }}
     >
-      <LogoMark />
-      <div style={{ flex: 1, textAlign: 'right', marginRight: '12px' }}>
-        <div style={{ fontSize: '11px', color: colors.textMuted, letterSpacing: '0.04em' }}>
-          {t('home.greeting_with_name', { greeting: greetingPrefix, name: localizedName })}
-        </div>
-      </div>
-      <button
-        style={{
-          width: '40px',
-          height: '40px',
-          borderRadius: '50%',
-          background: colors.ivory,
-          border: '1px solid rgba(42,32,25,0.08)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          position: 'relative',
-        }}
-        aria-label="notifications"
-      >
-        <Bell size={17} color={colors.deepBrown} strokeWidth={1.7} />
-        <span
-          style={{
-            position: 'absolute',
-            top: 9,
-            right: 10,
-            width: 7,
-            height: 7,
-            background: colors.copper,
-            borderRadius: '50%',
-            border: `2px solid ${colors.ivory}`,
-          }}
-        />
-      </button>
-    </div>
-  );
-}
-
-function Hero() {
-  const { t } = useTranslation();
-  return (
-    <div style={{ padding: '0 24px', marginBottom: '20px' }}>
       <div
         style={{
-          height: '210px',
-          borderRadius: '28px',
-          overflow: 'hidden',
-          position: 'relative',
-          backgroundImage: 'url(/assets/photos/25-massage-bed-lotus.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          position: 'absolute',
+          inset: 0,
+          background:
+            'linear-gradient(180deg, rgba(42,32,25,0.20) 0%, rgba(42,32,25,0.15) 40%, rgba(42,32,25,0.55) 100%)',
+          pointerEvents: 'none',
+        }}
+      />
+
+      <div
+        style={{
+          position: 'absolute',
+          top: 24,
+          left: 20,
+          right: 20,
           display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-          padding: '22px',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <div
+          style={{
+            ...display,
+            fontSize: '17px',
+            letterSpacing: '0.32em',
+            color: colors.ivory,
+            fontWeight: 600,
+          }}
+        >
+          SHANTI
+        </div>
+        <button
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: '50%',
+            background: 'rgba(240,230,217,0.12)',
+            border: '1px solid rgba(240,230,217,0.28)',
+            backdropFilter: 'blur(6px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            position: 'relative',
+          }}
+          aria-label="notifications"
+        >
+          <Bell size={17} color={colors.ivory} strokeWidth={1.7} />
+          <span
+            style={{
+              position: 'absolute',
+              top: 9,
+              right: 10,
+              width: 7,
+              height: 7,
+              background: colors.copper,
+              borderRadius: '50%',
+              border: `2px solid rgba(42,32,25,0.4)`,
+            }}
+          />
+        </button>
+      </div>
+
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 32,
+          left: 20,
+          right: 20,
           color: colors.ivory,
         }}
       >
         <div
           style={{
-            position: 'absolute',
-            inset: 0,
-            background:
-              'linear-gradient(to bottom, rgba(61,46,36,0.25) 0%, rgba(61,46,36,0.85) 100%)',
-            pointerEvents: 'none',
+            ...body,
+            fontSize: 12,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            opacity: 0.85,
+            marginBottom: 12,
           }}
-        />
+        >
+          {t('home.hero_eyebrow')}
+        </div>
+        <h1
+          style={{
+            ...display,
+            fontStyle: 'italic',
+            fontSize: 44,
+            lineHeight: 1.05,
+            fontWeight: 500,
+            margin: 0,
+            marginBottom: 16,
+          }}
+        >
+          {t('home.hero_title')}
+        </h1>
         <div
           style={{
-            position: 'absolute',
-            top: 16,
-            right: 16,
-            width: 72,
-            height: 72,
-            borderRadius: '50%',
-            background: 'rgba(240,230,217,0.12)',
-            border: '1px solid rgba(240,230,217,0.22)',
-            backdropFilter: 'blur(2px)',
+            ...body,
+            fontSize: 15,
+            opacity: 0.9,
           }}
-        />
-        <div style={{ position: 'relative' }}>
-          <div
-            style={{
-              fontSize: '11px',
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              opacity: 0.85,
-              marginBottom: '8px',
-            }}
-          >
-            {t('home.hero_eyebrow')}
-          </div>
-          <div
-            style={{
-              ...display,
-              fontStyle: 'italic',
-              fontWeight: 400,
-              fontSize: '36px',
-              lineHeight: 1,
-            }}
-          >
-            {t('home.hero_title')}
-          </div>
+        >
+          {t('home.greeting_with_name', { greeting: greetingPrefix, name: localizedName })}.
         </div>
       </div>
     </div>
@@ -775,7 +767,6 @@ function SocialProof() {
 export default function HomeScreen() {
   return (
     <div>
-      <Header />
       <Hero />
       <NextVisitCard />
       <BonusTeaser />
