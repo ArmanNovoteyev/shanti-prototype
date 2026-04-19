@@ -3,6 +3,8 @@ import { Clock, Flame, Heart, ChevronRight, Award } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { services, SERVICE_CATEGORIES } from '../data/services.js';
+import { subscriptions } from '../data/subscriptions.js';
+import SubscriptionCard from '../components/SubscriptionCard.jsx';
 import { colors } from '../theme/colors.js';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
@@ -196,7 +198,7 @@ function ServiceCard({ service }) {
   );
 }
 
-function SubscriptionCard({ service }) {
+function CourseCard({ service }) {
   const { t, localized } = useTranslation();
   const { navigate } = useContext(AppContext);
   const openDetail = () => navigate('service', { serviceId: service.id });
@@ -291,11 +293,39 @@ function SubscriptionCard({ service }) {
   );
 }
 
+function SubsectionEyebrow({ children }) {
+  return (
+    <div
+      style={{
+        ...body,
+        fontSize: 11,
+        fontWeight: 700,
+        letterSpacing: '0.14em',
+        color: colors.textMuted,
+        textTransform: 'uppercase',
+        margin: '4px 2px 12px',
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function CatalogScreen() {
   const { t } = useTranslation();
+  const { navigate } = useContext(AppContext);
   const [category, setCategory] = useState('massage');
 
   const list = useMemo(() => services.filter((s) => s.category === category), [category]);
+
+  const isCourses = category === 'courses';
+  const coursesList = useMemo(
+    () => services.filter((s) => s.category === 'courses' && s.isSubscription),
+    [],
+  );
+
+  const startSubscriptionPurchase = (sub) =>
+    navigate('subscription_purchase', { subscriptionId: sub.id });
 
   return (
     <div>
@@ -311,12 +341,31 @@ export default function CatalogScreen() {
       <CategoryTabs active={category} onChange={setCategory} />
 
       <div style={{ padding: '0 24px' }}>
-        {list.map((s) =>
-          s.isSubscription ? (
-            <SubscriptionCard key={s.id} service={s} />
-          ) : (
-            <ServiceCard key={s.id} service={s} />
-          ),
+        {isCourses ? (
+          <>
+            <SubsectionEyebrow>{t('subscriptions.section_title_courses')}</SubsectionEyebrow>
+            {coursesList.map((s) => (
+              <CourseCard key={s.id} service={s} />
+            ))}
+
+            <div style={{ height: 8 }} />
+            <SubsectionEyebrow>{t('subscriptions.section_title_packages')}</SubsectionEyebrow>
+            {subscriptions.map((sub) => (
+              <SubscriptionCard
+                key={sub.id}
+                subscription={sub}
+                onBuy={startSubscriptionPurchase}
+              />
+            ))}
+          </>
+        ) : (
+          list.map((s) =>
+            s.isSubscription ? (
+              <CourseCard key={s.id} service={s} />
+            ) : (
+              <ServiceCard key={s.id} service={s} />
+            ),
+          )
         )}
       </div>
     </div>

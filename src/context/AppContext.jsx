@@ -1,4 +1,5 @@
 import { createContext, useState, useMemo, useCallback, useRef } from 'react';
+import { subscriptions as SUBSCRIPTION_TARIFFS } from '../data/subscriptions.js';
 
 export const AppContext = createContext(null);
 
@@ -73,6 +74,33 @@ const EMPTY_GIFT_DRAFT = {
   validUntil: null,
 };
 
+const DEFAULT_USER_SUBSCRIPTIONS = [
+  {
+    id: 'sub-1',
+    subscriptionId: 'gold',
+    code: 'SH-SUB-2026-K7PX',
+    purchasedAt: '2026-02-15',
+    validUntil: '2026-05-15',
+    hoursTotal: 50,
+    hoursUsed: 12,
+    holders: [
+      { name: 'Айгерим', phone: '+7 705 123 45 67' },
+      { name: 'Алина', phone: '+7 777 889 90 01' },
+    ],
+  },
+];
+
+function generateSubCode() {
+  const rand = () => Math.random().toString(36).substring(2, 6).toUpperCase();
+  return `SH-SUB-2026-${rand()}`;
+}
+
+function addMonthsIso(date, n) {
+  const d = new Date(date);
+  d.setMonth(d.getMonth() + n);
+  return d.toISOString().slice(0, 10);
+}
+
 export function AppProvider({ children }) {
   const [lang, setLang] = useState('ru');
   const [user] = useState(DEFAULT_USER);
@@ -83,6 +111,7 @@ export function AppProvider({ children }) {
   const [backBalance, setBackBalance] = useState(DEFAULT_BACK_BALANCE);
   const [bookingDraft, setBookingDraft] = useState(EMPTY_DRAFT);
   const [giftDraft, setGiftDraft] = useState(EMPTY_GIFT_DRAFT);
+  const [userSubscriptions, setUserSubscriptions] = useState(DEFAULT_USER_SUBSCRIPTIONS);
   const [toast, setToast] = useState(null);
   const toastTimer = useRef(null);
 
@@ -128,6 +157,24 @@ export function AppProvider({ children }) {
     );
   }, []);
 
+  const purchaseSubscription = useCallback((subId, holders) => {
+    const tariff = SUBSCRIPTION_TARIFFS.find((s) => s.id === subId);
+    if (!tariff) return null;
+    const today = new Date();
+    const newSub = {
+      id: `sub-${Date.now()}`,
+      subscriptionId: subId,
+      code: generateSubCode(),
+      purchasedAt: today.toISOString().slice(0, 10),
+      validUntil: addMonthsIso(today, tariff.durationMonths),
+      hoursTotal: tariff.hours,
+      hoursUsed: 0,
+      holders: Array.isArray(holders) ? holders : [],
+    };
+    setUserSubscriptions((prev) => [...prev, newSub]);
+    return newSub;
+  }, []);
+
   const value = useMemo(
     () => ({
       lang,
@@ -151,6 +198,8 @@ export function AppProvider({ children }) {
       backBalance,
       purchaseBackBalance,
       consumeBackBalanceVisit,
+      userSubscriptions,
+      purchaseSubscription,
       toast,
       showToast,
     }),
@@ -171,6 +220,8 @@ export function AppProvider({ children }) {
       backBalance,
       purchaseBackBalance,
       consumeBackBalanceVisit,
+      userSubscriptions,
+      purchaseSubscription,
       toast,
       showToast,
     ],

@@ -14,6 +14,7 @@ import FeedbackScreen from './screens/FeedbackScreen.jsx';
 import BonusScreen from './screens/BonusScreen.jsx';
 import ProfileScreen from './screens/ProfileScreen.jsx';
 import ReviewsScreen from './screens/ReviewsScreen.jsx';
+import SubscriptionPurchaseScreen from './screens/SubscriptionPurchaseScreen.jsx';
 
 const screens = {
   home: HomeScreen,
@@ -26,6 +27,7 @@ const screens = {
   bonus: BonusScreen,
   profile: ProfileScreen,
   reviews: ReviewsScreen,
+  subscription_purchase: SubscriptionPurchaseScreen,
 };
 
 function Shell() {

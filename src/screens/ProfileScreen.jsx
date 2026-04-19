@@ -5,6 +5,7 @@ import { useTranslation } from '../hooks/useTranslation.js';
 import { branches, getBranch } from '../data/branches.js';
 import { getMaster } from '../data/masters.js';
 import { colors } from '../theme/colors.js';
+import SubscriptionBalanceCard from '../components/SubscriptionBalanceCard.jsx';
 
 const display = {
   fontFamily: "'Fraunces', serif",
@@ -230,7 +231,7 @@ function InstagramRow({ handle, isLast }) {
 
 export default function ProfileScreen() {
   const { t, lang, setLang, localized } = useTranslation();
-  const { user, showToast } = useContext(AppContext);
+  const { user, showToast, userSubscriptions } = useContext(AppContext);
 
   const [pushOn, setPushOn] = useState(true);
   const [emailOn, setEmailOn] = useState(false);
@@ -348,6 +349,18 @@ export default function ProfileScreen() {
           />
         </div>
       </div>
+
+      {/* My subscriptions */}
+      {userSubscriptions && userSubscriptions.length > 0 && (
+        <div style={{ marginBottom: 22 }}>
+          <SectionTitle>{t('subscriptions.my_subscriptions')}</SectionTitle>
+          <div style={{ display: 'grid', gap: 10 }}>
+            {userSubscriptions.map((s) => (
+              <SubscriptionBalanceCard key={s.id} userSub={s} />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* About */}
       <div style={{ marginBottom: 22 }}>
