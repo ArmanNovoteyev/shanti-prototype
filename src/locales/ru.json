@@ -174,7 +174,15 @@
     "years_experience": "стаж {{n}} лет"
   },
   "bookings": {
-    "title": "Мои записи",
+    "title": "Мои визиты",
+    "subtitle": "Ваша история в Shanti",
+    "total_eyebrow": "ВСЕГО ВИЗИТОВ",
+    "last_visit_label": "Последний визит:",
+    "tab_upcoming": "Предстоящие",
+    "tab_history": "История",
+    "repeat": "повторить",
+    "empty_title": "У вас пока нет визитов",
+    "empty_cta": "Записаться на первый визит",
     "upcoming": "Предстоящие",
     "history": "История",
     "empty": "Здесь будут ваши записи",
