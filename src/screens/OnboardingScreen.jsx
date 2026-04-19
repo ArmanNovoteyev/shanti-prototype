@@ -593,7 +593,7 @@ function Slide6({ onStart }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
-          padding: '64px 32px 56px',
+          padding: '64px 32px 136px',
           color: colors.ivory,
           maxWidth: 440,
           margin: '0 auto',
@@ -624,32 +624,37 @@ function Slide6({ onStart }) {
         >
           Запишитесь онлайн за 30 секунд. Два филиала, 5 мастеров, 389 отзывов · 4.8 ★
         </p>
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            onStart();
-          }}
-          style={{
-            marginTop: 32,
-            width: '100%',
-            height: 56,
-            background: colors.copper,
-            color: colors.ivory,
-            border: 'none',
-            borderRadius: 16,
-            fontSize: 14,
-            fontWeight: 700,
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            cursor: 'pointer',
-            ...body,
-            boxShadow: '0 18px 36px -16px rgba(184,121,74,0.8)',
-          }}
-        >
-          Начать
-        </button>
       </div>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onStart();
+        }}
+        style={{
+          position: 'absolute',
+          left: 32,
+          right: 32,
+          bottom: 32,
+          maxWidth: 376,
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          height: 56,
+          background: colors.copper,
+          color: colors.ivory,
+          border: 'none',
+          borderRadius: 16,
+          fontSize: 14,
+          fontWeight: 700,
+          letterSpacing: '0.18em',
+          textTransform: 'uppercase',
+          cursor: 'pointer',
+          ...body,
+          boxShadow: '0 18px 36px -16px rgba(184,121,74,0.8)',
+        }}
+      >
+        Начать
+      </button>
     </div>
   );
 }
