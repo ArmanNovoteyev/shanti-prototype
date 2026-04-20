@@ -107,7 +107,7 @@ function Slide2() {
         position: 'relative',
         backgroundImage: 'url(/assets/photos/20-herbal-compress-lotus.jpg)',
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center top',
         overflow: 'hidden',
       }}
     >
@@ -116,7 +116,7 @@ function Slide2() {
           position: 'absolute',
           inset: 0,
           background:
-            'linear-gradient(180deg, rgba(42,32,25,0.25) 0%, rgba(42,32,25,0.55) 60%, rgba(42,32,25,0.7) 100%)',
+            'linear-gradient(180deg, rgba(42,32,25,0.25) 0%, rgba(42,32,25,0.55) 60%, rgba(42,32,25,0.85) 100%)',
         }}
       />
       <div
@@ -136,10 +136,10 @@ function Slide2() {
         <h1
           style={{
             ...display,
-            fontSize: 54,
+            fontSize: 44,
             color: colors.ivory,
             margin: '12px 0 0',
-            lineHeight: 1,
+            lineHeight: 1.05,
           }}
         >
           31 процедура
@@ -584,7 +584,7 @@ function Slide6({ onStart }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
-          padding: '64px 32px 136px',
+          padding: '64px 32px 176px',
           color: colors.ivory,
           maxWidth: 440,
           margin: '0 auto',
@@ -594,10 +594,10 @@ function Slide6({ onStart }) {
         <h1
           style={{
             ...display,
-            fontSize: 44,
+            fontSize: 36,
             color: colors.ivory,
             margin: '12px 0 0',
-            lineHeight: 1.05,
+            lineHeight: 1.1,
           }}
         >
           Готовы к первому визиту?
