@@ -783,14 +783,11 @@ function ReviewsCarousel() {
 }
 
 const ATMOSPHERE_PHOTOS = [
-  '/assets/photos/31-lotus-shanti-towel.jpg',
-  '/assets/photos/11-hot-stones-back.jpg',
-  '/assets/photos/20-herbal-compress-lotus.jpg',
-  '/assets/photos/16-soap-foam-duo.jpg',
-  '/assets/photos/26-tea-ceremony.jpg',
-  '/assets/photos/24-interior-room.jpg',
-  '/assets/photos/34-oil-bottles-ceramic.jpg',
-  '/assets/photos/29-meditation-candle.jpg',
+  '/assets/photos/atmosphere-01.jpg',
+  '/assets/photos/atmosphere-02.jpg',
+  '/assets/photos/atmosphere-03.jpg',
+  '/assets/photos/atmosphere-04.jpg',
+  '/assets/photos/atmosphere-05.jpg',
 ];
 
 function AtmosphereGallery() {
