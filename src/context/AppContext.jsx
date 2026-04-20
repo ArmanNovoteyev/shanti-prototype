@@ -114,6 +114,7 @@ export function AppProvider({ children }) {
   const [giftDraft, setGiftDraft] = useState(EMPTY_GIFT_DRAFT);
   const [userSubscriptions, setUserSubscriptions] = useState(DEFAULT_USER_SUBSCRIPTIONS);
   const [catalogInitialCategory, setCatalogInitialCategory] = useState(null);
+  const [catalogScrollMemory, setCatalogScrollMemory] = useState({});
   const [hasSeenOnboarding, setHasSeenOnboarding] = useState(false);
   const [toast, setToast] = useState(null);
   const toastTimer = useRef(null);
@@ -214,6 +215,8 @@ export function AppProvider({ children }) {
       purchaseSubscription,
       catalogInitialCategory,
       setCatalogInitialCategory,
+      catalogScrollMemory,
+      setCatalogScrollMemory,
       hasSeenOnboarding,
       completeOnboarding,
       resetOnboarding,
@@ -240,6 +243,7 @@ export function AppProvider({ children }) {
       userSubscriptions,
       purchaseSubscription,
       catalogInitialCategory,
+      catalogScrollMemory,
       hasSeenOnboarding,
       completeOnboarding,
       resetOnboarding,

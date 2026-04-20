@@ -313,13 +313,30 @@ function SubsectionEyebrow({ children }) {
 
 export default function CatalogScreen() {
   const { t } = useTranslation();
-  const { navigate, catalogInitialCategory, setCatalogInitialCategory } = useContext(AppContext);
+  const {
+    navigate,
+    catalogInitialCategory,
+    setCatalogInitialCategory,
+    catalogScrollMemory,
+    setCatalogScrollMemory,
+  } = useContext(AppContext);
   const [category, setCategory] = useState(catalogInitialCategory || 'massage');
 
   useEffect(() => {
     if (catalogInitialCategory) setCatalogInitialCategory(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const el = document.querySelector('.screen-scroll');
+    if (!el) return;
+    const saved = catalogScrollMemory[category] || 0;
+    el.scrollTo({ top: saved, behavior: 'instant' });
+    return () => {
+      setCatalogScrollMemory((prev) => ({ ...prev, [category]: el.scrollTop }));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category]);
 
   const list = useMemo(() => services.filter((s) => s.category === category), [category]);
 

@@ -45,8 +45,12 @@ function Eyebrow({ children }) {
 }
 
 function HeroSection({ service }) {
-  const { navigate } = useContext(AppContext);
+  const { navigate, setCatalogInitialCategory } = useContext(AppContext);
   const { t } = useTranslation();
+  const backToCatalog = () => {
+    if (service?.category) setCatalogInitialCategory(service.category);
+    navigate('catalog');
+  };
   const photo = getServicePhoto(service);
   const badges = [];
   if (service.category === 'spa_duo') {
@@ -78,7 +82,7 @@ function HeroSection({ service }) {
         }}
       />
       <button
-        onClick={() => navigate('catalog')}
+        onClick={backToCatalog}
         aria-label="back"
         style={{
           position: 'absolute',

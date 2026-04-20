@@ -102,7 +102,7 @@ function Shell() {
           <span>•••</span>
         </div>
 
-        <div style={{ flex: 1, padding: '8px 0 150px', overflowY: 'auto' }}>
+        <div className="screen-scroll" style={{ flex: 1, padding: '8px 0 150px', overflowY: 'auto' }}>
           <Active />
         </div>
 

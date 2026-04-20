@@ -3,3 +3,13 @@ dist
 .DS_Store
 .env
 .vercel
+
+# Исходники фото и рабочие архивы — не коммитить
+Shanti_new_photo/
+Shati_plan_v2.0/
+*.zip
+*.HEIC
+*.heic
+V2.*_HANDOFF.md
+SHANTI_V3_CONTEXT.md
+ETAP_V3.0_FEEDBACK_ALINA.md
