@@ -2,8 +2,9 @@ import { Award, Medal, Crown, ArrowRight } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { formatPrice, SUBSCRIPTION_METAL_COLORS } from '../data/subscriptions.js';
 import { colors } from '../theme/colors.js';
+import { FONT_DISPLAY } from '../theme/fonts.js';
 
-const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
+const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
 
 const BADGE_ICON = {

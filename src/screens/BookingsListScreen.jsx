@@ -6,8 +6,9 @@ import { services } from '../data/services.js';
 import { masters } from '../data/masters.js';
 import { branches } from '../data/branches.js';
 import { colors } from '../theme/colors.js';
+import { FONT_DISPLAY } from '../theme/fonts.js';
 
-const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
+const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
 
 const RU_MONTHS = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];

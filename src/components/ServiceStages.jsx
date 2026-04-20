@@ -1,7 +1,8 @@
 import { useTranslation } from '../hooks/useTranslation.js';
 import { colors } from '../theme/colors.js';
+import { FONT_DISPLAY } from '../theme/fonts.js';
 
-const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
+const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
 
 function pad2(n) {

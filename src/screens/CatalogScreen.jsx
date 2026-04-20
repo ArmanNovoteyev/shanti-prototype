@@ -6,8 +6,9 @@ import { services, SERVICE_CATEGORIES } from '../data/services.js';
 import { subscriptions } from '../data/subscriptions.js';
 import SubscriptionCard from '../components/SubscriptionCard.jsx';
 import { colors } from '../theme/colors.js';
+import { FONT_DISPLAY } from '../theme/fonts.js';
 
-const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
+const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
 
 function formatPrice(value) {

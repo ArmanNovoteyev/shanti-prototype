@@ -165,6 +165,111 @@ Instagram @shanti_thai_spa_ukg), кнопка "Выйти" (toast заглушк
 - фикс обрезания "14 августа" в ProfileScreen
 - добавлены все ключи `profile.*` и `reviews.*` в 3 локали
 
+### V3.0.1 — этапы ритуала + mai-tai (коммит `0762c25`)
+Новый компонент `src/components/ServiceStages.jsx` — нумерованный
+список этапов на cream-фоне. `stages[]` заполнены у 13 услуг
+(SPA-solo, SPA-duo, special, courses); массажи этапов не имеют.
+Маленький Будда — возрастной диапазон 8–14 лет. Тайский акцент
+вынесен в отдельный subtitle у thai-heritage. Добавлена услуга
+`mai-tai` (в V2 её не было в каталоге). ServiceDetailScreen:
+удалена старая секция `IncludesSection`, вставлен `<ServiceStages>`
+между описанием и ценой.
+
+### V3.0.1b — полный контент из прайса (коммит `3c9888b`)
+19 массажей + 13 SPA получили полные `description_ru` из
+официального прайс-листа. Все 32 услуги обзавелись
+`subtitle_{ru,kk,en}` (с 6 правками Армана по №5/10/12/16/18/19).
+Универсальный блок «В стоимость включено» на ServiceDetailScreen:
+copper Check-иконки × 3 (одноразовый комплект / халат / полотенца),
+borderTop sand, локализация через `service_detail.included.{title,
+items[]}`. Хук `useTranslation.t()` расширен — возвращает массив
+при массивном значении. Royal Stone duration 60 → 90 мин (фикс
+по прайсу, 37 000 ₸).
+
+**Порядок блоков ServiceDetailScreen сверху вниз:**
+Hero → Название + Описание → Этапы ритуала → В стоимость включено
+→ Длительность+Цена → Мастера → Отзывы → Sticky CTA.
+Принято на Chrome-ревью 2026-04-19.
+
+**Следующий подэтап:** V3.0.2 — Happy Hours отдельным экраном.
+Далее по ТЗ: V3.0.3 subscriptions nav, V3.0.4 Back Balance data,
+V3.0.5 Evolventa, V3.0.6 back nav + scroll memory, V3.0.7 home
+layout, V3.0.8a/b photos, V3.0.9 tech debt.
+
+### V3.0.3 — fix навигации «Абонементы» (коммит `cdc60a8`)
+Story-круг «Абонементы» на HomeScreen ронял в таб «Массажи»
+(`navigate('catalog')` без payload). Добавлен отдельный канал
+`catalogInitialCategory` в `AppContext` (не пачкает bookingDraft);
+`StoryCircles.jsx` выставляет `'courses'` перед navigate; CatalogScreen
+читает его в initial state + consume-once через useEffect, поэтому
+категория не прилипает при следующем заходе «просто так».
+
+### V3.0.4 — Back Balance booking route (коммит `0b3139c`)
+Данные в `services.js` уже корректны после V3.0.1b (мастер не
+привязан, stages по 60 мин, нет «6 мес.»). Реальный баг был в
+`BonusScreen.handleBookNext` — `startBookingFor('sila-buddy')`
+(неверный сервис, оттуда 30/60/90 длительности). Теперь маршрут
+считается по `backBalance.done`: 0-1 → `clear-mind` (Ясные мысли),
+2-4 → `gracia` (Грация). Длительность форсируется 60 через
+`{ durationMinutes: 60 }`. В `BookingScreen` функции
+`nextStepForRegular` / `nextStepAfterVisitType` /
+`nextStepAfterPartyPeople` пропускают шаг `duration` при
+`draft.durationMinutes != null`. Toast `bonus.back_balance_session_toast`
+показывает номер сеанса курса.
+
+**Ритм push для V3 (новый, принят 2026-04-19):** push
+откладывается до **закрытия всего этапа V3.0**. Все локальные
+коммиты V3.0.1…V3.0.9 копятся в master и пушатся одним махом
+после V3.0.9. Ревью между коммитами — локально через
+`npm run dev` + Chrome-мост, без Vercel. Отличается от V2
+(там пушили по ходу).
+
+### V3.0.5 — Evolventa (в работе)
+Миграция с Fraunces+Manrope (Google Fonts) на self-hosted
+Evolventa. Разбит на 3 коммита: **5a** — инфраструктура,
+**5b** — Fraunces → FONT_DISPLAY (700) + удаление italic,
+**5c** — Manrope → FONT_BODY (400). Evolventa не имеет Italic
+face — синтетический italic для кириллицы ломается, поэтому
+italic удаляется, вместо него Bold.
+
+**V3.0.5a (коммит `64e2c8f`):** `@font-face` Evolventa
+Regular 400 + Bold 700 в `index.html` (woff2 из
+`/assets/fonts/evolventa/`, `font-display: swap`). Новый модуль
+`src/theme/fonts.js` — `FONT_FAMILY`, `FONT_DISPLAY` (700),
+`FONT_BODY` (400). Удалён инжект Google Fonts `<link>` из
+`App.jsx` (был в useEffect, не в статичном HTML). Chrome-мост
+подтвердил: `document.fonts` содержит только Evolventa 400/700,
+внешних font-запросов нет.
+
+**V3.0.5b — split part1/part2** (из-за context limit):
+классификация 6 классов использования веса свёрнута в правила:
+класс A (display-const) + B (eyebrow uppercase) + C (CTA) → **700**
+через FONT_DISPLAY; класс D (inline body) → **400** через FONT_BODY.
+Italic оба → A (Bold, без italic). 3 места отложены на 5c с
+показом контекста: `BookingScreen:666` (secondary CTA),
+`GiftCertificate.jsx:244-299` (certificate design),
+`ServiceDetailScreen.jsx:339`.
+
+**V3.0.5b-part1:** 12 файлов, одинаковый паттерн
+`const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, ... }`
+заменён на `{ ...FONT_DISPLAY, letterSpacing: '-0.02em' }`
++ импорт `FONT_DISPLAY` из `../theme/fonts.js`:
+ServiceStages, SubscriptionBalanceCard, SubscriptionCard,
+BonusScreen, BookingScreen, BookingsListScreen, CatalogScreen,
+GiftScreen, HappyHoursScreen, HomeScreen, ServiceDetailScreen,
+SubscriptionPurchaseScreen. Билд зелёный, 396.68 kB.
+
+**V3.0.5b-part2 (новая сессия):**
+- 3 multi-line display const (Onboarding + Profile + Reviews)
+- OnboardingScreen `displayItalic` + 3 usages → `display` (Bold)
+- HomeScreen hero italic L98-108 → Bold 700 (снять fontStyle+fontWeight)
+- FeedbackScreen inline L8
+- BookingScreen inline L270-273
+- App.jsx class B L97 (600 → 700)
+- ~44 class B/C weight bumps 500/600 → 700
+- `grep Fraunces src/` должен быть пустой в конце (кроме
+  GiftCertificate:251, держится до 5c)
+
 ### Визуальная итерация — реальные фото
 **Hero на HomeScreen**: градиент sage→deepSage→copper заменён 
 на `/assets/photos/25-massage-bed-lotus.jpg` с deepSage-overlay 

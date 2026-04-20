@@ -7,8 +7,9 @@ import { branches, getBranch } from '../data/branches.js';
 import { mastersForBranch, getMaster } from '../data/masters.js';
 import { colors } from '../theme/colors.js';
 import { isHappyHoursAt, applyHappyHoursDiscount } from '../utils/happyHours.js';
+import { FONT_DISPLAY } from '../theme/fonts.js';
 
-const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
+const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
 
 const TIME_SLOTS = ['10:00', '11:30', '13:00', '14:30', '16:00', '17:30', '19:00', '20:30'];
