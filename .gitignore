@@ -13,3 +13,6 @@ Shati_plan_v2.0/
 V2.*_HANDOFF.md
 SHANTI_V3_CONTEXT.md
 ETAP_V3.0_FEEDBACK_ALINA.md
+
+# Python venv для скриптов обработки фото (V3.0.8)
+scripts/.venv/
