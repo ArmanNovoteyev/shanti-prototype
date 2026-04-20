@@ -50,7 +50,7 @@ function Shell() {
     { id: 'catalog', icon: Sparkles, label: t('nav.catalog') },
     {
       id: 'logo',
-      logo: '/assets/logo/shanti-logo-on-dark.png',
+      logo: '/assets/logo/shanti-logo-on-light.png',
       label: 'SHANTI',
       center: true,
       action: () => navigate('home'),
@@ -152,7 +152,7 @@ function BottomNav({ items, active, onChange }) {
         background: 'rgba(240,230,217,0.92)',
         backdropFilter: 'blur(20px)',
         borderTop: '1px solid rgba(42,32,25,0.08)',
-        padding: '12px 0 24px',
+        padding: '12px 0 max(12px, env(safe-area-inset-bottom))',
         display: 'flex',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
@@ -167,9 +167,9 @@ function BottomNav({ items, active, onChange }) {
               key={item.id}
               onClick={() => (item.action ? item.action() : onChange(item.id))}
               style={{
-                background: colors.copper,
+                background: 'transparent',
                 color: colors.ivory,
-                border: `4px solid rgba(240,230,217,0.95)`,
+                border: '1px solid rgba(42,32,25,0.08)',
                 width: '58px',
                 height: '58px',
                 borderRadius: '50%',
@@ -178,7 +178,6 @@ function BottomNav({ items, active, onChange }) {
                 justifyContent: 'center',
                 cursor: 'pointer',
                 marginTop: '-26px',
-                boxShadow: '0 10px 24px -10px rgba(184,121,74,0.6)',
                 fontFamily: FONT_FAMILY,
                 padding: 0,
               }}

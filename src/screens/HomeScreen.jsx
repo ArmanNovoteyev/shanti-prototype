@@ -60,7 +60,7 @@ function HeroSlide({ slide, greetingSub }) {
         scrollSnapAlign: 'start',
         backgroundImage: `url(${slide.bg})`,
         backgroundSize: 'cover',
-        backgroundPosition: '50% 40%',
+        backgroundPosition: '50% 50%',
         color: colors.ivory,
       }}
     >
