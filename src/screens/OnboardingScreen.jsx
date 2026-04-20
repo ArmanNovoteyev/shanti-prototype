@@ -608,44 +608,38 @@ function Slide6({ onStart }) {
             fontSize: 15,
             color: colors.ivory,
             opacity: 0.9,
-            margin: '18px 0 80px',
+            margin: '18px 0 0',
             lineHeight: 1.5,
             maxWidth: 380,
           }}
         >
           Запишитесь онлайн за 30 секунд. Два филиала, 5 мастеров, 389 отзывов · 4.8 ★
         </p>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onStart();
+          }}
+          style={{
+            marginTop: 32,
+            height: 56,
+            background: colors.copper,
+            color: colors.ivory,
+            border: 'none',
+            borderRadius: 16,
+            fontSize: 14,
+            fontWeight: 700,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            cursor: 'pointer',
+            ...body,
+            boxShadow: '0 18px 36px -16px rgba(184,121,74,0.8)',
+          }}
+        >
+          Начать
+        </button>
       </div>
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          onStart();
-        }}
-        style={{
-          position: 'absolute',
-          left: 32,
-          right: 32,
-          bottom: 32,
-          maxWidth: 376,
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          height: 56,
-          background: colors.copper,
-          color: colors.ivory,
-          border: 'none',
-          borderRadius: 16,
-          fontSize: 14,
-          fontWeight: 700,
-          letterSpacing: '0.18em',
-          textTransform: 'uppercase',
-          cursor: 'pointer',
-          ...body,
-          boxShadow: '0 18px 36px -16px rgba(184,121,74,0.8)',
-        }}
-      >
-        Начать
-      </button>
     </div>
   );
 }
