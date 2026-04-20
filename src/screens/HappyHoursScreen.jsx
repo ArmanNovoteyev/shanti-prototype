@@ -5,10 +5,10 @@ import { useTranslation } from '../hooks/useTranslation.js';
 import { services } from '../data/services.js';
 import { colors } from '../theme/colors.js';
 import { applyHappyHoursDiscount, isServiceEligible } from '../utils/happyHours.js';
-import { FONT_DISPLAY } from '../theme/fonts.js';
+import { FONT_DISPLAY, FONT_BODY } from '../theme/fonts.js';
 
 const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
-const body = { fontFamily: "'Manrope', sans-serif" };
+const body = { ...FONT_BODY };
 
 function formatPrice(v) {
   return v.toLocaleString('ru-RU').replace(/\u00a0/g, ' ');

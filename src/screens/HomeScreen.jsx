@@ -16,10 +16,10 @@ import { colors } from '../theme/colors.js';
 import { getHeroSlides } from '../data/heroSlides.js';
 import { isHappyHoursNow } from '../utils/happyHours.js';
 import StoryCircles from '../components/StoryCircles.jsx';
-import { FONT_DISPLAY } from '../theme/fonts.js';
+import { FONT_DISPLAY, FONT_BODY } from '../theme/fonts.js';
 
 const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
-const body = { fontFamily: "'Manrope', sans-serif" };
+const body = { ...FONT_BODY };
 
 const RU_MONTHS = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 const RU_DOW = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];

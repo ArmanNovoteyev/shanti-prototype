@@ -9,10 +9,10 @@ import { reviews } from '../data/reviews.js';
 import { colors } from '../theme/colors.js';
 import ServiceStages from '../components/ServiceStages.jsx';
 import { applyHappyHoursDiscount } from '../utils/happyHours.js';
-import { FONT_DISPLAY } from '../theme/fonts.js';
+import { FONT_DISPLAY, FONT_BODY } from '../theme/fonts.js';
 
 const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
-const body = { fontFamily: "'Manrope', sans-serif" };
+const body = { ...FONT_BODY };
 
 const DEFAULT_DESCRIPTIONS = {
   massage: 'Традиционная тайская техника, выполненная сертифицированным мастером.',

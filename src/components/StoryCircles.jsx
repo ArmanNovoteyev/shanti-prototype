@@ -11,8 +11,9 @@ import {
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { colors } from '../theme/colors.js';
+import { FONT_BODY } from '../theme/fonts.js';
 
-const body = { fontFamily: "'Manrope', sans-serif" };
+const body = { ...FONT_BODY };
 
 export default function StoryCircles() {
   const { t } = useTranslation();

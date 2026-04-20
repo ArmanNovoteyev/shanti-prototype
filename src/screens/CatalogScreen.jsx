@@ -6,10 +6,10 @@ import { services, SERVICE_CATEGORIES } from '../data/services.js';
 import { subscriptions } from '../data/subscriptions.js';
 import SubscriptionCard from '../components/SubscriptionCard.jsx';
 import { colors } from '../theme/colors.js';
-import { FONT_DISPLAY } from '../theme/fonts.js';
+import { FONT_DISPLAY, FONT_BODY } from '../theme/fonts.js';
 
 const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
-const body = { fontFamily: "'Manrope', sans-serif" };
+const body = { ...FONT_BODY };
 
 function formatPrice(value) {
   return value.toLocaleString('ru-RU').replace(/\u00a0/g, ' ');

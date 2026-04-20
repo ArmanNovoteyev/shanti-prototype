@@ -5,12 +5,12 @@ import { useTranslation } from '../hooks/useTranslation.js';
 import { branches } from '../data/branches.js';
 import { masters } from '../data/masters.js';
 import { colors } from '../theme/colors.js';
-import { FONT_DISPLAY } from '../theme/fonts.js';
+import { FONT_DISPLAY, FONT_BODY } from '../theme/fonts.js';
 import SubscriptionBalanceCard from '../components/SubscriptionBalanceCard.jsx';
 
 const display = { ...FONT_DISPLAY, letterSpacing: '-0.01em' };
 
-const body = { fontFamily: "'Manrope', sans-serif" };
+const body = { ...FONT_BODY };
 
 const CHEVRON_SVG =
   "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239A8B7A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>\")";

@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { X, ChevronRight } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { colors } from '../theme/colors.js';
-import { FONT_DISPLAY } from '../theme/fonts.js';
+import { FONT_DISPLAY, FONT_BODY } from '../theme/fonts.js';
 import {
   subscriptions,
   SUBSCRIPTION_METAL_COLORS,
@@ -10,7 +10,7 @@ import {
 } from '../data/subscriptions.js';
 
 const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
-const body = { fontFamily: "'Manrope', sans-serif" };
+const body = { ...FONT_BODY };
 
 function Eyebrow({ children, dark = false }) {
   return (

@@ -7,10 +7,10 @@ import { branches, getBranch } from '../data/branches.js';
 import { mastersForBranch, getMaster } from '../data/masters.js';
 import { colors } from '../theme/colors.js';
 import { isHappyHoursAt, applyHappyHoursDiscount } from '../utils/happyHours.js';
-import { FONT_DISPLAY } from '../theme/fonts.js';
+import { FONT_DISPLAY, FONT_BODY } from '../theme/fonts.js';
 
 const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
-const body = { fontFamily: "'Manrope', sans-serif" };
+const body = { ...FONT_BODY };
 
 const TIME_SLOTS = ['10:00', '11:30', '13:00', '14:30', '16:00', '17:30', '19:00', '20:30'];
 const RU_MONTHS = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];

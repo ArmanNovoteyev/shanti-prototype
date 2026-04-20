@@ -14,10 +14,10 @@ import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import GiftCertificate, { GIFT_DESIGNS, getDesignConfig } from '../components/GiftCertificate.jsx';
 import { colors } from '../theme/colors.js';
-import { FONT_DISPLAY } from '../theme/fonts.js';
+import { FONT_DISPLAY, FONT_BODY } from '../theme/fonts.js';
 
 const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
-const body = { fontFamily: "'Manrope', sans-serif" };
+const body = { ...FONT_BODY };
 
 const MIN_AMOUNT = 20000;
 const PRESET_AMOUNTS = [20000, 35000, 50000, 100000];
