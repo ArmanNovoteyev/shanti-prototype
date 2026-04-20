@@ -131,7 +131,7 @@ export default function SubscriptionCard({ subscription, onBuy }) {
         <div style={{ ...display, fontSize: 20, color: colors.textMain }}>
           {t('subscriptions.total')} {formatPrice(subscription.price)}
         </div>
-        <div style={{ ...body, fontSize: 13, color: colors.success, fontWeight: 600, marginTop: 2 }}>
+        <div style={{ ...body, fontSize: 13, color: colors.success, marginTop: 2 }}>
           {t('subscriptions.savings', { amount: formatPrice(subscription.savings) })}
         </div>
       </div>

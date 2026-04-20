@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { colors } from '../theme/colors.js';
+import { FONT_FAMILY } from '../theme/fonts.js';
 import { isHappyHoursNow } from '../utils/happyHours.js';
 
 function dayOfYear(now = new Date()) {
@@ -48,7 +49,7 @@ export default function PromoBanner() {
         border: 'none',
         background: isHappy ? colors.copper : colors.copperSoft,
         color: isHappy ? colors.white : colors.deepBrown,
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: FONT_FAMILY,
         fontSize: 13,
         fontWeight: 700,
         letterSpacing: '0.01em',

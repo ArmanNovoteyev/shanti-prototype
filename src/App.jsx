@@ -3,6 +3,7 @@ import { Home, Sparkles, Calendar, User } from 'lucide-react';
 import { AppProvider, AppContext } from './context/AppContext.jsx';
 import { useTranslation } from './hooks/useTranslation.js';
 import { colors } from './theme/colors.js';
+import { FONT_FAMILY } from './theme/fonts.js';
 
 import HomeScreen from './screens/HomeScreen.jsx';
 import CatalogScreen from './screens/CatalogScreen.jsx';
@@ -64,7 +65,7 @@ function Shell() {
       style={{
         minHeight: '100vh',
         background: `linear-gradient(180deg, ${colors.cream} 0%, ${colors.sand} 100%)`,
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: FONT_FAMILY,
         color: colors.textMain,
         display: 'flex',
         alignItems: 'center',
@@ -129,12 +130,11 @@ function Shell() {
               padding: '12px 20px',
               borderRadius: '20px',
               fontSize: '13px',
-              fontWeight: 500,
               boxShadow: '0 12px 28px -12px rgba(0,0,0,0.4)',
               zIndex: 100,
               maxWidth: '85%',
               textAlign: 'center',
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: FONT_FAMILY,
             }}
           >
             {toast}
@@ -179,7 +179,7 @@ function BottomNav({ items, active, onChange }) {
                 cursor: 'pointer',
                 marginTop: '-26px',
                 boxShadow: '0 10px 24px -10px rgba(184,121,74,0.6)',
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: FONT_FAMILY,
                 padding: 0,
               }}
               aria-label={item.label}
@@ -211,7 +211,7 @@ function BottomNav({ items, active, onChange }) {
               color: isActive ? colors.deepBrown : colors.textMuted,
               fontWeight: isActive ? 600 : 500,
               fontSize: '11px',
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: FONT_FAMILY,
               transition: 'color 0.2s',
             }}
           >

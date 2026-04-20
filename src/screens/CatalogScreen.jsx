@@ -92,7 +92,6 @@ function DurationChips({ durations }) {
             background: colors.cream,
             padding: '3px 8px',
             borderRadius: '10px',
-            fontWeight: 500,
           }}
         >
           {d.minutes} {t('common.minutes_short')}

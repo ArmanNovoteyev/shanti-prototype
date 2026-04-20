@@ -1,6 +1,7 @@
 import { QRCodeSVG } from 'qrcode.react';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { colors } from '../theme/colors.js';
+import { FONT_FAMILY, FONT_DISPLAY } from '../theme/fonts.js';
 
 const DESIGN_CONFIG = {
   ny: {
@@ -203,7 +204,7 @@ export default function GiftCertificate({
         background: cfg.background,
         color: cfg.text,
         boxShadow: `0 12px 30px -12px ${colors.warmDark}59`,
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: FONT_FAMILY,
         flexShrink: 0,
       }}
     >
@@ -241,16 +242,15 @@ export default function GiftCertificate({
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
               color: cfg.textMuted,
-              fontWeight: 500,
+              fontWeight: 700,
             }}
           >
             {t('gift.certificate_title')}
           </div>
           <div
             style={{
-              fontFamily: "'Fraunces', serif",
+              ...FONT_DISPLAY,
               fontSize: 34 * scale,
-              fontWeight: 500,
               lineHeight: 1.05,
               marginTop: 3 * scale,
               letterSpacing: '-0.02em',
@@ -273,13 +273,13 @@ export default function GiftCertificate({
             {recipientName && (
               <div>
                 <span style={{ opacity: 0.7 }}>{t('gift.for_recipient')}: </span>
-                <span style={{ color: cfg.text, fontWeight: 500 }}>{recipientName}</span>
+                <span style={{ color: cfg.text }}>{recipientName}</span>
               </div>
             )}
             {senderName && (
               <div>
                 <span style={{ opacity: 0.7 }}>{t('gift.from_sender')}: </span>
-                <span style={{ color: cfg.text, fontWeight: 500 }}>{senderName}</span>
+                <span style={{ color: cfg.text }}>{senderName}</span>
               </div>
             )}
           </div>
@@ -296,7 +296,7 @@ export default function GiftCertificate({
           }}
         >
           <div style={{ fontSize: 7.5 * scale, color: cfg.textMuted, lineHeight: 1.5 }}>
-            <div style={{ fontWeight: 500 }}>
+            <div>
               {t('gift.valid_until')}: <span style={{ color: cfg.text }}>{formatDate(validUntil)}</span>
             </div>
             <div style={{ marginTop: 3 * scale, opacity: 0.85 }}>Сатпаева 50/1 · Нурмагамбетова 4</div>
@@ -324,7 +324,7 @@ export default function GiftCertificate({
                 fontSize: 6.5 * scale,
                 letterSpacing: '0.08em',
                 color: cfg.textMuted,
-                fontFamily: "'Manrope', sans-serif",
+                fontFamily: FONT_FAMILY,
               }}
             >
               {code}

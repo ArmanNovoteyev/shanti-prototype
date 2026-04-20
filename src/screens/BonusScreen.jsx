@@ -64,7 +64,6 @@ function BalanceCard({ t, balance }) {
               ...body,
               fontSize: 13,
               letterSpacing: '0.14em',
-              fontWeight: 600,
               opacity: 0.75,
             }}
           >
@@ -157,7 +156,7 @@ function BackBalanceCard({ t, tracker, onBook }) {
               >
                 {done && <Check size={14} color={colors.ivory} strokeWidth={3} />}
               </div>
-              <div style={{ ...body, fontSize: 11, color: colors.textMuted, fontWeight: 500 }}>
+              <div style={{ ...body, fontSize: 11, color: colors.textMuted }}>
                 {i + 1}
               </div>
             </div>
@@ -177,15 +176,15 @@ function BackBalanceCard({ t, tracker, onBook }) {
       >
         <div>
           <span style={{ color: colors.textMuted }}>{t('bonus.visits_done')}:</span>{' '}
-          <strong style={{ fontWeight: 600 }}>
+          <span>
             {t('bonus.visits_done_of', { done: tracker.done, total: tracker.total })}
-          </strong>
+          </span>
         </div>
         <div>
           <span style={{ color: colors.textMuted }}>{t('bonus.visits_left')}:</span>{' '}
-          <strong style={{ fontWeight: 600 }}>
+          <span>
             {left} {plural(left, 'визит', 'визита', 'визитов')}
-          </strong>
+          </span>
         </div>
       </div>
 
@@ -351,7 +350,7 @@ function HistoryCard({ t, items }) {
             }}
           >
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ ...body, fontSize: 13, fontWeight: 500, color: colors.textMain }}>
+              <div style={{ ...body, fontSize: 13, color: colors.textMain }}>
                 {item.title}
               </div>
               <div style={{ ...body, fontSize: 11, color: colors.textMuted, marginTop: 3 }}>

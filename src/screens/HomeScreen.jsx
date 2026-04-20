@@ -16,7 +16,7 @@ import { colors } from '../theme/colors.js';
 import { getHeroSlides } from '../data/heroSlides.js';
 import { isHappyHoursNow } from '../utils/happyHours.js';
 import StoryCircles from '../components/StoryCircles.jsx';
-import { FONT_DISPLAY, FONT_BODY } from '../theme/fonts.js';
+import { FONT_DISPLAY, FONT_BODY, FONT_FAMILY } from '../theme/fonts.js';
 
 const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
 const body = { ...FONT_BODY };
@@ -362,7 +362,7 @@ function BonusTeaser() {
               <span style={{ ...display, fontSize: 18, color: colors.deepBrown, lineHeight: 1 }}>
                 {balanceStr}
               </span>
-              <span style={{ fontSize: 11, color: colors.textMuted, fontWeight: 600 }}>
+              <span style={{ fontSize: 11, color: colors.textMuted }}>
                 {t('bonus.teaser_unit')}
               </span>
             </div>
@@ -388,7 +388,6 @@ function BonusTeaser() {
                     alignItems: 'center',
                     gap: 6,
                     fontSize: 13,
-                    fontWeight: 600,
                     color: colors.deepBrown,
                   }}
                 >
@@ -758,7 +757,7 @@ function ReviewsCarousel() {
             color: colors.copper,
             fontWeight: 700,
             cursor: 'pointer',
-            fontFamily: "'Manrope', sans-serif",
+            fontFamily: FONT_FAMILY,
           }}
         >
           {t('home.reviews_all')}

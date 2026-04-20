@@ -53,7 +53,7 @@ function ReviewCard({ review, localized }) {
           gap: 8,
         }}
       >
-        <span style={{ ...body, fontSize: 14, fontWeight: 600, color: colors.textMain }}>
+        <span style={{ ...body, fontSize: 14, color: colors.textMain }}>
           {review.author}
         </span>
         <Stars rating={review.rating} />

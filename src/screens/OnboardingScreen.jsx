@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { X, ChevronRight } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { colors } from '../theme/colors.js';
-import { FONT_DISPLAY, FONT_BODY } from '../theme/fonts.js';
+import { FONT_DISPLAY, FONT_BODY, FONT_FAMILY } from '../theme/fonts.js';
 import {
   subscriptions,
   SUBSCRIPTION_METAL_COLORS,
@@ -693,7 +693,7 @@ export default function OnboardingScreen() {
         inset: 0,
         zIndex: 1000,
         background: colors.ivory,
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: FONT_FAMILY,
         color: colors.textMain,
         overflow: 'hidden',
       }}

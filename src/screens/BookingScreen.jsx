@@ -309,7 +309,6 @@ function MasterStep({ draft, onPick, onBack }) {
                   gap: 4,
                   fontSize: 12,
                   color: active ? colors.ivory : colors.copper,
-                  fontWeight: 600,
                 }}
               >
                 <Star size={11} fill="currentColor" /> {m.rating}
@@ -445,7 +444,7 @@ function SummaryRow({ label, value }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '6px 0', fontSize: 13 }}>
       <span style={{ opacity: 0.7 }}>{label}</span>
-      <span style={{ fontWeight: 600, textAlign: 'right' }}>{value}</span>
+      <span style={{ textAlign: 'right' }}>{value}</span>
     </div>
   );
 }
@@ -663,7 +662,6 @@ function TrioModal({ onYes, onNo }) {
             padding: '14px',
             borderRadius: '16px',
             fontSize: '14px',
-            fontWeight: 500,
             cursor: 'pointer',
             width: '100%',
           }}

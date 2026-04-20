@@ -115,7 +115,6 @@ function GhostButton({ children, onClick }) {
         color: colors.textMuted,
         padding: '12px',
         fontSize: 14,
-        fontWeight: 500,
         cursor: 'pointer',
         marginTop: 4,
       }}
@@ -517,7 +516,7 @@ function PaymentStep({ sub, t, localized, method, setMethod, onPay, onBack }) {
               >
                 <Icon size={18} strokeWidth={2} />
               </div>
-              <div style={{ flex: 1, fontSize: 14, color: colors.textMain, fontWeight: 600 }}>
+              <div style={{ flex: 1, fontSize: 14, color: colors.textMain }}>
                 {o.label}
               </div>
               <div
@@ -629,7 +628,7 @@ function SuccessStep({ sub, result, t, localized, onToProfile, onToHome }) {
           <span style={{ ...body, fontSize: 12, color: colors.textMuted, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
             {t('subscriptions.valid_until')}
           </span>
-          <span style={{ ...body, fontSize: 14, color: colors.textMain, fontWeight: 600 }}>
+          <span style={{ ...body, fontSize: 14, color: colors.textMain }}>
             {formatDateRu(result?.validUntil)}
           </span>
         </div>

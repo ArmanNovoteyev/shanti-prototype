@@ -266,7 +266,7 @@ function RadioRow({ options, value, onChange, label }) {
                   />
                 )}
               </span>
-              <span style={{ fontSize: 14, color: colors.textMain, fontWeight: 500 }}>
+              <span style={{ fontSize: 14, color: colors.textMain }}>
                 {o.label}
               </span>
             </button>
@@ -568,7 +568,6 @@ export default function ProfileScreen() {
             ...body,
             fontSize: 15,
             color: colors.textMain,
-            fontWeight: 600,
             letterSpacing: '0.01em',
           }}
         >

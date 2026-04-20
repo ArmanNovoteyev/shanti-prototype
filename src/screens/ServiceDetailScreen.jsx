@@ -337,7 +337,6 @@ function MasterCard({ master }) {
           justifyContent: 'center',
           ...display,
           fontSize: 22,
-          fontWeight: 500,
         }}
       >
         {name.charAt(0)}
@@ -346,7 +345,7 @@ function MasterCard({ master }) {
       <div style={{ ...body, fontSize: 12, color: colors.textMuted }}>
         {t('service_detail.years_experience', { n: master.experience_years })}
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: colors.copper, fontSize: 14, fontWeight: 600 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: colors.copper, fontSize: 14 }}>
         <Star size={14} fill={colors.copper} color={colors.copper} /> {master.rating}
       </div>
     </div>

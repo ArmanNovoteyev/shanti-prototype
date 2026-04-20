@@ -14,7 +14,7 @@ import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import GiftCertificate, { GIFT_DESIGNS, getDesignConfig } from '../components/GiftCertificate.jsx';
 import { colors } from '../theme/colors.js';
-import { FONT_DISPLAY, FONT_BODY } from '../theme/fonts.js';
+import { FONT_DISPLAY, FONT_BODY, FONT_FAMILY } from '../theme/fonts.js';
 
 const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
 const body = { ...FONT_BODY };
@@ -371,7 +371,7 @@ function PromoBanner({ t }) {
         >
           {t('gift.promo_eyebrow')}
         </div>
-        <div style={{ ...body, fontSize: 14, color: colors.textMain, fontWeight: 500, marginTop: 2 }}>
+        <div style={{ ...body, fontSize: 14, color: colors.textMain, marginTop: 2 }}>
           {t('gift.promo_title')}
         </div>
       </div>
@@ -540,7 +540,6 @@ function FormField({ label, required, children }) {
           fontSize: 12,
           color: colors.textMuted,
           marginBottom: 6,
-          fontWeight: 500,
         }}
       >
         {label}
@@ -562,7 +561,6 @@ const inputStyle = {
   color: colors.textMain,
   outline: 'none',
   boxSizing: 'border-box',
-  fontWeight: 500,
 };
 
 function RecipientStep({ t, draft, setDraft, onNext, onBack }) {
@@ -626,7 +624,7 @@ function KaspiMark() {
         fontWeight: 800,
         fontSize: 12,
         letterSpacing: '-0.04em',
-        fontFamily: "'Manrope', sans-serif",
+        fontFamily: FONT_FAMILY,
       }}
     >
       kaspi
@@ -673,7 +671,7 @@ function PaymentMethodRow({ active, onClick, label, mark }) {
       }}
     >
       {mark}
-      <div style={{ flex: 1, fontSize: 15, fontWeight: 600, color: colors.textMain }}>{label}</div>
+      <div style={{ flex: 1, fontSize: 15, color: colors.textMain }}>{label}</div>
       <div
         style={{
           width: 22,
@@ -849,7 +847,7 @@ function DesignStep({ t, draft, onPick, onBack }) {
                   validUntil={draft.validUntil || addMonths(new Date(), 3)}
                   width={280}
                 />
-                <div style={{ fontSize: 13, fontWeight: 600, color: colors.textMain }}>
+                <div style={{ fontSize: 13, color: colors.textMain }}>
                   <span style={{ marginRight: 6 }}>{cfg.emoji}</span>
                   {t(DESIGN_LABEL_KEY[id])}
                 </div>
