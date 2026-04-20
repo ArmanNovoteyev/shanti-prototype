@@ -584,7 +584,7 @@ function Slide6({ onStart }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
-          padding: '64px 32px 176px',
+          padding: '64px 32px 136px',
           color: colors.ivory,
           maxWidth: 440,
           margin: '0 auto',
@@ -608,7 +608,7 @@ function Slide6({ onStart }) {
             fontSize: 15,
             color: colors.ivory,
             opacity: 0.9,
-            margin: '18px 0 0',
+            margin: '18px 0 80px',
             lineHeight: 1.5,
             maxWidth: 380,
           }}
