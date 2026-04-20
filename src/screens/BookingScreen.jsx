@@ -1,5 +1,5 @@
 import { useContext, useState, useMemo, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, MapPin, Star, Sparkles, Clock, Calendar, Check, Heart, Users } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, Star, Sparkles, Clock, Calendar, Check, Heart, Users, Flame, Droplet } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { getService } from '../data/services.js';
@@ -216,6 +216,56 @@ function PartyPeopleStep({ draft, onPick, onBack }) {
         icon={<Users size={22} color={colors.copper} />}
         title={t('booking.people_three')}
         subtitle={t('booking.people_three_subtitle')}
+      />
+    </StepShell>
+  );
+}
+
+function SpaOptionStep({ draft, onPick, onBack }) {
+  const { t } = useTranslation();
+  return (
+    <StepShell title={t('booking.spa_option_title')} onBack={onBack}>
+      <ChoiceCard
+        active={draft.spaOption === 'sauna'}
+        onClick={() => onPick('sauna')}
+        icon={
+          <div
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: '50%',
+              background: draft.spaOption === 'sauna' ? 'rgba(240,230,217,0.12)' : colors.cream,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Flame size={18} color={draft.spaOption === 'sauna' ? colors.ivory : colors.copper} />
+          </div>
+        }
+        title={t('booking.spa_option_sauna')}
+        subtitle={t('booking.spa_option_sauna_subtitle')}
+      />
+      <ChoiceCard
+        active={draft.spaOption === 'herbalBarrel'}
+        onClick={() => onPick('herbalBarrel')}
+        icon={
+          <div
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: '50%',
+              background: draft.spaOption === 'herbalBarrel' ? 'rgba(240,230,217,0.12)' : colors.cream,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Droplet size={18} color={draft.spaOption === 'herbalBarrel' ? colors.ivory : colors.copper} />
+          </div>
+        }
+        title={t('booking.spa_option_barrel')}
+        subtitle={t('booking.spa_option_barrel_subtitle')}
       />
     </StepShell>
   );
@@ -507,6 +557,12 @@ function ConfirmStep({ service, draft, onConfirm, onBack }) {
           <SummaryRow label={t('booking.summary_master')} value={master ? localized(master, 'name') : t('booking.any_master')} />
           <SummaryRow label={t('booking.summary_when')} value={whenLabel} />
           <SummaryRow label={t('booking.summary_duration')} value={`${duration.minutes} ${t('common.minutes_short')}`} />
+          {draft.spaOption && (
+            <SummaryRow
+              label={t('booking.summary_spa_option')}
+              value={draft.spaOption === 'sauna' ? t('booking.spa_option_sauna') : t('booking.spa_option_barrel')}
+            />
+          )}
           {draft.visitType && (
             <SummaryRow
               label={t('booking.summary_visit_type')}
@@ -677,6 +733,12 @@ function nextStepForCourses() {
   return 'course_confirm';
 }
 
+function needsSpaOption(service, draft) {
+  if (service.category !== 'spa_solo' && service.category !== 'spa_duo') return false;
+  if (service.startOption === 'sauna_only') return false;
+  return draft.spaOption == null;
+}
+
 function nextStepForRegular(service, draft) {
   if (service.category === 'spa_duo') return 'visit_type';
   if (service.durations.length > 1 && draft.durationMinutes == null) return 'duration';
@@ -748,9 +810,16 @@ export default function BookingScreen() {
     setBookingDraft((prev) => ({ ...prev, branchId }));
     if (service.category === 'courses') {
       goTo(nextStepForCourses());
+    } else if (needsSpaOption(service, bookingDraft)) {
+      goTo('spaOption');
     } else {
       goTo(nextStepForRegular(service, bookingDraft));
     }
+  };
+
+  const handleSpaOptionPick = (opt) => {
+    setBookingDraft((prev) => ({ ...prev, spaOption: opt }));
+    goTo(nextStepForRegular(service, { ...bookingDraft, spaOption: opt }));
   };
 
   const handleVisitTypePick = (visitType) => {
@@ -820,6 +889,9 @@ export default function BookingScreen() {
     <>
       {step === 'branch' && (
         <BranchStep service={service} draft={bookingDraft} onBack={goBack} onPick={handleBranchPick} />
+      )}
+      {step === 'spaOption' && (
+        <SpaOptionStep draft={bookingDraft} onBack={goBack} onPick={handleSpaOptionPick} />
       )}
       {step === 'visit_type' && (
         <VisitTypeStep draft={bookingDraft} onBack={goBack} onPick={handleVisitTypePick} />
