@@ -266,6 +266,7 @@
     "invite_cta": "Пригласить",
     "invite_toast": "Ссылка скопирована",
     "back_balance_eyebrow": "Ваш курс",
+    "back_balance_session_toast": "Сеанс курса Back Balance · {{n}}/{{total}}",
     "history_earned": "Начислено: {{amount}} баллов",
     "history_spent": "Списано: {{amount}} баллов",
     "history_invite": "Приглашение: {{name}}",

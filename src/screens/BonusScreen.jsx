@@ -413,7 +413,17 @@ export default function BonusScreen() {
     [t],
   );
 
-  const handleBookNext = () => startBookingFor('sila-buddy');
+  const handleBookNext = () => {
+    const nextIdx = backBalance.done;
+    const serviceId = nextIdx < 2 ? 'clear-mind' : 'gracia';
+    startBookingFor(serviceId, { durationMinutes: 60 });
+    showToast(
+      t('bonus.back_balance_session_toast', {
+        n: nextIdx + 1,
+        total: backBalance.total,
+      }),
+    );
+  };
   const handleInvite = () => showToast(t('bonus.invite_toast'));
 
   return (

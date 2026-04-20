@@ -681,18 +681,18 @@ function nextStepForCourses() {
 
 function nextStepForRegular(service, draft) {
   if (service.category === 'spa_duo') return 'visit_type';
-  if (service.durations.length > 1) return 'duration';
+  if (service.durations.length > 1 && draft.durationMinutes == null) return 'duration';
   return 'master';
 }
 
 function nextStepAfterVisitType(service, draft) {
   if (draft.visitType === 'party') return 'party_people';
-  if (service.durations.length > 1) return 'duration';
+  if (service.durations.length > 1 && draft.durationMinutes == null) return 'duration';
   return 'master';
 }
 
-function nextStepAfterPartyPeople(service) {
-  if (service.durations.length > 1) return 'duration';
+function nextStepAfterPartyPeople(service, draft) {
+  if (service.durations.length > 1 && draft.durationMinutes == null) return 'duration';
   return 'master';
 }
 
@@ -766,19 +766,19 @@ export default function BookingScreen() {
       return;
     }
     setBookingDraft((prev) => ({ ...prev, partyPeople: n }));
-    goTo(nextStepAfterPartyPeople(service));
+    goTo(nextStepAfterPartyPeople(service, bookingDraft));
   };
 
   const handleTrioSwitch = () => {
     setBookingDraft((prev) => ({ ...prev, branchId: 'satpayeva', partyPeople: 3 }));
     setShowTrioModal(false);
-    goTo(nextStepAfterPartyPeople(service));
+    goTo(nextStepAfterPartyPeople(service, bookingDraft));
   };
 
   const handleTrioPickTwo = () => {
     setBookingDraft((prev) => ({ ...prev, partyPeople: 2 }));
     setShowTrioModal(false);
-    goTo(nextStepAfterPartyPeople(service));
+    goTo(nextStepAfterPartyPeople(service, bookingDraft));
   };
 
   const handleDurationPick = (minutes) => {
