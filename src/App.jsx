@@ -241,14 +241,6 @@ const RESPONSIVE_CSS = `
 
 export default function App() {
   useEffect(() => {
-    if (!document.querySelector('link[data-shanti-fonts]')) {
-      const link = document.createElement('link');
-      link.href =
-        'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Manrope:wght@300;400;500;600;700&display=swap';
-      link.rel = 'stylesheet';
-      link.dataset.shantiFonts = 'true';
-      document.head.appendChild(link);
-    }
     if (!document.querySelector('style[data-shanti-responsive]')) {
       const style = document.createElement('style');
       style.dataset.shantiResponsive = 'true';
