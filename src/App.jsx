@@ -16,6 +16,7 @@ import ProfileScreen from './screens/ProfileScreen.jsx';
 import ReviewsScreen from './screens/ReviewsScreen.jsx';
 import SubscriptionPurchaseScreen from './screens/SubscriptionPurchaseScreen.jsx';
 import OnboardingScreen from './screens/OnboardingScreen.jsx';
+import HappyHoursScreen from './screens/HappyHoursScreen.jsx';
 import PromoBanner from './components/PromoBanner.jsx';
 
 const screens = {
@@ -30,6 +31,7 @@ const screens = {
   profile: ProfileScreen,
   reviews: ReviewsScreen,
   subscription_purchase: SubscriptionPurchaseScreen,
+  happy_hours: HappyHoursScreen,
 };
 
 function Shell() {

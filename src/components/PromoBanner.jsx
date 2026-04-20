@@ -2,12 +2,7 @@ import { useContext } from 'react';
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { colors } from '../theme/colors.js';
-
-function isHappyHoursNow(now = new Date()) {
-  const day = now.getDay();
-  const h = now.getHours();
-  return day >= 1 && day <= 5 && h >= 11 && h < 14;
-}
+import { isHappyHoursNow } from '../utils/happyHours.js';
 
 function dayOfYear(now = new Date()) {
   const start = new Date(now.getFullYear(), 0, 0);
@@ -25,7 +20,7 @@ export default function PromoBanner() {
   let action;
   if (isHappy) {
     textKey = 'promo.happy_hours';
-    action = () => navigate('catalog');
+    action = () => navigate('happy_hours');
   } else {
     const rotations = [
       {

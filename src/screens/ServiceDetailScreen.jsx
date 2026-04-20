@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import { ChevronLeft, Heart, Flame, Star, Check } from 'lucide-react';
+import { ChevronLeft, Heart, Flame, Star, Check, Clock } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { getService } from '../data/services.js';
@@ -8,6 +8,7 @@ import { masters } from '../data/masters.js';
 import { reviews } from '../data/reviews.js';
 import { colors } from '../theme/colors.js';
 import ServiceStages from '../components/ServiceStages.jsx';
+import { applyHappyHoursDiscount } from '../utils/happyHours.js';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
@@ -134,6 +135,29 @@ function HeroSection({ service }) {
   );
 }
 
+function HappyHoursPill() {
+  const { t } = useTranslation();
+  return (
+    <div
+      style={{
+        margin: '16px 24px 0',
+        padding: '10px 14px',
+        borderRadius: 14,
+        background: colors.copperSoft,
+        color: colors.copper,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+      }}
+    >
+      <Clock size={16} color={colors.copper} strokeWidth={2.2} />
+      <span style={{ ...body, fontSize: 13, fontWeight: 600, letterSpacing: '0.01em' }}>
+        {t('happyHours.detailBadge')}
+      </span>
+    </div>
+  );
+}
+
 function TitleAndDesc({ service }) {
   const { localized } = useTranslation();
   const desc = localized(service, 'description') || DEFAULT_DESCRIPTIONS[service.category] || '';
@@ -203,7 +227,42 @@ function IncludedSection() {
   );
 }
 
-function PriceSection({ service }) {
+function PriceRow({ label, price, isHappy }) {
+  const { t } = useTranslation();
+  if (!isHappy) {
+    return (
+      <>
+        <span style={{ ...body, fontSize: 15, color: colors.textMain }}>{label}</span>
+        <span style={{ ...display, fontSize: 18, color: colors.copper }}>
+          {formatPrice(price)} {t('common.rub')}
+        </span>
+      </>
+    );
+  }
+  const discounted = applyHappyHoursDiscount(price);
+  return (
+    <>
+      <span style={{ ...body, fontSize: 15, color: colors.textMain }}>{label}</span>
+      <span style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+        <span
+          style={{
+            ...body,
+            fontSize: 13,
+            color: colors.textMuted,
+            textDecoration: 'line-through',
+          }}
+        >
+          {formatPrice(price)}
+        </span>
+        <span style={{ ...display, fontSize: 18, color: colors.copper }}>
+          {formatPrice(discounted)} {t('common.rub')}
+        </span>
+      </span>
+    </>
+  );
+}
+
+function PriceSection({ service, isHappy }) {
   const { t } = useTranslation();
   const isCourse = service.category === 'courses';
   return (
@@ -219,12 +278,7 @@ function PriceSection({ service }) {
               padding: '12px 0',
             }}
           >
-            <span style={{ ...body, fontSize: 15, color: colors.textMain }}>
-              Курс 5 процедур
-            </span>
-            <span style={{ ...display, fontSize: 18, color: colors.copper }}>
-              {formatPrice(service.durations[0].price)} {t('common.rub')}
-            </span>
+            <PriceRow label="Курс 5 процедур" price={service.durations[0].price} isHappy={isHappy} />
           </div>
         ) : (
           service.durations.map((d, i) => (
@@ -238,12 +292,11 @@ function PriceSection({ service }) {
                 borderBottom: i < service.durations.length - 1 ? `1px solid ${colors.cream}` : 'none',
               }}
             >
-              <span style={{ ...body, fontSize: 15, color: colors.textMain }}>
-                {d.minutes} {t('common.minutes_short')}
-              </span>
-              <span style={{ ...display, fontSize: 18, color: colors.copper }}>
-                {formatPrice(d.price)} {t('common.rub')}
-              </span>
+              <PriceRow
+                label={`${d.minutes} ${t('common.minutes_short')}`}
+                price={d.price}
+                isHappy={isHappy}
+              />
             </div>
           ))
         )}
@@ -388,7 +441,7 @@ function ServiceReviewsSection({ service }) {
   );
 }
 
-function StickyCTA({ service }) {
+function StickyCTA({ service, isHappy }) {
   const { t } = useTranslation();
   const { startBookingFor } = useContext(AppContext);
   return (
@@ -410,7 +463,7 @@ function StickyCTA({ service }) {
         }}
       >
         <button
-          onClick={() => startBookingFor(service.id)}
+          onClick={() => startBookingFor(service.id, isHappy ? { happyHours: true } : {})}
           style={{
             ...body,
             width: '100%',
@@ -435,6 +488,7 @@ function StickyCTA({ service }) {
 export default function ServiceDetailScreen() {
   const { bookingDraft, navigate } = useContext(AppContext);
   const service = getService(bookingDraft.serviceId);
+  const isHappy = bookingDraft.happyHours === true;
 
   if (!service) {
     return (
@@ -464,13 +518,14 @@ export default function ServiceDetailScreen() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100%' }}>
       <HeroSection service={service} />
+      {isHappy && <HappyHoursPill />}
       <TitleAndDesc service={service} />
       <ServiceStages stages={service.stages} />
       <IncludedSection />
-      <PriceSection service={service} />
+      <PriceSection service={service} isHappy={isHappy} />
       <MastersSection />
       <ServiceReviewsSection service={service} />
-      <StickyCTA service={service} />
+      <StickyCTA service={service} isHappy={isHappy} />
     </div>
   );
 }

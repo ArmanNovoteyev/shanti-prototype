@@ -79,6 +79,15 @@
     "back_balance": "Back Balance course — 5 procedures for 65 000 ₸",
     "gift": "Gift certificate — from 20 000 ₸ in 30 seconds"
   },
+  "happyHours": {
+    "title": "Happy Hours",
+    "schedule": "Weekdays · 11:00 – 13:59",
+    "description": "Book on weekdays between 11:00 and 13:59 to get −20% on all massages and SPA complexes. The booking time refers to the start of the procedure. The promotion does not apply to gift certificates.",
+    "badge": "−20%",
+    "oldPriceLabel": "Regular price",
+    "newPriceLabel": "Promo price",
+    "detailBadge": "You are booking during Happy Hours"
+  },
   "catalog": {
     "title": "Услуги",
     "subtitle": "Выбирайте ритуал по настроению",

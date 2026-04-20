@@ -151,7 +151,7 @@ function ServiceCard({ service }) {
   const { navigate } = useContext(AppContext);
   return (
     <button
-      onClick={() => navigate('service', { serviceId: service.id })}
+      onClick={() => navigate('service', { serviceId: service.id, happyHours: false })}
       style={{
         ...body,
         textAlign: 'left',
@@ -201,7 +201,7 @@ function ServiceCard({ service }) {
 function CourseCard({ service }) {
   const { t, localized } = useTranslation();
   const { navigate } = useContext(AppContext);
-  const openDetail = () => navigate('service', { serviceId: service.id });
+  const openDetail = () => navigate('service', { serviceId: service.id, happyHours: false });
   return (
     <div
       onClick={openDetail}

@@ -62,6 +62,7 @@ const EMPTY_DRAFT = {
   time: null,
   visitType: null,
   partyPeople: null,
+  happyHours: false,
 };
 
 const EMPTY_GIFT_DRAFT = {
@@ -138,8 +139,8 @@ export function AppProvider({ children }) {
     setScreen(nextScreen);
   }, []);
 
-  const startBookingFor = useCallback((serviceId) => {
-    setBookingDraft({ ...EMPTY_DRAFT, serviceId });
+  const startBookingFor = useCallback((serviceId, extra = {}) => {
+    setBookingDraft({ ...EMPTY_DRAFT, serviceId, ...extra });
     setScreen('booking');
   }, []);
 

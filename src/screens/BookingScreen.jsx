@@ -6,6 +6,7 @@ import { getService } from '../data/services.js';
 import { branches, getBranch } from '../data/branches.js';
 import { mastersForBranch, getMaster } from '../data/masters.js';
 import { colors } from '../theme/colors.js';
+import { isHappyHoursAt, applyHappyHoursDiscount } from '../utils/happyHours.js';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
@@ -23,15 +24,6 @@ function toIsoDate(d) {
   const m = String(d.getMonth() + 1).padStart(2, '0');
   const day = String(d.getDate()).padStart(2, '0');
   return `${y}-${m}-${day}`;
-}
-
-function isHappyHoursAt(dateStr, timeStr) {
-  if (!dateStr || !timeStr) return false;
-  const d = new Date(dateStr);
-  const day = d.getDay();
-  if (day === 0 || day === 6) return false;
-  const [h] = timeStr.split(':').map(Number);
-  return h >= 11 && h < 14;
 }
 
 function StepShell({ title, onBack, children, footer }) {
@@ -464,7 +456,7 @@ function ConfirmStep({ service, draft, onConfirm, onBack }) {
   const master = draft.masterId === 'any' ? null : getMaster(draft.masterId);
   const duration = service.durations.find((d) => d.minutes === draft.durationMinutes) || service.durations[0];
   const happy = isHappyHoursAt(draft.date, draft.time);
-  const finalPrice = happy ? Math.round(duration.price * 0.8) : duration.price;
+  const finalPrice = happy ? applyHappyHoursDiscount(duration.price) : duration.price;
   const dateLabel = (() => {
     if (!draft.date) return '';
     const d = new Date(draft.date);

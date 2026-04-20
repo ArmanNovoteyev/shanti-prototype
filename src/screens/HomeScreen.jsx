@@ -14,6 +14,7 @@ import { reviews } from '../data/reviews.js';
 import { branches } from '../data/branches.js';
 import { colors } from '../theme/colors.js';
 import { getHeroSlides } from '../data/heroSlides.js';
+import { isHappyHoursNow } from '../utils/happyHours.js';
 import StoryCircles from '../components/StoryCircles.jsx';
 
 const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, letterSpacing: '-0.02em' };
@@ -33,13 +34,6 @@ function getGreetingKey(date = new Date()) {
   if (h >= 5 && h < 12) return 'home.greeting_morning';
   if (h >= 12 && h < 18) return 'home.greeting_day';
   return 'home.greeting_evening';
-}
-
-function isHappyHoursNow(date = new Date()) {
-  const day = date.getDay();
-  const isWeekday = day >= 1 && day <= 5;
-  const h = date.getHours();
-  return isWeekday && h >= 11 && h < 14;
 }
 
 function HeroSlide({ slide, greetingSub }) {
@@ -591,11 +585,19 @@ function PrimaryCTA() {
 
 function HappyHoursBanner() {
   const { t } = useTranslation();
+  const { navigate } = useContext(AppContext);
   const active = isHappyHoursNow();
   return (
     <div style={{ padding: '0 24px', marginBottom: '16px' }}>
-      <div
+      <button
+        type="button"
+        onClick={() => navigate('happy_hours')}
         style={{
+          ...body,
+          width: '100%',
+          textAlign: 'left',
+          border: 'none',
+          cursor: 'pointer',
           borderRadius: '22px',
           padding: '18px 20px',
           background: active
@@ -638,7 +640,7 @@ function HappyHoursBanner() {
             {active ? t('home.happy_hours_active') : t('home.happy_hours_subtitle')}
           </div>
         </div>
-      </div>
+      </button>
     </div>
   );
 }

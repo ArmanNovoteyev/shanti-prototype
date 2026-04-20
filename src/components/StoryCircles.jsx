@@ -25,7 +25,7 @@ export default function StoryCircles() {
       id: 'happy_hours',
       icon: Clock,
       labelKey: 'home.story_happy_hours',
-      action: () => navigate('catalog'),
+      action: () => navigate('happy_hours'),
     },
     {
       id: 'subs',

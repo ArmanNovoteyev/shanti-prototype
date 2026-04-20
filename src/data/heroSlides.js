@@ -2,11 +2,7 @@
 // 5 слайдов hero-карусели главной.
 // Слайд 4 вычисляется динамически: Happy Hours в будни 11-14, иначе — Сертификат.
 
-export function isHappyHoursNow(now = new Date()) {
-  const day = now.getDay();
-  const h = now.getHours();
-  return day >= 1 && day <= 5 && h >= 11 && h < 14;
-}
+import { isHappyHoursNow } from '../utils/happyHours.js';
 
 const OVERLAY_LIGHT =
   'linear-gradient(180deg, rgba(42,32,25,0.18) 0%, rgba(42,32,25,0.20) 40%, rgba(42,32,25,0.58) 100%)';
@@ -54,7 +50,7 @@ const SLIDES = {
     titleKey: 'home.slide_hh_title',
     subKey: 'home.slide_hh_sub',
     ctaKey: 'home.slide_hh_cta',
-    navigateTo: 'catalog',
+    navigateTo: 'happy_hours',
     payload: null,
   },
   gift: {
