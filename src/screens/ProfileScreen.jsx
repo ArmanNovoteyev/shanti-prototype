@@ -5,13 +5,10 @@ import { useTranslation } from '../hooks/useTranslation.js';
 import { branches } from '../data/branches.js';
 import { masters } from '../data/masters.js';
 import { colors } from '../theme/colors.js';
+import { FONT_DISPLAY } from '../theme/fonts.js';
 import SubscriptionBalanceCard from '../components/SubscriptionBalanceCard.jsx';
 
-const display = {
-  fontFamily: "'Fraunces', serif",
-  fontWeight: 500,
-  letterSpacing: '-0.01em',
-};
+const display = { ...FONT_DISPLAY, letterSpacing: '-0.01em' };
 
 const body = { fontFamily: "'Manrope', sans-serif" };
 
@@ -162,7 +159,7 @@ function UnderlineSelect({ label, value, onChange, options, required }) {
           fontSize: 11,
           color: focused ? colors.copper : colors.textMuted,
           ...body,
-          fontWeight: 600,
+          fontWeight: 700,
           letterSpacing: '0.08em',
           textTransform: 'uppercase',
           pointerEvents: 'none',
@@ -217,7 +214,7 @@ function RadioRow({ options, value, onChange, label }) {
             ...body,
             fontSize: 11,
             color: colors.textMuted,
-            fontWeight: 600,
+            fontWeight: 700,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
             marginBottom: 12,
@@ -292,7 +289,7 @@ function PhoneRow({ value, onChange, country, onCountryChange, countryLabel, lab
           fontSize: 11,
           color: focused ? colors.copper : colors.textMuted,
           ...body,
-          fontWeight: 600,
+          fontWeight: 700,
           letterSpacing: '0.08em',
           textTransform: 'uppercase',
           pointerEvents: 'none',
@@ -449,7 +446,7 @@ function ConfirmModal({ title, text, yesLabel, noLabel, onYes, onNo }) {
               borderRadius: 14,
               ...body,
               fontSize: 13,
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: 'pointer',
             }}
           >
@@ -800,7 +797,7 @@ export default function ProfileScreen() {
           justifyContent: 'center',
           gap: 8,
           fontSize: 14,
-          fontWeight: 600,
+          fontWeight: 700,
           cursor: 'pointer',
         }}
       >

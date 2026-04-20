@@ -41,7 +41,7 @@ function CategoryTabs({ active, onChange }) {
               color: isActive ? colors.ivory : colors.deepBrown,
               border: isActive ? 'none' : '1px solid rgba(42,32,25,0.15)',
               fontSize: '13px',
-              fontWeight: 500,
+              fontWeight: 700,
               cursor: 'pointer',
               whiteSpace: 'nowrap',
               transition: 'all 0.2s',
@@ -135,7 +135,7 @@ function ServiceBadges({ service }) {
             padding: '3px 8px',
             borderRadius: '10px',
             fontSize: '10px',
-            fontWeight: 600,
+            fontWeight: 700,
             letterSpacing: '0.02em',
           }}
         >
@@ -282,7 +282,7 @@ function CourseCard({ service }) {
             padding: '12px 18px',
             borderRadius: '18px',
             fontSize: '13px',
-            fontWeight: 600,
+            fontWeight: 700,
             cursor: 'pointer',
             boxShadow: '0 8px 18px -8px rgba(184,121,74,0.55)',
           }}

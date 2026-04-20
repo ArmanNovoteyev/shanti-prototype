@@ -74,7 +74,7 @@ function PrimaryButton({ children, onClick, disabled }) {
         padding: '17px',
         borderRadius: '20px',
         fontSize: '15px',
-        fontWeight: 600,
+        fontWeight: 700,
         cursor: disabled ? 'not-allowed' : 'pointer',
         boxShadow: disabled ? 'none' : '0 10px 24px -10px rgba(184,121,74,0.55)',
       }}
@@ -268,9 +268,8 @@ function MasterAvatar({ name, isAny }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: "'Fraunces', serif",
+        ...FONT_DISPLAY,
         fontSize: 19,
-        fontWeight: 500,
         flexShrink: 0,
       }}
     >
@@ -414,7 +413,7 @@ function DateTimeStep({ draft, onPickDate, onPickTime, onConfirm, onBack }) {
                 border: active ? 'none' : '1px solid rgba(42,32,25,0.08)',
                 cursor: 'pointer',
                 fontSize: '14px',
-                fontWeight: 600,
+                fontWeight: 700,
                 position: 'relative',
               }}
             >
@@ -646,7 +645,7 @@ function TrioModal({ onYes, onNo }) {
             padding: '14px',
             borderRadius: '16px',
             fontSize: '14px',
-            fontWeight: 600,
+            fontWeight: 700,
             cursor: 'pointer',
             width: '100%',
             marginBottom: '8px',
@@ -738,7 +737,7 @@ export default function BookingScreen() {
             padding: '12px 20px',
             borderRadius: '18px',
             cursor: 'pointer',
-            fontWeight: 600,
+            fontWeight: 700,
           }}
         >
           {t('common.continue')}

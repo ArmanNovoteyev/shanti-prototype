@@ -122,7 +122,7 @@ function HeroSection({ service }) {
                 padding: '5px 10px',
                 borderRadius: 12,
                 fontSize: 11,
-                fontWeight: 600,
+                fontWeight: 700,
                 letterSpacing: '0.02em',
               }}
             >
@@ -152,7 +152,7 @@ function HappyHoursPill() {
       }}
     >
       <Clock size={16} color={colors.copper} strokeWidth={2.2} />
-      <span style={{ ...body, fontSize: 13, fontWeight: 600, letterSpacing: '0.01em' }}>
+      <span style={{ ...body, fontSize: 13, fontWeight: 700, letterSpacing: '0.01em' }}>
         {t('happyHours.detailBadge')}
       </span>
     </div>
@@ -210,7 +210,7 @@ function IncludedSection() {
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
           color: colors.textMuted,
-          fontWeight: 600,
+          fontWeight: 700,
           marginBottom: 14,
         }}
       >
@@ -403,7 +403,7 @@ function ServiceReviewsSection({ service }) {
             border: 'none',
             padding: 0,
             color: colors.copper,
-            fontWeight: 600,
+            fontWeight: 700,
             fontSize: 12,
             cursor: 'pointer',
             ...body,
@@ -474,7 +474,7 @@ function StickyCTA({ service, isHappy }) {
             height: 56,
             borderRadius: 28,
             fontSize: 16,
-            fontWeight: 600,
+            fontWeight: 700,
             cursor: 'pointer',
             boxShadow: '0 12px 28px -12px rgba(184,121,74,0.6)',
           }}
@@ -507,7 +507,7 @@ export default function ServiceDetailScreen() {
             padding: '12px 20px',
             borderRadius: 18,
             cursor: 'pointer',
-            fontWeight: 600,
+            fontWeight: 700,
           }}
         >
           В каталог

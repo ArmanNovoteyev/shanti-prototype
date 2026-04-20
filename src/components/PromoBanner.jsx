@@ -50,7 +50,7 @@ export default function PromoBanner() {
         color: isHappy ? colors.white : colors.deepBrown,
         fontFamily: "'Manrope', sans-serif",
         fontSize: 13,
-        fontWeight: 500,
+        fontWeight: 700,
         letterSpacing: '0.01em',
         cursor: 'pointer',
         display: 'flex',

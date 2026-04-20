@@ -97,7 +97,7 @@ function PrimaryButton({ children, onClick, disabled, icon: Icon }) {
         padding: '17px',
         borderRadius: '20px',
         fontSize: '15px',
-        fontWeight: 600,
+        fontWeight: 700,
         cursor: disabled ? 'not-allowed' : 'pointer',
         boxShadow: disabled ? 'none' : '0 10px 24px -10px rgba(184,121,74,0.55)',
         transition: 'background 0.2s, box-shadow 0.2s',
@@ -126,7 +126,7 @@ function OutlineButton({ children, onClick, icon: Icon }) {
         padding: '15px',
         borderRadius: '20px',
         fontSize: '15px',
-        fontWeight: 600,
+        fontWeight: 700,
         cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',
@@ -276,7 +276,7 @@ function HowItWorks({ t }) {
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
           color: colors.textMuted,
-          fontWeight: 600,
+          fontWeight: 700,
           marginBottom: 14,
         }}
       >
@@ -517,7 +517,7 @@ function AmountStep({ t, value, onChange, onNext, onBack }) {
                   borderRadius: 14,
                   padding: '10px 16px',
                   fontSize: 14,
-                  fontWeight: 600,
+                  fontWeight: 700,
                   cursor: 'pointer',
                 }}
               >

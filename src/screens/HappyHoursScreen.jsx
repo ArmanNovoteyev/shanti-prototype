@@ -69,7 +69,7 @@ function Header({ onBack, title, schedule }) {
             display: 'flex',
             alignItems: 'center',
             gap: 6,
-            fontWeight: 600,
+            fontWeight: 700,
           }}
         >
           <Clock size={12} color={colors.copper} strokeWidth={2} />
@@ -169,7 +169,7 @@ function ServiceCardHH({ service, badgeLabel, oldPriceLabel, newPriceLabel }) {
           </div>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: 10, color: colors.copper, letterSpacing: '0.04em', marginBottom: 2, fontWeight: 600 }}>
+          <div style={{ fontSize: 10, color: colors.copper, letterSpacing: '0.04em', marginBottom: 2, fontWeight: 700 }}>
             {newPriceLabel}
           </div>
           <div style={{ ...display, fontSize: 22, color: colors.copper, lineHeight: 1.1 }}>

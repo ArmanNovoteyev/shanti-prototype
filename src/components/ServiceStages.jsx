@@ -55,7 +55,6 @@ export default function ServiceStages({ stages }) {
                   ...display,
                   fontSize: 14,
                   color: colors.copper,
-                  fontWeight: 600,
                   flexShrink: 0,
                   minWidth: 22,
                 }}

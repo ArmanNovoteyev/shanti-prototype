@@ -2,23 +2,14 @@ import { useState, useContext } from 'react';
 import { X, ChevronRight } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { colors } from '../theme/colors.js';
+import { FONT_DISPLAY } from '../theme/fonts.js';
 import {
   subscriptions,
   SUBSCRIPTION_METAL_COLORS,
   formatPrice,
 } from '../data/subscriptions.js';
 
-const display = {
-  fontFamily: "'Fraunces', serif",
-  fontWeight: 500,
-  letterSpacing: '-0.02em',
-};
-const displayItalic = {
-  fontFamily: "'Fraunces', serif",
-  fontStyle: 'italic',
-  fontWeight: 500,
-  letterSpacing: '-0.02em',
-};
+const display = { ...FONT_DISPLAY, letterSpacing: '-0.02em' };
 const body = { fontFamily: "'Manrope', sans-serif" };
 
 function Eyebrow({ children, dark = false }) {
@@ -30,7 +21,7 @@ function Eyebrow({ children, dark = false }) {
         letterSpacing: '0.2em',
         textTransform: 'uppercase',
         color: dark ? 'rgba(251,248,241,0.8)' : colors.textMuted,
-        fontWeight: 600,
+        fontWeight: 700,
       }}
     >
       {children}
@@ -81,7 +72,7 @@ function Slide1() {
         />
         <h1
           style={{
-            ...displayItalic,
+            ...display,
             fontSize: 52,
             color: colors.deepBrown,
             margin: 0,
@@ -178,7 +169,7 @@ function Slide2() {
             gap: 8,
             ...body,
             fontSize: 13,
-            fontWeight: 500,
+            fontWeight: 700,
             color: colors.ivory,
           }}
         >
@@ -356,7 +347,7 @@ function Slide4() {
         <Eyebrow>Сертификат</Eyebrow>
         <h1
           style={{
-            ...displayItalic,
+            ...display,
             fontSize: 44,
             color: colors.deepBrown,
             margin: '12px 0 0',
@@ -506,7 +497,7 @@ function Slide5() {
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
               opacity: 0.85,
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
             Ваш баланс
@@ -602,7 +593,7 @@ function Slide6({ onStart }) {
         <Eyebrow dark>Начнём?</Eyebrow>
         <h1
           style={{
-            ...displayItalic,
+            ...display,
             fontSize: 44,
             color: colors.ivory,
             margin: '12px 0 0',

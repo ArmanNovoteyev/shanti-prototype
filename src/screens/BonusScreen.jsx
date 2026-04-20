@@ -52,7 +52,7 @@ function BalanceCard({ t, balance }) {
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
             opacity: 0.7,
-            fontWeight: 600,
+            fontWeight: 700,
           }}
         >
           {t('bonus.balance')}
@@ -201,7 +201,7 @@ function BackBalanceCard({ t, tracker, onBook }) {
           padding: 15,
           borderRadius: 18,
           fontSize: 14,
-          fontWeight: 600,
+          fontWeight: 700,
           cursor: 'pointer',
           boxShadow: '0 10px 24px -12px rgba(184,121,74,0.5)',
         }}
@@ -309,7 +309,7 @@ function ReferralCard({ t, onInvite }) {
           borderRadius: 14,
           cursor: 'pointer',
           fontSize: 13,
-          fontWeight: 600,
+          fontWeight: 700,
           flexShrink: 0,
         }}
       >
@@ -363,7 +363,6 @@ function HistoryCard({ t, items }) {
                 ...display,
                 fontSize: 17,
                 color: isEarned ? colors.success : colors.textMuted,
-                fontWeight: 500,
                 flexShrink: 0,
                 whiteSpace: 'nowrap',
               }}

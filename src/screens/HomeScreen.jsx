@@ -98,10 +98,8 @@ function HeroSlide({ slide, greetingSub }) {
         <h1
           style={{
             ...display,
-            fontStyle: 'italic',
             fontSize: 40,
             lineHeight: 1.05,
-            fontWeight: 500,
             margin: 0,
             marginBottom: sub || cta ? 14 : 0,
           }}
@@ -125,7 +123,7 @@ function HeroSlide({ slide, greetingSub }) {
               padding: '12px 20px',
               borderRadius: 18,
               fontSize: 14,
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
@@ -240,7 +238,6 @@ function Hero() {
             fontSize: '17px',
             letterSpacing: '0.32em',
             color: colors.ivory,
-            fontWeight: 600,
           }}
         >
           SHANTI
@@ -457,7 +454,7 @@ function NextVisitCard() {
               padding: '10px 20px',
               borderRadius: '18px',
               fontSize: '13px',
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: 'pointer',
             }}
           >
@@ -541,7 +538,7 @@ function NextVisitCard() {
               padding: '7px 14px',
               borderRadius: '18px',
               fontSize: '12px',
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: 'pointer',
             }}
           >
@@ -569,7 +566,7 @@ function PrimaryCTA() {
           padding: '17px',
           borderRadius: '20px',
           fontSize: '15px',
-          fontWeight: 600,
+          fontWeight: 700,
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
@@ -630,7 +627,7 @@ function HappyHoursBanner() {
               fontSize: '11px',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              fontWeight: 600,
+              fontWeight: 700,
               marginBottom: '4px',
               opacity: active ? 0.95 : 0.65,
             }}
@@ -759,7 +756,7 @@ function ReviewsCarousel() {
             padding: 0,
             fontSize: '12px',
             color: colors.copper,
-            fontWeight: 600,
+            fontWeight: 700,
             cursor: 'pointer',
             fontFamily: "'Manrope', sans-serif",
           }}

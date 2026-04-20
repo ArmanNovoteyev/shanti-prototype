@@ -122,7 +122,7 @@ export default function StoryCircles() {
                 textAlign: 'center',
                 maxWidth: 72,
                 lineHeight: 1.2,
-                fontWeight: 500,
+                fontWeight: 700,
               }}
             >
               {t(s.labelKey)}

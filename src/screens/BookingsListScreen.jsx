@@ -35,7 +35,7 @@ function Eyebrow({ children, color }) {
       style={{
         ...body,
         fontSize: 11,
-        fontWeight: 600,
+        fontWeight: 700,
         letterSpacing: '0.18em',
         textTransform: 'uppercase',
         color: color || colors.textMuted,
@@ -117,7 +117,7 @@ function Tabs({ active, onChange, upcomingCount, historyCount }) {
           color: isActive ? colors.ivory : colors.deepBrown,
           ...body,
           fontSize: 14,
-          fontWeight: 600,
+          fontWeight: 700,
           cursor: 'pointer',
           transition: 'all 0.15s ease',
         }}
@@ -214,7 +214,7 @@ function VisitCard({ visit, kind, onRepeat, localized, t }) {
               border: 'none',
               padding: 0,
               cursor: 'pointer',
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
             {t('bookings.repeat')} →
@@ -258,7 +258,7 @@ function EmptyState({ onBook }) {
           padding: '0 22px',
           ...body,
           fontSize: 15,
-          fontWeight: 600,
+          fontWeight: 700,
           cursor: 'pointer',
         }}
       >

@@ -245,12 +245,9 @@ Regular 400 + Bold 700 в `index.html` (woff2 из
 классификация 6 классов использования веса свёрнута в правила:
 класс A (display-const) + B (eyebrow uppercase) + C (CTA) → **700**
 через FONT_DISPLAY; класс D (inline body) → **400** через FONT_BODY.
-Italic оба → A (Bold, без italic). 3 места отложены на 5c с
-показом контекста: `BookingScreen:666` (secondary CTA),
-`GiftCertificate.jsx:244-299` (certificate design),
-`ServiceDetailScreen.jsx:339`.
+Italic оба → A (Bold, без italic).
 
-**V3.0.5b-part1:** 12 файлов, одинаковый паттерн
+**V3.0.5b-part1 (коммит `2e00066`):** 12 файлов, одинаковый паттерн
 `const display = { fontFamily: "'Fraunces', serif", fontWeight: 500, ... }`
 заменён на `{ ...FONT_DISPLAY, letterSpacing: '-0.02em' }`
 + импорт `FONT_DISPLAY` из `../theme/fonts.js`:
@@ -259,16 +256,31 @@ BonusScreen, BookingScreen, BookingsListScreen, CatalogScreen,
 GiftScreen, HappyHoursScreen, HomeScreen, ServiceDetailScreen,
 SubscriptionPurchaseScreen. Билд зелёный, 396.68 kB.
 
-**V3.0.5b-part2 (новая сессия):**
-- 3 multi-line display const (Onboarding + Profile + Reviews)
-- OnboardingScreen `displayItalic` + 3 usages → `display` (Bold)
-- HomeScreen hero italic L98-108 → Bold 700 (снять fontStyle+fontWeight)
-- FeedbackScreen inline L8
-- BookingScreen inline L270-273
-- App.jsx class B L97 (600 → 700)
-- ~44 class B/C weight bumps 500/600 → 700
-- `grep Fraunces src/` должен быть пустой в конце (кроме
-  GiftCertificate:251, держится до 5c)
+**V3.0.5b-part2 (DONE):**
+Italic удалён во всех местах (OnboardingScreen `displayItalic`
++ 3 usages, HomeScreen hero L98-108). Остаточные Fraunces
+закрыты: FeedbackScreen L8, BookingScreen inline L270-273,
+3 multi-line display const в Onboarding + Profile + Reviews.
+Class B (uppercase eyebrow) + Class C (CTA buttons) везде
+подняты на 700 (~48 мест, включая 6 из сомнительных:
+StoryCircles caption, HappyHours schedule/price labels,
+ServiceDetail happy-hours badges, CatalogScreen tag chip).
+3 override на `...display` сняты (ServiceStages, BonusScreen
+баланс-ряд, HomeScreen SHANTI logo). Билд зелёный, 396.31 kB.
+
+**Итог 5b guards:** `grep Fraunces src/` → только
+GiftCertificate.jsx:251 (HOLD для 5c). `grep "fontStyle: italic"`
+→ пусто. Оставшиеся `fontWeight: 500/600` — все Class D / HOLD.
+
+**HOLD-список для V3.0.5c (10 мест, ревью перед трогом):**
+- GiftCertificate.jsx:244, 253, 276, 282, 299 — printed
+  certificate design (L253 всё ещё Fraunces)
+- BookingScreen.jsx:666 — secondary CTA «Назад/Отмена»
+- ServiceDetailScreen.jsx:340 — неясный контекст fontWeight 500
+- SubscriptionPurchaseScreen.jsx:118 — вторичная текстовая кнопка
+  (зеркалит BookingScreen:666)
+- GiftScreen.jsx:676 — PaymentMethodRow label (radio-like)
+- GiftScreen.jsx:852 — design label под gallery-preview
 
 ### Визуальная итерация — реальные фото
 **Hero на HomeScreen**: градиент sage→deepSage→copper заменён 

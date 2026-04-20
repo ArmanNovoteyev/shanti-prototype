@@ -94,7 +94,7 @@ function Shell() {
             justifyContent: 'space-between',
             padding: '14px 28px 8px',
             fontSize: '13px',
-            fontWeight: 600,
+            fontWeight: 700,
           }}
         >
           <span>9:41</span>
