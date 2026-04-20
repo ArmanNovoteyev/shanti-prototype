@@ -113,6 +113,7 @@ export function AppProvider({ children }) {
   const [bookingDraft, setBookingDraft] = useState(EMPTY_DRAFT);
   const [giftDraft, setGiftDraft] = useState(EMPTY_GIFT_DRAFT);
   const [userSubscriptions, setUserSubscriptions] = useState(DEFAULT_USER_SUBSCRIPTIONS);
+  const [catalogInitialCategory, setCatalogInitialCategory] = useState(null);
   const [hasSeenOnboarding, setHasSeenOnboarding] = useState(false);
   const [toast, setToast] = useState(null);
   const toastTimer = useRef(null);
@@ -211,6 +212,8 @@ export function AppProvider({ children }) {
       consumeBackBalanceVisit,
       userSubscriptions,
       purchaseSubscription,
+      catalogInitialCategory,
+      setCatalogInitialCategory,
       hasSeenOnboarding,
       completeOnboarding,
       resetOnboarding,
@@ -236,6 +239,7 @@ export function AppProvider({ children }) {
       consumeBackBalanceVisit,
       userSubscriptions,
       purchaseSubscription,
+      catalogInitialCategory,
       hasSeenOnboarding,
       completeOnboarding,
       resetOnboarding,

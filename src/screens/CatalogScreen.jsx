@@ -1,4 +1,4 @@
-import { useContext, useState, useMemo } from 'react';
+import { useContext, useState, useMemo, useEffect } from 'react';
 import { Clock, Flame, Heart, ChevronRight, Award } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { useTranslation } from '../hooks/useTranslation.js';
@@ -313,8 +313,13 @@ function SubsectionEyebrow({ children }) {
 
 export default function CatalogScreen() {
   const { t } = useTranslation();
-  const { navigate } = useContext(AppContext);
-  const [category, setCategory] = useState('massage');
+  const { navigate, catalogInitialCategory, setCatalogInitialCategory } = useContext(AppContext);
+  const [category, setCategory] = useState(catalogInitialCategory || 'massage');
+
+  useEffect(() => {
+    if (catalogInitialCategory) setCatalogInitialCategory(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const list = useMemo(() => services.filter((s) => s.category === category), [category]);
 

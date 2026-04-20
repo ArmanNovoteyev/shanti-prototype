@@ -16,7 +16,7 @@ const body = { fontFamily: "'Manrope', sans-serif" };
 
 export default function StoryCircles() {
   const { t } = useTranslation();
-  const { navigate, showToast } = useContext(AppContext);
+  const { navigate, showToast, setCatalogInitialCategory } = useContext(AppContext);
 
   const soon = () => showToast(t('home.story_soon_toast'));
 
@@ -31,7 +31,10 @@ export default function StoryCircles() {
       id: 'subs',
       icon: Award,
       labelKey: 'home.story_subs',
-      action: () => navigate('catalog'),
+      action: () => {
+        setCatalogInitialCategory('courses');
+        navigate('catalog');
+      },
     },
     {
       id: 'gift',
