@@ -421,18 +421,49 @@ SocialProof — 8 фото (180×220, snap-x, lazy-load):
 
 **Архитектурный урок (закрепить на весь проект):** inline-style контейнер с `height: '100%'` + `padding: ...` **ВСЕГДА** требует `boxSizing: 'border-box'`. Без него default = `content-box`, padding добавляется к height, контент уходит за viewport. React inline styles не наследуют global `* { box-sizing: border-box }` если его нет в CSS. Проверять при любой правке full-height слайдов.
 
-**Техдолг V3.2+ (открыт, по запросу):**
-- Миграция 7 старых фото (03, 11, 20, 22, 25, 26, 31) из hero/onboarding на новую data-first схему (V3.0.8b).
-- Унификация типографики онбординга (сейчас 6 разных fontSize H1 по слайдам: 52/44/42/44/40/36 — свести к 2-3 классам).
-- Возможное переименование `royal-stone` → `royal-stones` (consistency с прайсом).
+---
 
-**Бэклог идей V3.2+ (не приоритет, живут до запроса от Алины/владелицы):**
-- Заполнить `kk.json` и `en.json` настоящими переводами (сейчас заглушки = копии `ru`, кроме `home.atmosphere`).
+### V3.2 — сертификаты Алины + hero Счастливые часы + atmosphere в карусели (DONE, 6 коммитов, 2026-04-22, iPhone Safari принято)
+
+После V3.1 закрыт цикл реальных дизайнов сертификатов и редизайн главной hero-карусели:
+
+- **V3.2.1a (`dac0657`)** — 4 реальных JPG сертификатов Shanti на Slide4 онбординга (fan layout с поворотами, z-index flip, `background-position: right`). Эмодзи-болванки удалены.
+- **V3.2.1b (`b987464`)** — `GiftCertificate.jsx` полный рерайт: 4 чистых JPG Алины (без текста/логотипов) + SVG-оверлей с динамическими полями (amount / recipient / sender / QR / contacts) по v7 position map. Дизайны переименованы (ny → newyear, dark+light → everyday — стало 4 варианта). Открыт техдолг V3.2.1c-i18n (kk/en переводы).
+- **V3.2.2 (`06d0857`)** — hero "Happy Hours" → "Счастливые часы": **price hero layout** (14 400 ₸ / час герой 36px #FFF9F0 weight 600 + 18 000 ₸ перечёркнутая opacity 0.55 + −20% в будни copper). Ренейм Happy Hours → Счастливые часы во всех 5 UI-точках (hero, story-круг, promo-баннер, detail-экран, booking-summary). Gradient overlay `rgba(28,20,16,0.55 → 0)` для читаемости. Архитектура: optional fields на `happyHours` slide + conditional render в `HeroSlide` (остальные 4 слайда байт-идентичны, `hasPriceBlock = Boolean(priceNew)` отключает price-блок).
+- **⚠ V3.2.2-hack (`5a3fe74`)** — `TEMP-REVERT-V3.2.2-DEMO`: `isHappyHoursNow()` форсированно `return true` для демо Арману 24/7 на iPhone Safari. **Откатить перед показом Алине/владелице.** Оригинальная проверка (Пн-Пт 11:00-13:59) сохранена как unreachable-код. `grep TEMP-REVERT-V3.2.2-DEMO` для поиска.
+- **V3.2.3 (`09427fc`)** — hero переведён с тематических фото на `atmosphere-01..05` (6 bg-путей в `heroSlides.js`). Блок `AtmosphereGallery` удалён из `HomeScreen` (−52 строки, −0.24 КБ gzip) — 5 atmosphere-кадров теперь единственная презентация интерьера, дублирующий блок внизу не нужен.
+- **V3.2.3a (`dac239e`)** — порядок atmosphere-фото развёрнут: love=05, silver=04, gold=03, happyHours/gift=02, backBalance=01.
+
+**Итог V3 + V3.1 + V3.2:** 30 коммитов на remote (18 V3 + 6 V3.1 + 6 V3.2). Финальный hash `dac239e`. Prod `https://shanti-prototype.vercel.app` — полноценный прототип с реальными сертификатами, hero price-layout и atmosphere-каруселью. **Готов для демо Алине и владелице после отката DEMO-hack.**
+
+**Архитектурные находки V3.2 (для переиспользования):**
+- **JPG-фон + SVG-оверлей для карточек** (V3.2.1b): базовый JPG от дизайнера содержит дизайн, SVG сверху рисует динамические поля с абсолютным позиционированием по position map. Дизайнер работает в Figma/Photoshop и экспортит в JPG, разработчик не переверстывает при смене темы.
+- **Optional fields вместо variant-паттерна** (V3.2.2): на конкретный слайд добавлены опциональные поля (`priceNewKey`, `priceUnitKey`, `priceOldKey`, `weekdayPromoKey`), единый `HeroSlide` рендерит price-блок через `hasPriceBlock`. Остальные слайды — 0 изменений. Легче чем плодить `HeroSlidePrice` vs `HeroSlideRegular`.
+- **Gradient overlay для читаемости** (V3.2.2): `linear-gradient(to top, rgba(28,20,16,0.55) 0%, rgba(28,20,16,0.35) 40%, rgba(28,20,16,0) 100%)` применяется только при `hasPriceBlock`. Защищает price-блок без `text-shadow` (который ломается на контрастных текстурах фото).
+- **box-sizing border-box** (V3.1 урок, продолжает действовать) — golden rule для любых full-height контейнеров с padding.
+
+---
+
+**⚠ БЛОКЕР ПЕРЕД ДЕМО АЛИНЕ (V3.3-revert):**
+- Откат `TEMP-REVERT-V3.2.2-DEMO` в `src/utils/happyHours.js` — вернуть `isHappyHoursNow()` к оригинальной проверке (Пн-Пт 11:00-13:59). `grep TEMP-REVERT-V3.2.2-DEMO src/`. См. `memory/project_shanti_v322_demo_hack.md`.
+
+**Техдолг V3.3+ (не блокеры):**
+- **V3.2.1c-i18n** — полный перевод `kk.json` и `en.json` (остались русские строки в `home.*`, `booking.*`, `gift.*`, `bookings.*`, `bonus.*`, `profile.*`, `catalog.*`, `reviews.*`). Для демо владелице не критично (смотрит ru), но для MVP нужен полноценный kk + en.
+- **V3.2.1c-cosmetic** (опционально, после iPhone-проверки сертификатов):
+  - muted цвет contacts `#967056` → `#8A5E3F` если плохо читается на 8march/birthday
+  - `text-shadow` на amount/title если на everyday/newyear слабый контраст
+  - `truncate` recipient — подтверждён работающим в V3.2.1b
+- **Неиспользуемые hero-фото**: 6 файлов (`03-back-massage-deep-tissue`, `11-hot-stones-back`, `20-herbal-compress-lotus`, `22-wooden-barrel-onyx`, `25-massage-bed-lotus`, `26-tea-ceremony`) лежат в `public/assets/photos/` (~2–3 МБ). Если откат V3.2.3 не понадобится через 2–4 недели — удалить.
+- **Ключ `home.atmosphere`** остался в 3 локалях после удаления `AtmosphereGallery`. Арман попросил не трогать. Почистить если блок не вернём.
+- **Унификация типографики онбординга** (из V3.1): 6 разных fontSize H1 по слайдам (52/44/42/44/40/36) — свести к 2-3 классам.
+- **`royal-stone` → `royal-stones`** — consistency с прайсом (если Алина попросит).
+
+**Бэклог идей V3.3+ (обсудить с Алиной/владелицей после демо):**
 - `BookingsListScreen` — сейчас заглушка, развернуть при появлении реальных броней.
-- `FeedbackScreen` — сейчас заглушка, развернуть при подключении формы обратной связи.
-- Реальная интеграция Kaspi Pay и WhatsApp Business API (сейчас `wa.me` deep-link и spinner-заглушка).
-- Kaspi-авторизация вместо mock-пользователя «Айгерим».
-- Push-уведомления (сейчас toggle в `ProfileScreen` ничего не делает).
+- `FeedbackScreen` — заглушка, развернуть при подключении формы обратной связи.
+- Реальная интеграция Kaspi Pay и WhatsApp Business API (сейчас `wa.me` deep-link + spinner-mock).
+- Kaspi-авторизация вместо mock-«Айгерим».
+- Push-уведомления (toggle в `ProfileScreen` пока ничего не делает).
 
 ---
 
