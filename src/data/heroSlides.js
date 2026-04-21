@@ -14,7 +14,7 @@ const OVERLAY_COPPER =
 const SLIDES = {
   love: {
     id: 'love',
-    bg: '/assets/photos/atmosphere-01.jpg',
+    bg: '/assets/photos/atmosphere-05.jpg',
     overlay: OVERLAY_LIGHT,
     eyebrowKey: 'home.hero_eyebrow',
     titleKey: 'home.hero_title',
@@ -22,7 +22,7 @@ const SLIDES = {
   },
   silver: {
     id: 'silver',
-    bg: '/assets/photos/atmosphere-02.jpg',
+    bg: '/assets/photos/atmosphere-04.jpg',
     overlay: OVERLAY_MED,
     eyebrowKey: 'home.slide_silver_eyebrow',
     titleKey: 'home.slide_silver_title',
@@ -44,7 +44,7 @@ const SLIDES = {
   },
   happyHours: {
     id: 'happy_hours',
-    bg: '/assets/photos/atmosphere-04.jpg',
+    bg: '/assets/photos/atmosphere-02.jpg',
     overlay: OVERLAY_COPPER,
     eyebrowKey: 'home.slide_hh_eyebrow',
     titleKey: 'home.slide_hh_title',
@@ -59,7 +59,7 @@ const SLIDES = {
   },
   gift: {
     id: 'gift',
-    bg: '/assets/photos/atmosphere-04.jpg',
+    bg: '/assets/photos/atmosphere-02.jpg',
     overlay: OVERLAY_MED,
     eyebrowKey: 'home.slide_gift_eyebrow',
     titleKey: 'home.slide_gift_title',
@@ -70,7 +70,7 @@ const SLIDES = {
   },
   backBalance: {
     id: 'back_balance',
-    bg: '/assets/photos/atmosphere-05.jpg',
+    bg: '/assets/photos/atmosphere-01.jpg',
     overlay: OVERLAY_MED,
     eyebrowKey: 'home.slide_bb_eyebrow',
     titleKey: 'home.slide_bb_title',
