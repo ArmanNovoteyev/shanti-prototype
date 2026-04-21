@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { X, ChevronRight } from 'lucide-react';
 import { AppContext } from '../context/AppContext.jsx';
 import { colors } from '../theme/colors.js';
@@ -670,6 +670,15 @@ export default function OnboardingScreen() {
   const handleSkip = () => {
     completeOnboarding();
   };
+
+  useEffect(() => {
+    if (slideIdx >= totalSlides - 1) return;
+    const t = setTimeout(() => {
+      setSlideIdx((idx) => (idx < totalSlides - 1 ? idx + 1 : idx));
+    }, 5000);
+    return () => clearTimeout(t);
+  }, [slideIdx]);
+
   const handleTap = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -711,6 +720,7 @@ export default function OnboardingScreen() {
       </div>
 
       {/* Progress bar */}
+      <style>{`@keyframes shanti-onboarding-fill { from { width: 0%; } to { width: 100%; } }`}</style>
       <div
         style={{
           position: 'absolute',
@@ -723,25 +733,43 @@ export default function OnboardingScreen() {
           pointerEvents: 'none',
         }}
       >
-        {Array.from({ length: totalSlides }).map((_, i) => (
-          <div
-            key={i}
-            style={{
-              flex: 1,
-              height: 3,
-              borderRadius: 1.5,
-              background:
-                i <= slideIdx
-                  ? isDark
-                    ? 'rgba(251,248,241,0.95)'
-                    : colors.deepBrown
-                  : isDark
-                  ? 'rgba(251,248,241,0.3)'
-                  : 'rgba(42,32,25,0.18)',
-              transition: 'background 0.3s ease',
-            }}
-          />
-        ))}
+        {Array.from({ length: totalSlides }).map((_, i) => {
+          const trackBg = isDark ? 'rgba(251,248,241,0.3)' : 'rgba(42,32,25,0.18)';
+          const fillBg = isDark ? 'rgba(251,248,241,0.95)' : colors.deepBrown;
+          const isPast = i < slideIdx;
+          const isActive = i === slideIdx;
+          const isLast = slideIdx === totalSlides - 1;
+          let fillWidth = '0%';
+          let animation;
+          if (isPast) fillWidth = '100%';
+          else if (isActive && isLast) fillWidth = '100%';
+          else if (isActive) {
+            fillWidth = '0%';
+            animation = 'shanti-onboarding-fill 5s linear forwards';
+          }
+          return (
+            <div
+              key={i}
+              style={{
+                flex: 1,
+                height: 3,
+                borderRadius: 1.5,
+                background: trackBg,
+                overflow: 'hidden',
+              }}
+            >
+              <div
+                key={isActive ? `active-${slideIdx}` : `static-${i}`}
+                style={{
+                  width: fillWidth,
+                  height: '100%',
+                  background: fillBg,
+                  animation,
+                }}
+              />
+            </div>
+          );
+        })}
       </div>
 
       {/* Skip button */}
