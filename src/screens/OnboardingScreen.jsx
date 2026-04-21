@@ -41,6 +41,7 @@ function Slide1() {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '88px 32px 64px',
+        boxSizing: 'border-box',
         textAlign: 'center',
       }}
     >
@@ -127,6 +128,7 @@ function Slide2() {
           flexDirection: 'column',
           justifyContent: 'flex-end',
           padding: '64px 32px 72px',
+          boxSizing: 'border-box',
           color: colors.ivory,
           maxWidth: 440,
           margin: '0 auto',
@@ -191,6 +193,7 @@ function Slide3() {
         display: 'flex',
         flexDirection: 'column',
         padding: '72px 24px 56px',
+        boxSizing: 'border-box',
       }}
     >
       <div
@@ -330,6 +333,7 @@ function Slide4() {
         display: 'flex',
         flexDirection: 'column',
         padding: '72px 32px 56px',
+        boxSizing: 'border-box',
       }}
     >
       <div
@@ -430,6 +434,7 @@ function Slide5() {
         display: 'flex',
         flexDirection: 'column',
         padding: '72px 28px 56px',
+        boxSizing: 'border-box',
       }}
     >
       <div
