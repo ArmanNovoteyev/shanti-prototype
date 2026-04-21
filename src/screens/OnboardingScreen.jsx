@@ -585,6 +585,7 @@ function Slide6({ onStart }) {
           flexDirection: 'column',
           justifyContent: 'flex-end',
           padding: '64px 32px 136px',
+          boxSizing: 'border-box',
           color: colors.ivory,
           maxWidth: 440,
           margin: '0 auto',
