@@ -406,42 +406,33 @@ SocialProof — 8 фото (180×220, snap-x, lazy-load):
 
 ---
 
-## 🎯 СТАТУС: ФИНИШ
+### V3.1 — hotfix-серия онбординга (DONE, 6 коммитов, 2026-04-21, Chrome-мост + iPhone Safari приняты)
 
-**Проект готов.** Все 8 экранов рабочие (9 с ReviewsScreen), 
-booking + gift + reviews + profile + bonus работают, i18n 
-переключается вживую, 9 фото интегрированы. 5 этапов + 
-бонусная итерация выполнены.
+После push V3 (18 коммитов одним махом) на Vercel всплыли визуальные баги онбординга:
 
-**Коммиты локально (НЕ запушены — push за Арманом):**
-- `cf3e8c6` — этап 3 (booking flow)
-- `b6c799d` — ассеты (logo + 35 photos + marketing card)
-- `93787ef` — этап 4 (gift certificates flow)
-- `59e33e8` — этап 5 (bonus + back balance tracker)
-- `12e4d08` — docs: handoff для этапа 6
-- `2fb9d95` — этап 6 (reviews + profile + polish + locale fixes)
-- `b0814c5` — visuals: hero photo + atmosphere gallery
+- **V3.1.1 (`b3a69e1`)** — layout: Slide2 center-top + fontSize 44, Slide6 padding-bottom 176, fontSize H1 44→36 + lineHeight 1.05→1.1.
+- **V3.1.2 (`e716708`)** — fix CTA overlap попытка: Slide6 `<p>` margin `'18px 0 0'` → `'18px 0 80px'` (buffer). Не закрыло — две системы координат (absolute CTA vs flex content).
+- **V3.1.3 (`10dcaac`)** — архитектурный фикс: Slide6 button перенесён внутрь flex-контейнера как 4-й child, убран `position: absolute`, `marginTop: 32`. Overlap устранён, но CTA уехала под viewport (контейнер 927px > viewport 727px).
+- **V3.1.4 (`337cc86`)** — корневой фикс: `boxSizing: 'border-box'` на content-контейнер Slide6 (L591). Причина — `height: '100%'` + `padding: '64px 32px 136px'` без box-sizing = content-box, padding ДОБАВЛЯЛСЯ к высоте → 727+200=927. С border-box высота включает padding → 727. Flex-end прижимает все 4 элемента (eyebrow + H1 + P + CTA) к низу реального viewport. Chrome-мост 2026-04-21 на `shanti-prototype.vercel.app` подтвердил: CTA.bottom=591 < viewport 727, H1/P видны, overlap нет.
+- **V3.1.5a (`bfb48c3`)** — `boxSizing: 'border-box'` на content-контейнерах Slide1-5 (5 однострочных правок). Арман прислал скрины iPhone Safari: Slide1 подзаголовок обрезан снизу, Slide2 H1+sub за viewport, Slide3 H1+цены обрезаны справа, Slide5 Back Balance карточка обрезана — все 4 бага закрылись одним фиксом. Slide3 horizontal overflow и Slide4 композиция тоже заодно починились (v3.1.5b пропущен — не понадобился).
+- **V3.1.5c (`b15a538`)** — авто-анимация прогресс-бара онбординга. 2-слойная структура сегмента (track + fill), `@keyframes shanti-onboarding-fill` 0→100% width, 5s linear forwards. `useEffect([slideIdx])` с setTimeout 5000ms + cleanup через clearTimeout — ручной тап/back/skip автоматически сбрасывает таймер. На Slide6 таймер НЕ ставится (ранний return `slideIdx >= totalSlides - 1`), прогресс заполнен на 100% без повторной анимации, ждём CTA. iOS Safari reliability через `key` на активном fill — принудительный remount для перезапуска анимации. Анти-скачок при `handleBack`: transition на `width` отсутствует, ширина меняется мгновенно.
 
-**На 6 коммитов впереди origin/master.**
+**Итог V3+V3.1:** 24 коммита на remote (18 V3 + 6 V3.1). Финальный hash `b15a538`. Prod `https://shanti-prototype.vercel.app` — онбординг production-ready на iPhone Safari + Chrome, готов для демо Алине.
 
-## 🔮 ЧТО ОСТАЛОСЬ
+**Архитектурный урок (закрепить на весь проект):** inline-style контейнер с `height: '100%'` + `padding: ...` **ВСЕГДА** требует `boxSizing: 'border-box'`. Без него default = `content-box`, padding добавляется к height, контент уходит за viewport. React inline styles не наследуют global `* { box-sizing: border-box }` если его нет в CSS. Проверять при любой правке full-height слайдов.
 
-Функционально — **ничего**. Остались только действия Армана:
+**Техдолг V3.2+ (открыт, по запросу):**
+- Миграция 7 старых фото (03, 11, 20, 22, 25, 26, 31) из hero/onboarding на новую data-first схему (V3.0.8b).
+- Унификация типографики онбординга (сейчас 6 разных fontSize H1 по слайдам: 52/44/42/44/40/36 — свести к 2-3 классам).
+- Возможное переименование `royal-stone` → `royal-stones` (consistency с прайсом).
 
-1. `git push origin master` — Vercel автодеплой на 
-   shanti-prototype.vercel.app
-2. Отправить ссылку Алине
-3. Алина показывает владелице салона
-
-**Опциональные идеи на будущее** (если проект пойдёт дальше):
-- Заполнить kk.json и en.json настоящими переводами 
-  (сейчас заглушки = копии ru, кроме `home.atmosphere`)
-- BookingsListScreen и FeedbackScreen сейчас заглушки — 
-  можно развернуть если понадобится
-- Реальные интеграции Kaspi Pay и WhatsApp Business API 
-  (сейчас wa.me deep-link и spinner-заглушка)
-- Kaspi-авторизация вместо mock-пользователя "Айгерим"
-- Push-уведомления (сейчас toggle в профиле ничего не делает)
+**Бэклог идей V3.2+ (не приоритет, живут до запроса от Алины/владелицы):**
+- Заполнить `kk.json` и `en.json` настоящими переводами (сейчас заглушки = копии `ru`, кроме `home.atmosphere`).
+- `BookingsListScreen` — сейчас заглушка, развернуть при появлении реальных броней.
+- `FeedbackScreen` — сейчас заглушка, развернуть при подключении формы обратной связи.
+- Реальная интеграция Kaspi Pay и WhatsApp Business API (сейчас `wa.me` deep-link и spinner-заглушка).
+- Kaspi-авторизация вместо mock-пользователя «Айгерим».
+- Push-уведомления (сейчас toggle в `ProfileScreen` ничего не делает).
 
 ---
 
