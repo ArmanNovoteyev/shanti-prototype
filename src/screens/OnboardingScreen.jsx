@@ -320,10 +320,14 @@ function Slide3() {
 
 function Slide4() {
   const designs = [
-    { emoji: '🎄', label: 'Новый год', bg: '#3D2E24' },
-    { emoji: '🌷', label: '8 марта', bg: '#B8794A' },
-    { emoji: '🎂', label: 'Подарок', bg: '#8F5C35' },
+    { id: 'newyear',  src: '/assets/certificates/cert-newyear.jpg',  bgPos: '100% center' },
+    { id: '8march',   src: '/assets/certificates/cert-8march.jpg',   bgPos: '100% center' },
+    { id: 'birthday', src: '/assets/certificates/cert-birthday.jpg', bgPos: '100% center' },
+    { id: 'everyday', src: '/assets/certificates/cert-everyday.jpg', bgPos: '100% center' },
   ];
+  const rotations = [-10, -4, 4, 10];
+  const xOffsets  = [0, 54, 108, 162];
+  const yOffsets  = [4, 0, 0, 4];
   return (
     <div
       style={{
@@ -372,50 +376,36 @@ function Slide4() {
             maxWidth: 300,
           }}
         >
-          5 дизайнов, от 20 000 ₸, мгновенно в WhatsApp
+          4 дизайна, от 20 000 ₸, мгновенно в WhatsApp
         </p>
         <div
           style={{
-            display: 'flex',
-            gap: 14,
-            justifyContent: 'center',
+            position: 'relative',
+            width: 318,
+            height: 120,
             marginTop: 44,
           }}
         >
           {designs.map((d, i) => (
             <div
-              key={i}
+              key={d.id}
               style={{
-                width: 88,
-                height: 124,
-                borderRadius: 14,
-                background: d.bg,
-                color: colors.ivory,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 10,
-                transform: `rotate(${(i - 1) * 6}deg)`,
+                position: 'absolute',
+                left: xOffsets[i],
+                top: yOffsets[i],
+                width: 140,
+                height: 94,
+                borderRadius: 12,
+                backgroundImage: `url(${d.src})`,
+                backgroundSize: '280px 188px',
+                backgroundPosition: d.bgPos,
+                transform: `rotate(${rotations[i]}deg)`,
+                transformOrigin: 'center center',
                 boxShadow: '0 14px 28px -14px rgba(42,32,25,0.4)',
+                zIndex: designs.length - i,
               }}
-            >
-              <div style={{ fontSize: 30 }}>{d.emoji}</div>
-              <div
-                style={{
-                  ...body,
-                  fontSize: 10,
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  opacity: 0.85,
-                  textAlign: 'center',
-                  padding: '0 8px',
-                  lineHeight: 1.2,
-                }}
-              >
-                {d.label}
-              </div>
-            </div>
+              aria-label={`Сертификат ${d.id}`}
+            />
           ))}
         </div>
       </div>
