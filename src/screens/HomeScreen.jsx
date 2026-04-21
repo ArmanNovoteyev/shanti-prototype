@@ -857,65 +857,6 @@ function ReviewsCarousel() {
   );
 }
 
-const ATMOSPHERE_PHOTOS = [
-  '/assets/photos/atmosphere-01.jpg',
-  '/assets/photos/atmosphere-02.jpg',
-  '/assets/photos/atmosphere-03.jpg',
-  '/assets/photos/atmosphere-04.jpg',
-  '/assets/photos/atmosphere-05.jpg',
-];
-
-function AtmosphereGallery() {
-  const { t } = useTranslation();
-  return (
-    <div style={{ marginBottom: '24px' }}>
-      <div style={{ padding: '0 24px', marginBottom: '12px' }}>
-        <div style={{ ...display, fontSize: '24px', color: colors.deepBrown }}>
-          {t('home.atmosphere')}
-        </div>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          gap: '12px',
-          overflowX: 'auto',
-          padding: '4px 24px 8px',
-          scrollSnapType: 'x mandatory',
-        }}
-      >
-        {ATMOSPHERE_PHOTOS.map((src, i) => (
-          <div
-            key={src}
-            style={{
-              flexShrink: 0,
-              width: 180,
-              height: 220,
-              borderRadius: 20,
-              overflow: 'hidden',
-              scrollSnapAlign: 'start',
-              background: colors.cream,
-              boxShadow: '0 10px 24px -16px rgba(42,32,25,0.28)',
-            }}
-          >
-            <img
-              src={src}
-              alt=""
-              loading="lazy"
-              decoding="async"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                display: 'block',
-              }}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function SocialProof() {
   const { t } = useTranslation();
   return (
@@ -995,7 +936,6 @@ export default function HomeScreen() {
       <HappyHoursBanner />
       <GiftBanner />
       <ReviewsCarousel />
-      <AtmosphereGallery />
       <SocialProof />
     </div>
   );

@@ -14,7 +14,7 @@ const OVERLAY_COPPER =
 const SLIDES = {
   love: {
     id: 'love',
-    bg: '/assets/photos/20-herbal-compress-lotus.jpg',
+    bg: '/assets/photos/atmosphere-01.jpg',
     overlay: OVERLAY_LIGHT,
     eyebrowKey: 'home.hero_eyebrow',
     titleKey: 'home.hero_title',
@@ -22,7 +22,7 @@ const SLIDES = {
   },
   silver: {
     id: 'silver',
-    bg: '/assets/photos/22-wooden-barrel-onyx.jpg',
+    bg: '/assets/photos/atmosphere-02.jpg',
     overlay: OVERLAY_MED,
     eyebrowKey: 'home.slide_silver_eyebrow',
     titleKey: 'home.slide_silver_title',
@@ -33,7 +33,7 @@ const SLIDES = {
   },
   gold: {
     id: 'gold',
-    bg: '/assets/photos/25-massage-bed-lotus.jpg',
+    bg: '/assets/photos/atmosphere-03.jpg',
     overlay: OVERLAY_MED,
     eyebrowKey: 'home.slide_gold_eyebrow',
     titleKey: 'home.slide_gold_title',
@@ -44,7 +44,7 @@ const SLIDES = {
   },
   happyHours: {
     id: 'happy_hours',
-    bg: '/assets/photos/11-hot-stones-back.jpg',
+    bg: '/assets/photos/atmosphere-04.jpg',
     overlay: OVERLAY_COPPER,
     eyebrowKey: 'home.slide_hh_eyebrow',
     titleKey: 'home.slide_hh_title',
@@ -59,7 +59,7 @@ const SLIDES = {
   },
   gift: {
     id: 'gift',
-    bg: '/assets/photos/26-tea-ceremony.jpg',
+    bg: '/assets/photos/atmosphere-04.jpg',
     overlay: OVERLAY_MED,
     eyebrowKey: 'home.slide_gift_eyebrow',
     titleKey: 'home.slide_gift_title',
@@ -70,7 +70,7 @@ const SLIDES = {
   },
   backBalance: {
     id: 'back_balance',
-    bg: '/assets/photos/03-back-massage-deep-tissue.jpg',
+    bg: '/assets/photos/atmosphere-05.jpg',
     overlay: OVERLAY_MED,
     eyebrowKey: 'home.slide_bb_eyebrow',
     titleKey: 'home.slide_bb_title',
