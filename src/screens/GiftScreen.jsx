@@ -22,11 +22,10 @@ const body = { ...FONT_BODY };
 const MIN_AMOUNT = 20000;
 const PRESET_AMOUNTS = [20000, 35000, 50000, 100000];
 const DESIGN_LABEL_KEY = {
-  ny: 'gift.design_ny',
-  march8: 'gift.design_8march',
+  newyear: 'gift.design_newyear',
+  '8march': 'gift.design_8march',
   birthday: 'gift.design_birthday',
-  dark: 'gift.design_daily_dark',
-  light: 'gift.design_daily_light',
+  everyday: 'gift.design_everyday',
 };
 
 function formatPrice(v) {
