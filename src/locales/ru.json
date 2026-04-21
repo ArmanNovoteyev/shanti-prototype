@@ -53,9 +53,13 @@
     "slide_gold_sub": "50 часов на семью, 3 месяца",
     "slide_subscription_cta": "Узнать подробнее",
     "slide_hh_eyebrow": "−20% СЕЙЧАС",
-    "slide_hh_title": "Happy Hours",
+    "slide_hh_title": "Счастливые часы",
     "slide_hh_sub": "До 14:00 в будни · скидка на все услуги",
     "slide_hh_cta": "Записаться сейчас",
+    "slide_hh_price_new": "14 400 ₸",
+    "slide_hh_price_unit": "/ час",
+    "slide_hh_price_old": "18 000 ₸",
+    "slide_hh_weekday_promo": "−20% в будни на все процедуры",
     "slide_gift_eyebrow": "СЕРТИФИКАТ",
     "slide_gift_title": "Удовольствие в подарок",
     "slide_gift_sub": "От 20 000 ₸ за 30 секунд",
@@ -64,7 +68,7 @@
     "slide_bb_title": "Спина без боли",
     "slide_bb_sub": "Курс из 5 процедур",
     "slide_bb_cta": "Подробнее",
-    "story_happy_hours": "Happy Hours",
+    "story_happy_hours": "Счастливые часы",
     "story_subs": "Абонементы",
     "story_gift": "Сертификаты",
     "story_masters": "Наши мастера",
@@ -74,19 +78,19 @@
     "story_soon_toast": "Скоро будет"
   },
   "promo": {
-    "happy_hours": "−20% СЕЙЧАС · Happy Hours до 14:00",
+    "happy_hours": "−20% СЕЙЧАС · Счастливые часы до 14:00",
     "platinum": "PLATINUM — 11 000 ₸/час вместо 18 000",
     "back_balance": "Курс Back Balance — 5 процедур за 65 000 ₸",
     "gift": "Подарочный сертификат — от 20 000 ₸ за 30 секунд"
   },
   "happyHours": {
-    "title": "Happy Hours",
+    "title": "Счастливые часы",
     "schedule": "Будни · 11:00 – 13:59",
     "description": "Запишитесь в будни с 11:00 до 13:59 и получите −20% на все массажи и SPA-комплексы. Время бронирования — момент начала процедуры. Акция не распространяется на сертификаты.",
     "badge": "−20%",
     "oldPriceLabel": "Обычная цена",
     "newPriceLabel": "По акции",
-    "detailBadge": "Вы бронируете в Happy Hours"
+    "detailBadge": "Вы бронируете в Счастливые часы"
   },
   "catalog": {
     "title": "Услуги",

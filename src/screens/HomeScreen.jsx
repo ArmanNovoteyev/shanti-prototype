@@ -44,6 +44,11 @@ function HeroSlide({ slide, greetingSub }) {
   const title = slide.titleKey ? t(slide.titleKey) : '';
   const sub = slide.subMode === 'greeting' ? greetingSub : slide.subKey ? t(slide.subKey) : '';
   const cta = slide.ctaKey ? t(slide.ctaKey) : null;
+  const priceNew = slide.priceNewKey ? t(slide.priceNewKey) : '';
+  const priceUnit = slide.priceUnitKey ? t(slide.priceUnitKey) : '';
+  const priceOld = slide.priceOldKey ? t(slide.priceOldKey) : '';
+  const weekdayPromo = slide.weekdayPromoKey ? t(slide.weekdayPromoKey) : '';
+  const hasPriceBlock = Boolean(priceNew);
 
   const handleCta = (e) => {
     e.stopPropagation();
@@ -72,6 +77,17 @@ function HeroSlide({ slide, greetingSub }) {
           pointerEvents: 'none',
         }}
       />
+      {hasPriceBlock && (
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(to top, rgba(28,20,16,0.55) 0%, rgba(28,20,16,0.35) 40%, rgba(28,20,16,0) 100%)',
+            pointerEvents: 'none',
+          }}
+        />
+      )}
       <div
         style={{
           position: 'absolute',
@@ -98,17 +114,76 @@ function HeroSlide({ slide, greetingSub }) {
         <h1
           style={{
             ...display,
-            fontSize: 40,
+            fontSize: hasPriceBlock ? 30 : 40,
             lineHeight: 1.05,
             margin: 0,
-            marginBottom: sub || cta ? 14 : 0,
+            marginBottom: hasPriceBlock ? 10 : sub || cta ? 14 : 0,
           }}
         >
           {title}
         </h1>
+        {hasPriceBlock && (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'baseline',
+              gap: 12,
+              marginBottom: 8,
+              flexWrap: 'wrap',
+            }}
+          >
+            <span
+              style={{
+                ...display,
+                fontSize: 36,
+                lineHeight: 1,
+                color: '#FFF9F0',
+                fontWeight: 600,
+                letterSpacing: '-0.01em',
+              }}
+            >
+              {priceNew}
+            </span>
+            {priceUnit && (
+              <span style={{ ...body, fontSize: 15, opacity: 0.9 }}>{priceUnit}</span>
+            )}
+            {priceOld && (
+              <span
+                style={{
+                  ...body,
+                  fontSize: 16,
+                  opacity: 0.55,
+                  textDecoration: 'line-through',
+                }}
+              >
+                {priceOld}
+              </span>
+            )}
+          </div>
+        )}
         {sub && (
-          <div style={{ ...body, fontSize: 15, opacity: 0.9, marginBottom: cta ? 18 : 0 }}>
+          <div
+            style={{
+              ...body,
+              fontSize: 15,
+              opacity: 0.9,
+              marginBottom: weekdayPromo ? 6 : cta ? 18 : 0,
+            }}
+          >
             {sub}
+          </div>
+        )}
+        {weekdayPromo && (
+          <div
+            style={{
+              ...body,
+              fontSize: 13,
+              fontWeight: 700,
+              color: colors.copper,
+              marginBottom: cta ? 18 : 0,
+            }}
+          >
+            {weekdayPromo}
           </div>
         )}
         {cta && (
