@@ -1,12 +1,7 @@
 export const HAPPY_HOURS_SCHEDULE = { days: [1, 2, 3, 4, 5], startHour: 11, endHour: 14 };
 export const HAPPY_HOURS_DISCOUNT = 0.2;
 
-// TEMP-REVERT-V3.2.2-DEMO: принудительно включён Happy Hours hero-слайд на 24/7 для демо Арману.
-// Вернуть оригинальную проверку (Пн-Пт 11:00-13:59) перед деплоем Алине.
-// См. memory/project_shanti_v322_demo_hack.md
 export const isHappyHoursNow = (date = new Date()) => {
-  return true; // TEMP-REVERT-V3.2.2-DEMO
-  // eslint-disable-next-line no-unreachable
   const day = date.getDay();
   const hour = date.getHours();
   return (
