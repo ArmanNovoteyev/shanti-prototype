@@ -1,0 +1,4 @@
+# Keep .planning/ tracked, but ignore any scratch/tmp files
+*.tmp
+*.bak
+.DS_Store
