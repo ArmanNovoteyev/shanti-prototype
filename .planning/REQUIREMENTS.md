@@ -8,7 +8,7 @@
 
 ### Pre-deploy hygiene
 
-- [ ] **DEPLOY-01** — `isHappyHoursNow()` возвращает расписание Пн-Пт 11:00-13:59 в production (без TEMP-REVERT hack). Hero-слайд «Счастливые часы» появляется только в рабочее время, в остальное — gift-слайд.
+- [x] **DEPLOY-01** — `isHappyHoursNow()` возвращает расписание Пн-Пт 11:00-13:59 в production (без TEMP-REVERT hack). Hero-слайд «Счастливые часы» появляется только в рабочее время, в остальное — gift-слайд. ✅ 2026-04-23 commit `3888727`.
 - [ ] **DEPLOY-02** — Onboarding Slide 6 CTA «Начать» полностью виден и доступен на iPhone 13/14/15 (viewport height 844px), без скролла и без обрезания eyebrow/H1 сверху.
 - [ ] **DEPLOY-03** — Все 44 JPG-фото в `public/assets/photos/` имеют EXIF Orientation=1 (или EXIF отсутствует), raw-пиксели ориентированы корректно. Скрипт `scripts/strip-exif-orientation.py` повторно применим для будущих фото.
 
@@ -18,7 +18,7 @@
 
 | REQ-ID      | Phase | Status  |
 |-------------|-------|---------|
-| DEPLOY-01   | 1     | planned |
+| DEPLOY-01   | 1     | ✅ done (3888727) |
 | DEPLOY-02   | 2     | planned |
 | DEPLOY-03   | 3     | planned |
 
