@@ -579,7 +579,7 @@ function Slide6({ onStart }) {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
-          padding: '64px 32px 136px',
+          padding: '64px 32px 88px',
           boxSizing: 'border-box',
           color: colors.ivory,
           maxWidth: 440,

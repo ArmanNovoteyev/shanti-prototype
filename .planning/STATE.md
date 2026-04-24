@@ -1,12 +1,28 @@
+---
+gsd_state_version: 1.0
+milestone: v3.3
+milestone_name: milestone
+status: executing
+last_updated: "2026-04-24T07:10:53.663Z"
+last_activity: 2026-04-24
+progress:
+  total_phases: 3
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+---
+
 # GSD State
 
 ## Current Position
 
+Phase: 02 (onboarding-slide6-cta) — EXECUTING
+Plan: 1 of 1
 **Milestone:** v3.3-pre-deploy
 **Phase:** Phase 1 COMPLETE (3888727), Phase 2 pending execute
 **Plan:** `.planning/phases/02-onboarding-slide6-cta/PLAN.md`
-**Status:** Awaiting Phase 2 execute (weekend 2026-04-25+)
-**Last activity:** 2026-04-23 night — Phase 1 executed inline, commit `3888727` v3.3.1 (revert TEMP-REVERT-V3.2.2-DEMO). Push pending user action.
+**Status:** Executing Phase 02
+**Last activity:** 2026-04-24
 
 ---
 
@@ -15,9 +31,11 @@
 **Previous milestone:** V3.2 closed 2026-04-22 (commit `02aa710`). Владелица салона согласилась на запуск 2026-04-22.
 
 **Active hacks/debt:**
+
 - ⚠ `TEMP-REVERT-V3.2.2-DEMO` в `src/utils/happyHours.js:8` — **ОТКАТ в Phase 1**
 
 **Workflow rules:**
+
 - Stage-by-stage, стоп после каждой фазы, ждать отмашку
 - Git push — только с явного разрешения Армана
 - `boxSizing: border-box` golden rule для любых контейнеров с padding/border
