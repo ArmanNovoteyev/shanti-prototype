@@ -2,8 +2,8 @@
 gsd_state_version: 1.0
 milestone: v3.3
 milestone_name: milestone
-status: executing
-last_updated: "2026-04-24T07:10:53.663Z"
+status: planning
+last_updated: "2026-04-24T07:13:28.327Z"
 last_activity: 2026-04-24
 progress:
   total_phases: 3
@@ -19,9 +19,9 @@ progress:
 Phase: 02 (onboarding-slide6-cta) — EXECUTING
 Plan: 1 of 1
 **Milestone:** v3.3-pre-deploy
-**Phase:** Phase 1 COMPLETE (3888727), Phase 2 pending execute
-**Plan:** `.planning/phases/02-onboarding-slide6-cta/PLAN.md`
-**Status:** Executing Phase 02
+**Phase:** 03
+**Plan:** Not started
+**Status:** Ready to plan
 **Last activity:** 2026-04-24
 
 ---
